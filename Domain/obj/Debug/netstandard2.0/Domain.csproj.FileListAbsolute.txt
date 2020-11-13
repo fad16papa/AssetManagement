@@ -1,0 +1,9 @@
+D:\AssetManagement\Domain\obj\Debug\netstandard2.0\Domain.csprojAssemblyReference.cache
+D:\AssetManagement\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfoInputs.cache
+D:\AssetManagement\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfo.cs
+D:\AssetManagement\Domain\obj\Debug\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
+D:\AssetManagement\Domain\bin\Debug\netstandard2.0\Domain.deps.json
+D:\AssetManagement\Domain\bin\Debug\netstandard2.0\Domain.dll
+D:\AssetManagement\Domain\bin\Debug\netstandard2.0\Domain.pdb
+D:\AssetManagement\Domain\obj\Debug\netstandard2.0\Domain.dll
+D:\AssetManagement\Domain\obj\Debug\netstandard2.0\Domain.pdb

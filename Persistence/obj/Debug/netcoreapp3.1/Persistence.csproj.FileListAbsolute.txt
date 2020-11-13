@@ -1,0 +1,12 @@
+D:\AssetManagement\Persistence\bin\Debug\netcoreapp3.1\Persistence.deps.json
+D:\AssetManagement\Persistence\bin\Debug\netcoreapp3.1\Persistence.dll
+D:\AssetManagement\Persistence\bin\Debug\netcoreapp3.1\Persistence.pdb
+D:\AssetManagement\Persistence\obj\Debug\netcoreapp3.1\Persistence.csprojAssemblyReference.cache
+D:\AssetManagement\Persistence\obj\Debug\netcoreapp3.1\Persistence.AssemblyInfoInputs.cache
+D:\AssetManagement\Persistence\obj\Debug\netcoreapp3.1\Persistence.AssemblyInfo.cs
+D:\AssetManagement\Persistence\obj\Debug\netcoreapp3.1\Persistence.csproj.CoreCompileInputs.cache
+D:\AssetManagement\Persistence\obj\Debug\netcoreapp3.1\Persistence.dll
+D:\AssetManagement\Persistence\obj\Debug\netcoreapp3.1\Persistence.pdb
+D:\AssetManagement\Persistence\bin\Debug\netcoreapp3.1\Domain.dll
+D:\AssetManagement\Persistence\bin\Debug\netcoreapp3.1\Domain.pdb
+D:\AssetManagement\Persistence\obj\Debug\netcoreapp3.1\Persistence.csproj.CopyComplete
