@@ -1,0 +1,24 @@
+Asset Table 
+Id
+HostName
+AssetNo.
+SerialNo.
+ExpressCode
+Brand
+Model
+Type
+CurrentUser
+Status
+Location
+IssuedOn
+ReturnedOn
+
+Liscense Table
+Id
+ProductName
+ProductVersion
+LiscenseKey
+Expiration : bool
+ExpiredOn
+CurrentUser
+Remarks
