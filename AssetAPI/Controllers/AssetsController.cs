@@ -16,5 +16,12 @@ namespace AssetAPI.Controllers
         {
             return await Mediator.Send(new List.Query());
         }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<Unit>> Create(Create.Command command)
+        {
+            return await Mediator.Send(command);
+        }
     }
 }
