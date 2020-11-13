@@ -2334,7 +2334,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "Application": "1.0.0"
+          "Application": "1.0.0",
+          "System.IdentityModel.Tokens.Jwt": "5.5.0"
         },
         "compile": {
           "bin/placeholder/Infrastructure.dll": {}
