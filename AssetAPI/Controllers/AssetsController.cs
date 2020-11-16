@@ -17,10 +17,23 @@ namespace AssetAPI.Controllers
             return await Mediator.Send(new List.Query());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Asset>> Details(Guid id)
+        {
+            return await Mediator.Send(new DetailsAsset.Query { Id = id });
+        }
+
         [HttpPost]
-        [Authorize]
         public async Task<ActionResult<Unit>> Create(CreateAsset.Command command)
         {
+            return await Mediator.Send(command);
+        }
+
+        [HttpPut("{id}")]
+        [Authorize]
+        public async Task<ActionResult<Unit>> Edit(Guid id, EditAsset.Command command)
+        {
+            command.Id = id;
             return await Mediator.Send(command);
         }
     }

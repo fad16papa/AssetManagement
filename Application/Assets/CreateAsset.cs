@@ -18,7 +18,7 @@ namespace Application.Assets
             public string ExpressCode { get; set; }
             public string Brand { get; set; }
             public string Model { get; set; }
-            public string Type { get; set; }
+            public AssetType Type { get; set; }
             public string Status { get; set; }
             public string Location { get; set; }
             public DateTime IssuedOn { get; set; }
@@ -33,7 +33,7 @@ namespace Application.Assets
                 RuleFor(x => x.ExpressCode).NotEmpty();
                 RuleFor(x => x.Brand).NotEmpty();
                 RuleFor(x => x.Model).NotEmpty();
-                RuleFor(x => x.Type).NotEmpty();
+                RuleFor(x => x.Type);
                 RuleFor(x => x.Status).NotEmpty();
                 RuleFor(x => x.Location).NotEmpty();
                 RuleFor(x => x.IssuedOn).NotEmpty();
