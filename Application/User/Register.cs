@@ -15,7 +15,7 @@ using Persistence;
 
 namespace Application.User
 {
- public class Register
+    public class Register
     {
         public class Command : IRequest<User>
         {
@@ -32,7 +32,7 @@ namespace Application.User
                 RuleFor(x => x.UserName).NotEmpty();
                 RuleFor(x => x.Email).NotEmpty().EmailAddress();
                 RuleFor(x => x.Password).Password();
-                RuleFor(x => x.DisplayName).Password();
+                RuleFor(x => x.DisplayName).NotEmpty();
             }
         }
 
