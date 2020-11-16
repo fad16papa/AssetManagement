@@ -23,12 +23,10 @@ ExpiredOn
 CurrentUser
 Remarks
 
-AssetHistory Table 
+UserAssets
 Id
-Collections<Asset Table>
-Collections<Users Table>
-
-Liscense Table
-Id
-Collections<Liscense Table>
-Collections<Users Table>
+DisplayName
+Department
+Location
+DateCreated
+Collections<Assets>
