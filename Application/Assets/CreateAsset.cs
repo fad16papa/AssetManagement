@@ -8,7 +8,7 @@ using Persistence;
 
 namespace Application.Assets
 {
-    public class Create
+    public class CreateAsset
     {
         public class Command : IRequest
         {

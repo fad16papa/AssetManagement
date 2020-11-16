@@ -69,7 +69,7 @@ namespace AssetAPI
             })
             .AddFluentValidation(cfg =>
             {
-                cfg.RegisterValidatorsFromAssemblyContaining<Create>();
+                cfg.RegisterValidatorsFromAssemblyContaining<CreateAsset>();
                 cfg.RegisterValidatorsFromAssemblyContaining<Register>();
             });
 

@@ -19,7 +19,7 @@ namespace AssetAPI.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<Unit>> Create(Create.Command command)
+        public async Task<ActionResult<Unit>> Create(CreateAsset.Command command)
         {
             return await Mediator.Send(command);
         }
