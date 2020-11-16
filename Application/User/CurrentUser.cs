@@ -13,14 +13,10 @@ namespace Application.User
 {
     public class CurrentUser
     {
-        public class Query : IRequest<User>
-        {
-
-        }
+        public class Query : IRequest<User> { }
 
         public class Handler : IRequestHandler<Query, User>
         {
-
             private readonly UserManager<AppUser> _userManager;
             private readonly IJwtGenerator _jwtGenerator;
             private readonly IUserAccessor _userAccessor;
@@ -33,14 +29,13 @@ namespace Application.User
 
             public async Task<User> Handle(Query request, CancellationToken cancellationToken)
             {
-                //handler logic goes here
                 var user = await _userManager.FindByNameAsync(_userAccessor.GetCurrentUsername());
 
                 return new User
                 {
                     DisplayName = user.DisplayName,
                     UserName = user.UserName,
-                    Token = _jwtGenerator.CreateToken(user)
+                    Token = _jwtGenerator.CreateToken(user),
                 };
             }
         }

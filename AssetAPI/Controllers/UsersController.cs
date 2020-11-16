@@ -10,6 +10,12 @@ namespace AssetAPI.Controllers
 {
     public class UsersController : BaseController
     {
+        [HttpGet]
+        public async Task<ActionResult<User>> CurrentUser()
+        {
+            return await Mediator.Send(new CurrentUser.Query());
+        }
+
         [AllowAnonymous]
         [HttpPost("register")]
         public async Task<ActionResult<User>> Register(Register.Command command)

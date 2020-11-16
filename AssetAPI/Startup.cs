@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Application.Assets;
 using Application.Interfaces;
 using Application.User;
+using AssetAPI.Middleware;
 using AutoMapper;
 using Domain;
 using FluentValidation.AspNetCore;
@@ -60,6 +61,7 @@ namespace AssetAPI
 
             services.AddMediatR(typeof(List.Handler).Assembly);
             services.AddAutoMapper(typeof(List.Handler));
+            services.AddSignalR();
             services.AddControllers(opt =>
             {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
@@ -94,6 +96,19 @@ namespace AssetAPI
                         ValidateLifetime = true,
                         ClockSkew = TimeSpan.Zero
                     };
+                    opt.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            var accessToken = context.Request.Query["access_token"];
+                            var path = context.HttpContext.Request.Path;
+                            if (!string.IsNullOrEmpty(accessToken) && (path.StartsWithSegments("/chat")))
+                            {
+                                context.Token = accessToken;
+                            }
+                            return Task.CompletedTask;
+                        }
+                    };
                 });
 
             services.AddScoped<IJwtGenerator, JwtGenerator>();
@@ -103,16 +118,18 @@ namespace AssetAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
+            //app.UseHttpsRedirection();
             app.UseRouting();
-
-            app.UseAuthorization();
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {

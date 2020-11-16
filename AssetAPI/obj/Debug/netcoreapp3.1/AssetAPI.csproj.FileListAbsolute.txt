@@ -1,9 +1,3 @@
-D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.csprojAssemblyReference.cache
-D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.AssemblyInfoInputs.cache
-D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.AssemblyInfo.cs
-D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.csproj.CoreCompileInputs.cache
-D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.MvcApplicationPartsAssemblyInfo.cs
-D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.MvcApplicationPartsAssemblyInfo.cache
 D:\AssetManagement\AssetAPI\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\AssetManagement\AssetAPI\bin\Debug\netcoreapp3.1\appsettings.json
 D:\AssetManagement\AssetAPI\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -64,6 +58,12 @@ D:\AssetManagement\AssetAPI\bin\Debug\netcoreapp3.1\Application.pdb
 D:\AssetManagement\AssetAPI\bin\Debug\netcoreapp3.1\Infrastructure.pdb
 D:\AssetManagement\AssetAPI\bin\Debug\netcoreapp3.1\Domain.pdb
 D:\AssetManagement\AssetAPI\bin\Debug\netcoreapp3.1\Persistence.pdb
+D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.csprojAssemblyReference.cache
+D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.AssemblyInfoInputs.cache
+D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.AssemblyInfo.cs
+D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.csproj.CoreCompileInputs.cache
+D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.MvcApplicationPartsAssemblyInfo.cache
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.RazorTargetAssemblyInfo.cache
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.csproj.CopyComplete
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\staticwebassets\AssetAPI.StaticWebAssets.Manifest.cache
