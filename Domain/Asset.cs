@@ -11,7 +11,7 @@ namespace Domain
         public string ExpressCode { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
-        public AssetType Type { get; set; }
+        public string Type { get; set; }
         public string Status { get; set; }
         public string Location { get; set; }
         public DateTime IssuedOn { get; set; }

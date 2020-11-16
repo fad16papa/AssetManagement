@@ -16,6 +16,12 @@ namespace AssetAPI.Controllers
             return await Mediator.Send(new CurrentUser.Query());
         }
 
+        [HttpGet("{email}")]
+        public async Task<ActionResult<AppUser>> CurrentUser(string email)
+        {
+            return await Mediator.Send(new DetailsUser.Query { Email = email });
+        }
+
         [AllowAnonymous]
         [HttpPost("register")]
         public async Task<ActionResult<User>> Register(Register.Command command)
