@@ -22,7 +22,6 @@ namespace Application.Assets
             public string Status { get; set; }
             public string Location { get; set; }
             public DateTime IssuedOn { get; set; }
-
         }
 
         public class CommandValidator : AbstractValidator<Command>
