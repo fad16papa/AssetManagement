@@ -7,16 +7,16 @@ using Domain;
 using MediatR;
 using Persistence;
 
-namespace Application.Assets
+namespace Application.UserStaffs
 {
-    public class DetailsAsset
+    public class DetailsUserStaff
     {
-        public class Query : IRequest<Asset>
+        public class Query : IRequest<UserStaff>
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Asset>
+        public class Handler : IRequestHandler<Query, UserStaff>
         {
             private readonly DataContext _context;
 
@@ -25,15 +25,18 @@ namespace Application.Assets
                 _context = context;
             }
 
-            public async Task<Asset> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<UserStaff> Handle(Query request, CancellationToken cancellationToken)
             {
                 //handler logic goes here
-                var asset = await _context.Assets.FindAsync(request.Id);
 
-                if (asset == null)
+                var userStaff = await _context.UserStaffs.FindAsync(request.Id);
+
+                if (userStaff == null)
+
                     throw new RestException(HttpStatusCode.NotFound, "Not found");
 
-                return asset;
+
+                return userStaff;
             }
         }
     }

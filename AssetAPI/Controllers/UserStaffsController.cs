@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.UserStaffs;
@@ -13,6 +14,12 @@ namespace AssetAPI.Controllers
         public async Task<ActionResult<List<UserStaff>>> List()
         {
             return await Mediator.Send(new ListUserStaffs.Query());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserStaff>> Details(Guid id)
+        {
+            return await Mediator.Send(new DetailsUserStaff.Query { Id = id });
         }
 
         [HttpPost]
