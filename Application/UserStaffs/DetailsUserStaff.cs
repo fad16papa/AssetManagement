@@ -32,9 +32,7 @@ namespace Application.UserStaffs
                 var userStaff = await _context.UserStaffs.FindAsync(request.Id);
 
                 if (userStaff == null)
-
                     throw new RestException(HttpStatusCode.NotFound, "Not found");
-
 
                 return userStaff;
             }
