@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Application.Assets;
 using Application.Interfaces;
 using Application.User;
+using Application.UserStaffs;
 using AssetAPI.Middleware;
 using AutoMapper;
 using Domain;
@@ -70,6 +71,7 @@ namespace AssetAPI
             .AddFluentValidation(cfg =>
             {
                 cfg.RegisterValidatorsFromAssemblyContaining<CreateAsset>();
+                cfg.RegisterValidatorsFromAssemblyContaining<CreateUserStaff>();
                 cfg.RegisterValidatorsFromAssemblyContaining<Register>();
             });
 
