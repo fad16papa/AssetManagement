@@ -30,7 +30,6 @@ namespace AssetAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
         public async Task<ActionResult<Unit>> Edit(Guid id, EditAsset.Command command)
         {
             command.Id = id;
