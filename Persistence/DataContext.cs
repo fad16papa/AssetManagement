@@ -13,10 +13,23 @@ namespace Persistence
         public DbSet<Asset> Assets { get; set; }
         public DbSet<License> Licenses { get; set; }
         public DbSet<UserAssets> UserAssets { get; set; }
+        public DbSet<UserStaff> UserStaffs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<UserAssets>(x => x.HasKey(ua => new { ua.AssetsId, ua.UserStaffId }));
+
+            builder.Entity<UserAssets>()
+            .HasOne(u => u.UserStaff)
+            .WithMany(a => a.UserAssets)
+            .HasForeignKey(u => u.UserStaffId);
+
+            builder.Entity<UserAssets>()
+            .HasOne(a => a.Asset)
+            .WithMany(u => u.UserAssets)
+            .HasForeignKey(a => a.AssetsId);
         }
     }
 }

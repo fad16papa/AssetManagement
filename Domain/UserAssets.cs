@@ -1,16 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Domain
 {
     public class UserAssets
     {
-        public Guid Id { get; set; }
-        public string DisplayName { get; set; }
-        public string Department { get; set; }
-        public string Location { get; set; }
-        public virtual ICollection<Asset> Assets { get; set; }
-        public DateTime DateCreated { get; set; }
+        public Guid AssetsId { get; set; }
+        public virtual Asset Asset { get; set; }
+        public virtual Guid UserStaffId { get; set; }
+        public UserStaff UserStaff { get; set; }
     }
 }

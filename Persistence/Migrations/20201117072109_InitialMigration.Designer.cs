@@ -10,8 +10,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201116075534_AssetEntity")]
-    partial class AssetEntity
+    [Migration("20201117072109_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,9 +28,6 @@ namespace Persistence.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
-
-                    b.Property<Guid?>("AssetId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -90,8 +87,6 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AssetId");
-
                     b.HasIndex("LicenseId");
 
                     b.HasIndex("NormalizedEmail")
@@ -138,27 +133,12 @@ namespace Persistence.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Assets");
-                });
-
-            modelBuilder.Entity("Domain.AssetHistory", b =>
-                {
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid>("AssetId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("AppUserId", "AssetId");
-
-                    b.HasIndex("AssetId");
-
-                    b.ToTable("AssetHistories");
                 });
 
             modelBuilder.Entity("Domain.License", b =>
@@ -190,19 +170,42 @@ namespace Persistence.Migrations
                     b.ToTable("Licenses");
                 });
 
-            modelBuilder.Entity("Domain.LicenseHistory", b =>
+            modelBuilder.Entity("Domain.UserAssets", b =>
                 {
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid>("LicenseId")
+                    b.Property<Guid>("AssetsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("AppUserId", "LicenseId");
+                    b.Property<Guid>("UserStaffId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasIndex("LicenseId");
+                    b.HasKey("AssetsId", "UserStaffId");
 
-                    b.ToTable("LicenseHistories");
+                    b.HasIndex("UserStaffId");
+
+                    b.ToTable("UserAssets");
+                });
+
+            modelBuilder.Entity("Domain.UserStaff", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Department")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserStaffs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -338,41 +341,22 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.AppUser", b =>
                 {
-                    b.HasOne("Domain.Asset", null)
-                        .WithMany("AppUsers")
-                        .HasForeignKey("AssetId");
-
                     b.HasOne("Domain.License", null)
                         .WithMany("AppUsers")
                         .HasForeignKey("LicenseId");
                 });
 
-            modelBuilder.Entity("Domain.AssetHistory", b =>
+            modelBuilder.Entity("Domain.UserAssets", b =>
                 {
-                    b.HasOne("Domain.AppUser", "AppUser")
-                        .WithMany("AssetHistories")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Domain.Asset", "Asset")
-                        .WithMany()
-                        .HasForeignKey("AssetId")
+                        .WithMany("UserAssets")
+                        .HasForeignKey("AssetsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("Domain.LicenseHistory", b =>
-                {
-                    b.HasOne("Domain.AppUser", "AppUser")
-                        .WithMany("LicenseHistories")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Domain.License", "License")
-                        .WithMany()
-                        .HasForeignKey("LicenseId")
+                    b.HasOne("Domain.UserStaff", "UserStaff")
+                        .WithMany("UserAssets")
+                        .HasForeignKey("UserStaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

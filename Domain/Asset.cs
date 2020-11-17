@@ -16,6 +16,6 @@ namespace Domain
         public string Location { get; set; }
         public DateTime IssuedOn { get; set; }
         public DateTime ReturnedOn { get; set; }
-        public virtual ICollection<AppUser> AppUsers { get; set; }
+        public virtual ICollection<UserAssets> UserAssets { get; set; }
     }
 }

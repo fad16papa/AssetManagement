@@ -60,6 +60,21 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserStaffs",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    DisplayName = table.Column<string>(nullable: true),
+                    Department = table.Column<string>(nullable: true),
+                    Location = table.Column<string>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserStaffs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -102,24 +117,41 @@ namespace Persistence.Migrations
                     DisplayName = table.Column<string>(nullable: true),
                     Location = table.Column<string>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
-                    AssetId = table.Column<Guid>(nullable: true),
                     LicenseId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Assets_AssetId",
-                        column: x => x.AssetId,
-                        principalTable: "Assets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_AspNetUsers_Licenses_LicenseId",
                         column: x => x.LicenseId,
                         principalTable: "Licenses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserAssets",
+                columns: table => new
+                {
+                    AssetsId = table.Column<Guid>(nullable: false),
+                    UserStaffId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserAssets", x => new { x.AssetsId, x.UserStaffId });
+                    table.ForeignKey(
+                        name: "FK_UserAssets_Assets_AssetsId",
+                        column: x => x.AssetsId,
+                        principalTable: "Assets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserAssets_UserStaffs_UserStaffId",
+                        column: x => x.UserStaffId,
+                        principalTable: "UserStaffs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -207,54 +239,6 @@ namespace Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "AssetHistories",
-                columns: table => new
-                {
-                    AppUserId = table.Column<string>(nullable: false),
-                    AssetId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AssetHistories", x => new { x.AppUserId, x.AssetId });
-                    table.ForeignKey(
-                        name: "FK_AssetHistories_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AssetHistories_Assets_AssetId",
-                        column: x => x.AssetId,
-                        principalTable: "Assets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LicenseHistories",
-                columns: table => new
-                {
-                    AppUserId = table.Column<string>(nullable: false),
-                    LicenseId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LicenseHistories", x => new { x.AppUserId, x.LicenseId });
-                    table.ForeignKey(
-                        name: "FK_LicenseHistories_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_LicenseHistories_Licenses_LicenseId",
-                        column: x => x.LicenseId,
-                        principalTable: "Licenses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -283,11 +267,6 @@ namespace Persistence.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_AssetId",
-                table: "AspNetUsers",
-                column: "AssetId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_LicenseId",
                 table: "AspNetUsers",
                 column: "LicenseId");
@@ -305,14 +284,9 @@ namespace Persistence.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AssetHistories_AssetId",
-                table: "AssetHistories",
-                column: "AssetId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LicenseHistories_LicenseId",
-                table: "LicenseHistories",
-                column: "LicenseId");
+                name: "IX_UserAssets_UserStaffId",
+                table: "UserAssets",
+                column: "UserStaffId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -333,10 +307,7 @@ namespace Persistence.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "AssetHistories");
-
-            migrationBuilder.DropTable(
-                name: "LicenseHistories");
+                name: "UserAssets");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -346,6 +317,9 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Assets");
+
+            migrationBuilder.DropTable(
+                name: "UserStaffs");
 
             migrationBuilder.DropTable(
                 name: "Licenses");

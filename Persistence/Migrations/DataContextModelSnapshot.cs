@@ -27,9 +27,6 @@ namespace Persistence.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("AssetId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -88,8 +85,6 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AssetId");
-
                     b.HasIndex("LicenseId");
 
                     b.HasIndex("NormalizedEmail")
@@ -139,12 +134,7 @@ namespace Persistence.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserAssetsId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserAssetsId");
 
                     b.ToTable("Assets");
                 });
@@ -180,6 +170,21 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.UserAssets", b =>
                 {
+                    b.Property<Guid>("AssetsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserStaffId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AssetsId", "UserStaffId");
+
+                    b.HasIndex("UserStaffId");
+
+                    b.ToTable("UserAssets");
+                });
+
+            modelBuilder.Entity("Domain.UserStaff", b =>
+                {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
@@ -198,7 +203,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserAssets");
+                    b.ToTable("UserStaffs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -334,20 +339,24 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.AppUser", b =>
                 {
-                    b.HasOne("Domain.Asset", null)
-                        .WithMany("AppUsers")
-                        .HasForeignKey("AssetId");
-
                     b.HasOne("Domain.License", null)
                         .WithMany("AppUsers")
                         .HasForeignKey("LicenseId");
                 });
 
-            modelBuilder.Entity("Domain.Asset", b =>
+            modelBuilder.Entity("Domain.UserAssets", b =>
                 {
-                    b.HasOne("Domain.UserAssets", null)
-                        .WithMany("Assets")
-                        .HasForeignKey("UserAssetsId");
+                    b.HasOne("Domain.Asset", "Asset")
+                        .WithMany("UserAssets")
+                        .HasForeignKey("AssetsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.UserStaff", "UserStaff")
+                        .WithMany("UserAssets")
+                        .HasForeignKey("UserStaffId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
