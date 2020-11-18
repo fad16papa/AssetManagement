@@ -12,6 +12,7 @@ Status
 Location
 IssuedOn
 ReturnedOn
+IsAvailable
 
 Liscense Table
 Id

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetAPI", "AssetAPI\AssetA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{D9CEDA3D-A030-47B0-B439-F86AECFE9515}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetManagementWeb", "AssetManagementWeb\AssetManagementWeb.csproj", "{6E5D9E2F-024F-407A-A693-96F8F99EBD89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,5 +88,17 @@ Global
 		{D9CEDA3D-A030-47B0-B439-F86AECFE9515}.Release|x64.Build.0 = Release|Any CPU
 		{D9CEDA3D-A030-47B0-B439-F86AECFE9515}.Release|x86.ActiveCfg = Release|Any CPU
 		{D9CEDA3D-A030-47B0-B439-F86AECFE9515}.Release|x86.Build.0 = Release|Any CPU
+		{6E5D9E2F-024F-407A-A693-96F8F99EBD89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E5D9E2F-024F-407A-A693-96F8F99EBD89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E5D9E2F-024F-407A-A693-96F8F99EBD89}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6E5D9E2F-024F-407A-A693-96F8F99EBD89}.Debug|x64.Build.0 = Debug|Any CPU
+		{6E5D9E2F-024F-407A-A693-96F8F99EBD89}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6E5D9E2F-024F-407A-A693-96F8F99EBD89}.Debug|x86.Build.0 = Debug|Any CPU
+		{6E5D9E2F-024F-407A-A693-96F8F99EBD89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E5D9E2F-024F-407A-A693-96F8F99EBD89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E5D9E2F-024F-407A-A693-96F8F99EBD89}.Release|x64.ActiveCfg = Release|Any CPU
+		{6E5D9E2F-024F-407A-A693-96F8F99EBD89}.Release|x64.Build.0 = Release|Any CPU
+		{6E5D9E2F-024F-407A-A693-96F8F99EBD89}.Release|x86.ActiveCfg = Release|Any CPU
+		{6E5D9E2F-024F-407A-A693-96F8F99EBD89}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
