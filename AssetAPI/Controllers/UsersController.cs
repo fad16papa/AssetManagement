@@ -17,7 +17,7 @@ namespace AssetAPI.Controllers
         }
 
         [HttpGet("{email}")]
-        public async Task<ActionResult<AppUser>> CurrentUser(string email)
+        public async Task<ActionResult<AppUser>> Details(string email)
         {
             return await Mediator.Send(new DetailsUser.Query { Email = email });
         }
