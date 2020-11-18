@@ -113,6 +113,9 @@ namespace Persistence.Migrations
                     b.Property<string>("HostName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("IssuedOn")
                         .HasColumnType("datetime2");
 

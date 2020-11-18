@@ -14,6 +14,7 @@ namespace Domain
         public string Type { get; set; }
         public string Status { get; set; }
         public string Location { get; set; }
+        public bool IsAvailable { get; set; }
         public DateTime IssuedOn { get; set; }
         public DateTime ReturnedOn { get; set; }
         public virtual ICollection<UserAssets> UserAssets { get; set; }
