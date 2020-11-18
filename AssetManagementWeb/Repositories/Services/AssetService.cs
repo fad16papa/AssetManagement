@@ -72,9 +72,36 @@ namespace AssetManagementWeb.Repositories.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Asset>> GetAssets(string token)
+        public async Task<object> GetAssets(string token)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var responseClient = _httpClientFactory.CreateClient("AssetAPI");
+
+                responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var result = await responseClient.GetAsync("api/Assets/");
+
+                if (result.StatusCode != HttpStatusCode.OK)
+                {
+                    var faliedResponse = await result.Content.ReadAsJsonAsync<RestException>();
+                    return new ResponseModel()
+                    {
+                        ResponseMessage = faliedResponse.Errors.ToString(),
+                        ResponseCode = result.StatusCode.ToString()
+                    };
+                }
+
+                var successResponse = await result.Content.ReadAsJsonAsync<List<Asset>>();
+
+                return successResponse;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in AssetService||CreateAsset ErrorMessage: {ex.Message}");
+                throw ex;
+            }
         }
     }
 }
