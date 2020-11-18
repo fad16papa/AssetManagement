@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AssetManagementWeb.Repositories.Interfaces;
+using AssetManagementWeb.Repositories.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +26,28 @@ namespace AssetManagementWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Dependency Injection
+            services.AddTransient<IAssetInterface, AssetService>();
+            #endregion
+
+            //Add middleware for IHttpClientFactory
+            //set the base url of AssetAPI
+            //set timeout for 2hrs
+            services.AddHttpClient("AssetAPI", options =>
+            {
+                string setBaseUrl = Configuration["URLConnection:AssetAPIUrl"].ToString();
+
+                options.BaseAddress = new Uri(setBaseUrl);
+                options.Timeout = TimeSpan.FromHours(2);
+            });
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.Strict;
+            });
+
             services.AddControllersWithViews();
         }
 
