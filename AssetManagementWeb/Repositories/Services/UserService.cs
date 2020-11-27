@@ -1,15 +1,21 @@
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using Application.Errors;
-using Application.User;
 using AspNetCore.Http.Extensions;
-using AssetManagementWeb.Models.ApiResponse;
-using AssetManagementWeb.Models.DTO;
-using AssetManagementWeb.Repositories.Interfaces;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
+using AssetManagementWeb.Helper;
+using AssetManagementWeb.Repositories.Interfaces;
+using AssetManagementWeb.Models.ApiResponse;
+using Application.Errors;
+using System.Net;
+using Application.User;
+using Domain;
+using System.Net.Http.Headers;
+using AssetManagementWeb.Models.DTO;
 
 namespace AssetManagementWeb.Repositories.Services
 {

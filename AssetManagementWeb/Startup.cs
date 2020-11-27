@@ -32,9 +32,6 @@ namespace AssetManagementWeb
             services.AddTransient<IUserInterface, UserService>();
             #endregion
 
-            //Add middleware for IHttpClientFactory
-            //set the base url of AssetAPI
-            //set timeout for 2hrs
             services.AddHttpClient("AssetAPI", options =>
             {
                 string setBaseUrl = Configuration["URLConnection:AssetAPIUrl"].ToString();
@@ -43,19 +40,11 @@ namespace AssetManagementWeb
                 options.Timeout = TimeSpan.FromHours(2);
             });
 
-            //declare session timeout
-            services.AddSession(options =>
+            services.Configure<CookiePolicyOptions>(options =>
             {
-                options.Cookie.Name = Configuration["Session:AssetsSesion"];
-                options.IdleTimeout = TimeSpan.FromMinutes(20);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
-            });
-
-            //Same Site Cookies to prevent CSRF Attacks 
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.SameSite = SameSiteMode.None;
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.Strict;
             });
 
             services.AddControllersWithViews();
@@ -74,14 +63,13 @@ namespace AssetManagementWeb
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
+
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseCookiePolicy();
-            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
