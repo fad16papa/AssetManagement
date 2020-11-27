@@ -3,6 +3,7 @@ using AssetManagementWeb.Models.DTO;
 using AssetManagementWeb.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
@@ -13,9 +14,12 @@ namespace AssetManagementWeb.Controllers
     {
         private readonly ILogger<UserController> _logger;
         private readonly IUserInterface _userInterface;
-        public UserController(ILogger<UserController> logger, IUserInterface userInterface)
+        private readonly IConfiguration _configuration;
+
+        public UserController(ILogger<UserController> logger, IUserInterface userInterface, IConfiguration configuration)
         {
             _userInterface = userInterface;
+            _configuration = configuration;
             _logger = logger;
         }
 
@@ -28,22 +32,43 @@ namespace AssetManagementWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
-            var response = await _userInterface.Login(loginDTO);
-
-            if(!response.GetType().GetProperty("ResponseCode").GetValue(response, null).Equals("OK"))
+            try
             {
-                return View();
+                if (!ModelState.IsValid)
+                {
+                    return View();
+                }
+                else
+                {
+                    var result = await _userInterface.Login(loginDTO);
+
+                    //check the result 
+                    //return the view with the error message from the server side
+                    if (result.Code == 401)
+                    {
+                        _logger.LogError($"Error encountered in UserController||Login Error Message {result.Message}");
+                        ViewBag.ErrorMessage = result.Message;
+                        return View();
+                    }
+
+                    //Save the return JWT to sessionStorage
+                    var cookieOptions = new CookieOptions()
+                    {
+                        Expires = DateTime.Now.AddHours(2),
+                        IsEssential = true
+                    };
+
+                    Response.Cookies.Append(_configuration["AssetCookies:AssetJwt"], result.Token, cookieOptions);
+                    Response.Cookies.Append(_configuration["Session:UserName"], result.UserName, cookieOptions);
+                }
+
+                return RedirectToAction("Index", "Home");
             }
-
-            //Create a cookies for jwt token 
-            var cookies = new CookieOptions();
-            cookies.Expires = DateTime.Now.AddDays(1);
-            cookies.HttpOnly = true;
-
-            Response.Cookies.Append("Token", response.GetType().GetProperty("Token").GetValue(response, null).ToString(), cookies);
-            Response.Cookies.Append("UserName", response.GetType().GetProperty("UserName").GetValue(response, null).ToString(), cookies);
-
-            return RedirectToAction("Index", "Home");
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in UserController||Login ErrorMessage: {ex.Message}");
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public IActionResult Logout()

@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Application.Errors;
+using Application.User;
 using AspNetCore.Http.Extensions;
 using AssetManagementWeb.Models.ApiResponse;
 using AssetManagementWeb.Models.DTO;
@@ -22,38 +23,36 @@ namespace AssetManagementWeb.Repositories.Services
             _logger = logger;
         }
 
-        public async Task<object> Login(LoginDTO loginDTO)
+        public async Task<LoginResponeModel> Login(LoginDTO loginDTO)
         {
             try
             {
                 var responseClient = _httpClientFactory.CreateClient("AssetAPI");
 
-                var result = await responseClient.PostAsJsonAsync<LoginDTO>("api/Users/Login", loginDTO);
+                var result = await responseClient.PostAsJsonAsync<LoginDTO>("api/Users/login", loginDTO);
 
                 if (result.StatusCode != HttpStatusCode.OK)
                 {
                     var faliedResponse = await result.Content.ReadAsJsonAsync<RestException>();
-                    return new ResponseModel()
+                    return new LoginResponeModel()
                     {
-                        ResponseMessage = faliedResponse.Errors.ToString(),
-                        ResponseCode = result.StatusCode.ToString()
+                        Message = faliedResponse.Errors.ToString(),
+                        Code = Convert.ToInt32(result.StatusCode)
                     };
                 }
 
-                var successResponse = await result.Content.ReadAsJsonAsync<LoginResponeModel>();
-
+                var successResponse = await result.Content.ReadAsJsonAsync<User>();
                 return new LoginResponeModel()
                 {
                     DisplayName = successResponse.DisplayName,
-                    Token = successResponse.Token,
                     UserName = successResponse.UserName,
-                    ResponseCode = result.StatusCode.ToString()
+                    Token = successResponse.Token,
+                    Code = Convert.ToInt32(result.StatusCode)
                 };
-
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error encountered in UserService||Login ErrorMessage: {ex.Message}");
+                _logger.LogError($"Error encountered in UserService||LoginUser ErrorMessage: {ex.Message}");
                 throw ex;
             }
         }
