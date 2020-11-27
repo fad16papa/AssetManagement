@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AssetManagementWeb.Repositories.Interfaces;
 using AssetManagementWeb.Repositories.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -42,11 +43,19 @@ namespace AssetManagementWeb
                 options.Timeout = TimeSpan.FromHours(2);
             });
 
-            services.Configure<CookiePolicyOptions>(options =>
+            //declare session timeout
+            services.AddSession(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.Strict;
+                options.Cookie.Name = Configuration["Session:AssetsSesion"];
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            //Same Site Cookies to prevent CSRF Attacks 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.SameSite = SameSiteMode.None;
             });
 
             services.AddControllersWithViews();
@@ -71,6 +80,8 @@ namespace AssetManagementWeb
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

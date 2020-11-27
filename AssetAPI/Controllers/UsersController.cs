@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AssetAPI.Controllers
 {
-    public class UsersController : BaseController
+    public class UserController : BaseController
     {
         [HttpGet]
         public async Task<ActionResult<User>> CurrentUser()

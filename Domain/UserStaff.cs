@@ -6,6 +6,11 @@ namespace Domain
 {
     public class UserStaff
     {
+        public UserStaff()
+        {
+            UserAssets = new Collection<UserAssets>();
+        }
+
         public Guid Id { get; set; }
         public string DisplayName { get; set; }
         public string Department { get; set; }

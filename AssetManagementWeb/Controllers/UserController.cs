@@ -1,8 +1,10 @@
 using AssetManagementWeb.Models.ApiResponse;
 using AssetManagementWeb.Models.DTO;
 using AssetManagementWeb.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace AssetManagementWeb.Controllers
@@ -28,12 +30,28 @@ namespace AssetManagementWeb.Controllers
         {
             var response = await _userInterface.Login(loginDTO);
 
-            if(response.GetType().GetProperty("ResponseCode").GetValue(response, null).Equals("Ok"))
+            if(!response.GetType().GetProperty("ResponseCode").GetValue(response, null).Equals("OK"))
             {
-
+                return View();
             }
 
-            return View();
+            //Create a cookies for jwt token 
+            var cookies = new CookieOptions();
+            cookies.Expires = DateTime.Now.AddDays(1);
+            cookies.HttpOnly = true;
+
+            Response.Cookies.Append("Token", response.GetType().GetProperty("Token").GetValue(response, null).ToString(), cookies);
+            Response.Cookies.Append("UserName", response.GetType().GetProperty("UserName").GetValue(response, null).ToString(), cookies);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("Token");
+            Response.Cookies.Delete("UserName");
+
+            return RedirectToAction("Login", "User");
         }
     }
 }

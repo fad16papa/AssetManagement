@@ -45,6 +45,7 @@ namespace AssetAPI
         {
             services.AddDbContext<DataContext>(opt =>
             {
+                opt.UseLazyLoadingProxies();
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
@@ -74,7 +75,6 @@ namespace AssetAPI
             {
                 cfg.RegisterValidatorsFromAssemblyContaining<CreateAsset>();
                 cfg.RegisterValidatorsFromAssemblyContaining<CreateUserStaff>();
-                cfg.RegisterValidatorsFromAssemblyContaining<Register>();
             });
 
             services.AddControllersWithViews()
@@ -125,7 +125,7 @@ namespace AssetAPI
             app.UseMiddleware<ErrorHandlingMiddleware>();
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
             }
 
             app.UseDefaultFiles();
