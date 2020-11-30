@@ -36,7 +36,6 @@ namespace Application.Assets
                 RuleFor(x => x.Type);
                 RuleFor(x => x.Status).NotEmpty();
                 RuleFor(x => x.Location).NotEmpty();
-                RuleFor(x => x.IssuedOn).NotEmpty();
             }
         }
 
