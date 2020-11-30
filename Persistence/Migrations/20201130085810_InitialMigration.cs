@@ -34,6 +34,8 @@ namespace Persistence.Migrations
                     Type = table.Column<string>(nullable: true),
                     Status = table.Column<string>(nullable: true),
                     Location = table.Column<string>(nullable: true),
+                    IsAvailable = table.Column<string>(nullable: true),
+                    Remarks = table.Column<string>(nullable: true),
                     IssuedOn = table.Column<DateTime>(nullable: false),
                     ReturnedOn = table.Column<DateTime>(nullable: false)
                 },

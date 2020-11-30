@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain;
 using AssetManagementWeb.Models.ApiResponse;
+using AssetManagementWeb.Models.DTO;
 
 namespace AssetManagementWeb.Repositories.Interfaces
 {

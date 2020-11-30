@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Application.Errors;
 using AspNetCore.Http.Extensions;
 using AssetManagementWeb.Models.ApiResponse;
+using AssetManagementWeb.Models.DTO;
 using AssetManagementWeb.Repositories.Interfaces;
 using Domain;
 using Microsoft.Extensions.Logging;

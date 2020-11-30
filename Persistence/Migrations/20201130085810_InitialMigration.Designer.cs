@@ -10,7 +10,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201117072109_InitialMigration")]
+    [Migration("20201130085810_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,6 +115,9 @@ namespace Persistence.Migrations
                     b.Property<string>("HostName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IsAvailable")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("IssuedOn")
                         .HasColumnType("datetime2");
 
@@ -122,6 +125,9 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReturnedOn")

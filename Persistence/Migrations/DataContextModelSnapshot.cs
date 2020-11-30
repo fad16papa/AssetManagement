@@ -113,8 +113,8 @@ namespace Persistence.Migrations
                     b.Property<string>("HostName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
+                    b.Property<string>("IsAvailable")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("IssuedOn")
                         .HasColumnType("datetime2");
@@ -123,6 +123,9 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReturnedOn")

@@ -4927,7 +4927,7 @@ License - nucleoapp.com/license/
 }
 
 .main-panel {
-  position: relative;
+  //position: relative;
   float: right;
   width: calc(100% - 260px);
   background-color: #f4f3ef;
@@ -4935,8 +4935,8 @@ License - nucleoapp.com/license/
 }
 .main-panel > .content {
   padding: 0 30px 30px;
-  /* min-height: calc(100vh - px); */
-  margin-top: 93px;
+  min-height: calc(100vh - 75px);
+margin-top: 93px;
 }
 .main-panel > .navbar {
   margin-bottom: 0;
