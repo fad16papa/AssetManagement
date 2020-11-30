@@ -4284,11 +4284,11 @@ License - nucleoapp.com/license/
 .sidebar .sidebar-wrapper,
 .off-canvas-sidebar .sidebar-wrapper {
   position: relative;
-  height: calc(100vh - 75px);
-  overflow: auto;
+  //height: calc(100vh - 100px);
+  //overflow: auto;
   width: 260px;
   z-index: 4;
-  padding-bottom: 100px;
+  //padding-bottom: 100px;
 }
 .sidebar .sidebar-wrapper .dropdown .dropdown-backdrop,
 .off-canvas-sidebar .sidebar-wrapper .dropdown .dropdown-backdrop {
@@ -4930,7 +4930,7 @@ License - nucleoapp.com/license/
   position: relative;
   float: right;
   width: calc(100% - 260px);
-  //background-color: #f4f3ef;
+  background-color: #f4f3ef;
   transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
 }
 .main-panel > .content {
