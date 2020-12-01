@@ -16,7 +16,7 @@ namespace AssetManagementWeb.Controllers
         public AssetsController(ILogger<AssetsController> logger, IAssetInterface assetInterface)
         {
             _assetInterface = assetInterface;
-            _logger = logger;
+            _logger = logger; 
         }
 
         [HttpGet]
@@ -85,7 +85,7 @@ namespace AssetManagementWeb.Controllers
 
                 var result = await _assetInterface.CreateAsset(asset, Request.Cookies["AssetReference"].ToString());
 
-                return RedirectToAction("Index");
+                return View(assetsDTO);
             }
             catch (Exception ex)
             {

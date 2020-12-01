@@ -1,7 +1,7 @@
 @model AssetManagementWeb.Models.DTO.AssetsDTO
 
 @{
-    Layout = "_Layout";
+    Layout = null;
 }
 
 <div class="modal fade" id="CreateAsset" tabindex="-1" role="dialog" aria-hidden="true">
@@ -123,19 +123,19 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                     </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="row">
+                                        <div class="update ml-auto mr-auto p-2">
+                                            <button type="submit" class="btn btn-info btn-fill btn-wd" onclick="CreateAsset()">Create</button>
+                                            <button type="button" class="btn btn-danger btn-fill btn-wd" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="row">
-                    <div class="update ml-auto mr-auto p-2">
-                        <button type="submit" class="btn btn-info btn-fill btn-wd" Onclick="CreateAsset()">Create</button>
-                        <button type="button" class="btn btn-danger btn-fill btn-wd" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

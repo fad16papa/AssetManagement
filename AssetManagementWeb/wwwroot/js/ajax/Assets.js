@@ -39,7 +39,7 @@ function CreateAsset() {
             placeholderElement.find('.modal').modal('hide');
 
             let successHeader = "User Action!";
-            let successBody = "New Asset has been created";
+            let successBody = "New asset has been created!";
 
             //function call to display the Error Message
             DisplaySuccessModal(successHeader, successBody);
@@ -59,14 +59,17 @@ function CreateAsset() {
 
 function viewAssets() {
     $.ajax({
-        type: "GET",
+        method: 'GET',
         url: "/Assets/Index",
-        dataType: "text",
-        success: function (msg) {
-            console.log(msg);
-        },
-        error: function (req, status, error) {
-            console.log(msg);
-        }
-    }); 
+    }).done(function (data, statusText, xhdr) {
+       
+    }).fail(function (xhdr, statusText, errorText) {
+
+        let errorHeader = "System Error!";
+        let errorBody = "Error displaying the user's list! \nPlease contact administrator.";
+
+        //function calln to display the Error Message
+        DisplayErrorModal(errorHeader, errorBody);
+
+    });
 }
