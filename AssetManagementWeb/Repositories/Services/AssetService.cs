@@ -147,7 +147,7 @@ namespace AssetManagementWeb.Repositories.Services
                     };
                 }
 
-                var successResponse = await result.Content.ReadAsJsonAsync<List<Asset>>();
+                var successResponse = await result.Content.ReadAsJsonAsync<List<AssetsDTO>>();
 
                 return successResponse;
 

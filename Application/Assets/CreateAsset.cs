@@ -21,6 +21,8 @@ namespace Application.Assets
             public string Type { get; set; }
             public string Status { get; set; }
             public string Location { get; set; }
+            public string IsAvailable { get; set; }
+            public string Remarks { get; set; }
             public DateTime IssuedOn { get; set; }
         }
 
@@ -33,9 +35,10 @@ namespace Application.Assets
                 RuleFor(x => x.ExpressCode).NotEmpty();
                 RuleFor(x => x.Brand).NotEmpty();
                 RuleFor(x => x.Model).NotEmpty();
-                RuleFor(x => x.Type);
+                RuleFor(x => x.Type).NotEmpty();
                 RuleFor(x => x.Status).NotEmpty();
                 RuleFor(x => x.Location).NotEmpty();
+                RuleFor(x => x.IsAvailable).NotEmpty();
             }
         }
 
@@ -61,6 +64,8 @@ namespace Application.Assets
                     Model = request.Model,
                     Type = request.Type,
                     Status = request.Status,
+                    IsAvailable = request.IsAvailable,
+                    Remarks = request.Remarks,
                     Location = request.Location,
                     IssuedOn = request.IssuedOn
                 };

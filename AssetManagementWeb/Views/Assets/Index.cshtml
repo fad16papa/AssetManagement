@@ -1,3 +1,5 @@
+@model IEnumerable<AssetManagementWeb.Models.DTO.AssetsDTO>
+
 @{
     ViewData["Title"] = "Assets Page";
     Layout = "_Layout";
@@ -8,66 +10,120 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header form-inline">
-                    @* <button class="btn btn-secondary">
-                        <i class="nc-icon nc-simple-add"></i>
-                        </button> *@
-                    <a type="button" class="btn btn-secondary" asp-controller="Assets" asp-action="Create">
+                    <a type="button" class="btn btn-secondary" href="#" onclick="CreateAssetModal()">
                         <i class="nc-icon nc-simple-add"></i>
                     </a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
+                        @{
+                            var counterUser = 1;
+                        }
                         <table class="table">
                             <thead class=" text-primary">
-                                <th>
-                                    HostName
-                                </th>
-                                <th>
-                                    AssetNo.
-                                </th>
-                                <th>
-                                    SerialNo.
-                                </th>
-                                <th>
-                                    ExpressCode
-                                </th>
-                                <th>
-                                    Brand
-                                </th>
-                                <th>
-                                    Model
-                                </th>
-                                <th>
-                                    Type
-                                </th>
-                                <th>
-                                    Status
-                                </th>
-                                <th>
-                                    Location
-                                </th>
-                                <th>
-                                    Availability
-                                </th>
+                                <tr>
+                                    <th>
+                                        S/N
+                                    </th>
+                                    <th>
+                                        HostName
+                                    </th>
+                                    <th>
+                                        SerialNo.
+                                    </th>
+                                    <th>
+                                        ExpressCode
+                                    </th>
+                                    <th>
+                                        Brand
+                                    </th>
+                                    <th>
+                                        Model
+                                    </th>
+                                    <th>
+                                        Type
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Location
+                                    </th>
+                                    <th>
+                                        Availability
+                                    </th>
+                                </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @counterUser
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.HostName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.SerialNo)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.ExpressCode)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Brand)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Model)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Type)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Location)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.IsAvailable)</td>
+                                    </tr>
+                                    counterUser++;
+                                }
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+
+@* Placeholder for the Modal View *@
+<div id="ModalPlaceholder"></div>
+
+<!-- Modal for Errors-->
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="ErrorModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-danger" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <label class="modal-title h6" id="errorHeaderLabel" />
+            </div>
+
+            <div class="modal-body">
+                <label id="errorBodyLabel" />
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Success-->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="SuccessModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-success" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <label class="modal-title h6" id="successHeaderLabel" />
+            </div>
+
+            <div class="modal-body">
+                <label id="successBodyLabel" />
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+            </div>
+
         </div>
     </div>
 </div>

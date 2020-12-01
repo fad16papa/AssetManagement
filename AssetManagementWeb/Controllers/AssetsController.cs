@@ -20,9 +20,19 @@ namespace AssetManagementWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            try
+            {
+                var result = await _assetInterface.GetAssets(Request.Cookies["AssetReference"].ToString());
+
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in AssetsController||Index ErrorMessage: {ex.Message}");
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         [HttpGet]
