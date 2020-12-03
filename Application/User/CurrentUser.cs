@@ -31,10 +31,15 @@ namespace Application.User
             {
                 var user = await _userManager.FindByNameAsync(_userAccessor.GetCurrentUsername());
 
+                if (user == null)
+                    throw new RestException(HttpStatusCode.NotFound, "Not found");
+
                 return new User
                 {
                     DisplayName = user.DisplayName,
                     UserName = user.UserName,
+                    Email = user.Email,
+                    Id = user.Id,
                     Token = _jwtGenerator.CreateToken(user),
                 };
             }

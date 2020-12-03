@@ -52,6 +52,7 @@
                                     <th>
                                         Availability
                                     </th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,6 +71,17 @@
                                         <td>@Html.DisplayFor(modelItem => item.Status)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Location)</td>
                                         <td>@Html.DisplayFor(modelItem => item.IsAvailable)</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-secondary btn-sm dropdown-t" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    . . .
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#" onclick="UpdateAssetModal()">View</a>
+                                                    <a class="dropdown-item" href="#">Update</a>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     counterUser++;
                                 }

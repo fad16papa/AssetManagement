@@ -1,8 +1,11 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Application.User
+namespace AssetManagementWeb.Models.DTO
 {
-    public class User
+    public class UserDTO
     {
         public string DisplayName { get; set; }
         public string Token { get; set; }

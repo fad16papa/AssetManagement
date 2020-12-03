@@ -12,5 +12,7 @@ namespace AssetManagementWeb.Models
         Working,
         [Display(Name = "Faulty")]
         Faulty,
+        [Display(Name = "Dispose")]
+        Dispose,
     }
 }

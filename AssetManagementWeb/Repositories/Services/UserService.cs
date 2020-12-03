@@ -29,6 +29,41 @@ namespace AssetManagementWeb.Repositories.Services
             _logger = logger;
         }
 
+        public async Task<object> CurrentUser()
+        {
+            try
+            {
+                var responseClient = _httpClientFactory.CreateClient("AssetAPI");
+
+                var result = await responseClient.GetAsync("api/Users");
+
+                if (result.StatusCode != HttpStatusCode.OK)
+                {
+                    var faliedResponse = await result.Content.ReadAsJsonAsync<RestException>();
+                    return new ResponseModel()
+                    {
+                        ResponseMessage = faliedResponse.Errors.ToString(),
+                        ResponseCode = result.StatusCode.ToString()
+                    };
+                }
+
+                var successResponse = await result.Content.ReadAsJsonAsync<User>();
+                return new UserDTO()
+                {
+                    DisplayName = successResponse.DisplayName,
+                    UserName = successResponse.UserName,
+                    Email = successResponse.Email,
+                    Token = successResponse.Token,
+                    Id = successResponse.Id
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in UserService||CurrentUser ErrorMessage: {ex.Message}");
+                throw ex;
+            }
+        }
+
         public async Task<LoginResponeModel> Login(LoginDTO loginDTO)
         {
             try

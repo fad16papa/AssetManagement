@@ -21,7 +21,9 @@ namespace Application.Assets
             public string Model { get; set; }
             public string Type { get; set; }
             public string Status { get; set; }
-            public string Location { get; set; }
+            public string Location { get; set; }        
+            public string IsAvailable { get; set; }
+            public string Remarks { get; set; }
             public DateTime? IssuedOn { get; set; }
             public DateTime? ReturnedOn { get; set; }
         }
