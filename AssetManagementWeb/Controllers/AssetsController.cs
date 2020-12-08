@@ -19,7 +19,7 @@ namespace AssetManagementWeb.Controllers
         {
             _assetInterface = assetInterface;
             _userInterface = userInterface;
-            _logger = logger; 
+            _logger = logger;
         }
 
         [HttpGet]
@@ -47,7 +47,7 @@ namespace AssetManagementWeb.Controllers
                 {
                     return RedirectToAction("Index", "Error");
                 }
-                
+
                 return View();
             }
             catch (Exception ex)
@@ -103,7 +103,7 @@ namespace AssetManagementWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Update()
+        public async Task<IActionResult> Update(string AssetId)
         {
             try
             {
@@ -112,9 +112,9 @@ namespace AssetManagementWeb.Controllers
                     return RedirectToAction("Index", "Error");
                 }
 
-                var user = await _userInterface.CurrentUser();
+                var asset = await _assetInterface.GetAsset(AssetId, Request.Cookies["AssetReference"].ToString()); 
 
-                return View();
+                return View(asset);
             }
             catch (Exception ex)
             {
@@ -128,7 +128,7 @@ namespace AssetManagementWeb.Controllers
         {
             try
             {
-                if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     return View(assetsDTO);
                 }
@@ -145,6 +145,7 @@ namespace AssetManagementWeb.Controllers
 
                 Asset asset = new Asset()
                 {
+                    Id = assetsDTO.Id,
                     Brand = assetsDTO.Brand,
                     HostName = assetsDTO.HostName,
                     ExpressCode = assetsDTO.ExpressCode,

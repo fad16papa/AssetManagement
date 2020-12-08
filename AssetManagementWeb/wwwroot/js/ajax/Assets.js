@@ -57,14 +57,16 @@ function CreateAsset() {
     });
 }
 
-function UpdateAssetModal() {
+function UpdateAssetModal(paramAssetId) {
     //DIV placeholder for the Modal
     var placeholderElement = $('#ModalPlaceholder');
 
     $.ajax({
         method: 'GET',
         url: "/Assets/Update",
-
+        data: ({
+            AssetId: paramAssetId
+        })
     }).done(function (data, statusText, xhdr) {
         placeholderElement.html(data);
         placeholderElement.find('.modal').modal('show');
@@ -120,7 +122,7 @@ function viewAssets() {
         method: 'GET',
         url: "/Assets/Index",
     }).done(function (data, statusText, xhdr) {
-       
+
     }).fail(function (xhdr, statusText, errorText) {
 
         let errorHeader = "System Error!";
@@ -130,4 +132,7 @@ function viewAssets() {
         DisplayErrorModal(errorHeader, errorBody);
 
     });
+}
+function realoadAssetPage() {
+    window.location.reload();
 }

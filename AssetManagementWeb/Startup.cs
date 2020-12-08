@@ -30,6 +30,7 @@ namespace AssetManagementWeb
             #region Dependency Injection
             services.AddTransient<IAssetInterface, AssetService>();
             services.AddTransient<IUserInterface, UserService>();
+            services.AddTransient<IUserStaffInterface, UserStaffService>();
             #endregion
 
             services.AddHttpClient("AssetAPI", options =>

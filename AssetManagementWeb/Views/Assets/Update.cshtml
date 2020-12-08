@@ -4,7 +4,7 @@
     Layout = null;
 }
 
-<div class="modal fade" id="UpdateAsset" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="UpdateAsset" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-primary modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -26,6 +26,11 @@
                                     <form method="put" id="formUpdateAsset">
                                         <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
                                         <div class="row">
+                                            <div class="form-group">
+                                                <span asp-validation-for="Id" class="text-danger"></span>
+                                                <label asp-for="Id" class="control-label" hidden></label>
+                                                <input asp-for="Id" class="form-control" hidden />
+                                            </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="HostName">HostName</label>
@@ -74,7 +79,6 @@
                                                     <select asp-for="Type" class="form-control"
                                                             asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.TypeModel>()"
                                                             required>
-                                                        <option value="">Select Type</option>
                                                     </select>
                                                     <div><span asp-validation-for="Type" class="text-danger"></span></div>
                                                 </div>
@@ -87,7 +91,6 @@
                                                     <select asp-for="Status" class="form-control"
                                                             asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.StatusModel>()"
                                                             required>
-                                                        <option value="">Select Status</option>
                                                     </select>
                                                     <div><span asp-validation-for="Status" class="text-danger"></span></div>
                                                 </div>
@@ -98,7 +101,6 @@
                                                     <select asp-for="Location" class="form-control"
                                                             asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.LocationModel>()"
                                                             required>
-                                                        <option value="">Select Location</option>
                                                     </select>
                                                 </div>
                                                 <div><span asp-validation-for="Location" class="text-danger"></span></div>
@@ -109,7 +111,6 @@
                                                     <select asp-for="IsAvailable" class="form-control"
                                                             asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.AvailabilityModel>()"
                                                             required>
-                                                        <option value="">Select Location</option>
                                                     </select>
                                                 </div>
                                                 <div><span asp-validation-for="IsAvailable" class="text-danger"></span></div>

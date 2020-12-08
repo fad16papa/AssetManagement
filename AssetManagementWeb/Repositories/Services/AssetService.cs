@@ -71,7 +71,7 @@ namespace AssetManagementWeb.Repositories.Services
 
                 responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var result = await responseClient.PutAsJsonAsync<Asset>("api/Assets/", asset);
+                var result = await responseClient.PutAsJsonAsync<Asset>("api/Assets/"+ asset.Id, asset);
 
                 if (result.StatusCode != HttpStatusCode.OK)
                 {
@@ -96,7 +96,7 @@ namespace AssetManagementWeb.Repositories.Services
             }
         }
 
-        public async Task<object> GetAsset(Guid id, string token)
+        public async Task<object> GetAsset(string id, string token)
         {
             try
             {
@@ -116,7 +116,7 @@ namespace AssetManagementWeb.Repositories.Services
                     };
                 }
 
-                var successResponse = await result.Content.ReadAsJsonAsync<List<Asset>>();
+                var successResponse = await result.Content.ReadAsJsonAsync<AssetsDTO>();
 
                 return successResponse;
             }

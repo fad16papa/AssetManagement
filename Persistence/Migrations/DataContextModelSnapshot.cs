@@ -44,9 +44,6 @@ namespace Persistence.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("LicenseId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
@@ -84,8 +81,6 @@ namespace Persistence.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LicenseId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -202,6 +197,9 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IsActive")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
@@ -341,13 +339,6 @@ namespace Persistence.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Domain.AppUser", b =>
-                {
-                    b.HasOne("Domain.License", null)
-                        .WithMany("AppUsers")
-                        .HasForeignKey("LicenseId");
                 });
 
             modelBuilder.Entity("Domain.UserAssets", b =>

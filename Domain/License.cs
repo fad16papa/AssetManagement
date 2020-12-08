@@ -12,6 +12,5 @@ namespace Domain
         public bool Expiration { get; set; }
         public DateTime ExpiredOn { get; set; }
         public string Remarks { get; set; }
-        public virtual ICollection<AppUser> AppUsers { get; set; }
     }
 }

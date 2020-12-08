@@ -17,6 +17,7 @@ namespace Application.UserStaffs
             public string DisplayName { get; set; }
             public string Department { get; set; }
             public string Location { get; set; }
+            public string IsActive { get; set; }
 
         }
 
@@ -40,6 +41,7 @@ namespace Application.UserStaffs
                 userStaff.DisplayName = request.DisplayName ?? userStaff.DisplayName;
                 userStaff.Department = request.Department ?? userStaff.Department;
                 userStaff.Location = request.Location ?? userStaff.Location;
+                userStaff.IsActive = request.IsActive ?? userStaff.IsActive;
 
                 var success = await _context.SaveChangesAsync() > 0;
 

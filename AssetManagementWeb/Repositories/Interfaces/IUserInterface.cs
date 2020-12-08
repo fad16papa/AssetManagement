@@ -8,6 +8,6 @@ namespace AssetManagementWeb.Repositories.Interfaces
     {
         Task<LoginResponeModel> Login(LoginDTO loginDTO);
         Task<object> Register(RegsiterDTO regsiterDTO);
-        Task<object> CurrentUser();
+        Task<object> CurrentUser(string token);
     }
 }

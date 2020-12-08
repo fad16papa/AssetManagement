@@ -29,11 +29,13 @@ namespace AssetManagementWeb.Repositories.Services
             _logger = logger;
         }
 
-        public async Task<object> CurrentUser()
+        public async Task<object> CurrentUser(string token)
         {
             try
             {
                 var responseClient = _httpClientFactory.CreateClient("AssetAPI");
+
+                responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 var result = await responseClient.GetAsync("api/Users");
 

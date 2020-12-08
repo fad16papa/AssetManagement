@@ -15,6 +15,7 @@ namespace Application.UserStaffs
             public string DisplayName { get; set; }
             public string Department { get; set; }
             public string Location { get; set; }
+            public string IsActive { get; set; }
             public DateTime DateCreated { get; set; }
         }
 
@@ -45,6 +46,7 @@ namespace Application.UserStaffs
                     DisplayName = request.DisplayName,
                     Department = request.Department,
                     Location = request.Location,
+                    IsActive = request.IsActive,
                     DateCreated = DateTime.Now
                 };
 

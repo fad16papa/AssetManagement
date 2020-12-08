@@ -15,6 +15,7 @@ namespace Domain
         public string DisplayName { get; set; }
         public string Department { get; set; }
         public string Location { get; set; }
+        public string IsActive { get; set; }
         public DateTime DateCreated { get; set; }
         public virtual ICollection<UserAssets> UserAssets { get; set; }
     }

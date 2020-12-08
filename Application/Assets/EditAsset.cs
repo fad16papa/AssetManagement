@@ -24,8 +24,6 @@ namespace Application.Assets
             public string Location { get; set; }        
             public string IsAvailable { get; set; }
             public string Remarks { get; set; }
-            public DateTime? IssuedOn { get; set; }
-            public DateTime? ReturnedOn { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -55,8 +53,8 @@ namespace Application.Assets
                 asset.Type = request.Type ?? asset.Type;
                 asset.Status = request.Status ?? asset.Status;
                 asset.Location = request.Location ?? asset.Location;
-                asset.IssuedOn = request.IssuedOn ?? asset.IssuedOn;
-                asset.ReturnedOn = request.ReturnedOn ?? asset.ReturnedOn;
+                asset.IsAvailable = request.IsAvailable ?? asset.IsAvailable;
+                asset.Remarks = request.Remarks ?? asset.Remarks;
 
                 var success = await _context.SaveChangesAsync() > 0;
 

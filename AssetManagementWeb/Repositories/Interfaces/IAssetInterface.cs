@@ -11,7 +11,7 @@ namespace AssetManagementWeb.Repositories.Interfaces
     public interface IAssetInterface
     {
         Task<object> GetAssets(string token);
-        Task<object> GetAsset(Guid id, string token);
+        Task<object> GetAsset(string id, string token);
         Task<ResponseModel> CreateAsset(Asset asset, string token);
         Task<ResponseModel> EditAsset(Asset asset, string token);
         Task<ResponseModel> DeleteAsset(Asset asset, string token);
