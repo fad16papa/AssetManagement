@@ -9,7 +9,7 @@ namespace Domain
         public string ProductName { get; set; }
         public string ProductVersion { get; set; }
         public string LicenseKey { get; set; }
-        public bool Expiration { get; set; }
+        public string Expiration { get; set; }
         public DateTime ExpiredOn { get; set; }
         public string Remarks { get; set; }
     }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Assets;
 using Application.Interfaces;
+using Application.Licenses;
 using Application.User;
 using Application.UserStaffs;
 using AssetAPI.Middleware;
@@ -75,6 +76,7 @@ namespace AssetAPI
             {
                 cfg.RegisterValidatorsFromAssemblyContaining<CreateAsset>();
                 cfg.RegisterValidatorsFromAssemblyContaining<CreateUserStaff>();
+                cfg.RegisterValidatorsFromAssemblyContaining<CreateLicense>();
             });
 
             services.AddControllersWithViews()
