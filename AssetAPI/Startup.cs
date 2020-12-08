@@ -66,6 +66,8 @@ namespace AssetAPI
             services.AddAutoMapper(typeof(List.Handler));
             services.AddMediatR(typeof(ListUserStaffs.Handler).Assembly);
             services.AddAutoMapper(typeof(ListUserStaffs.Handler));
+            services.AddMediatR(typeof(ListLicense.Handler).Assembly);
+            services.AddAutoMapper(typeof(ListLicense.Handler));
             services.AddSignalR();
             services.AddControllers(opt =>
             {
