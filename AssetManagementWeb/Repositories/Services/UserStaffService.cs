@@ -65,14 +65,68 @@ namespace AssetManagementWeb.Repositories.Services
             throw new NotImplementedException();
         }
 
-        public Task<ResponseModel> EditUserStaff(UserStaff userStaff, string token)
+        public async Task<ResponseModel> EditUserStaff(UserStaff userStaff, string token)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var responseClient = _httpClientFactory.CreateClient("AssetAPI");
+
+                responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var result = await responseClient.PutAsJsonAsync<UserStaff>("api/UserStaffs/" + userStaff.Id, userStaff);
+
+                if (result.StatusCode != HttpStatusCode.OK)
+                {
+                    var faliedResponse = await result.Content.ReadAsJsonAsync<RestException>();
+                    return new ResponseModel()
+                    {
+                        ResponseMessage = faliedResponse.Errors.ToString(),
+                        ResponseCode = result.StatusCode.ToString()
+                    };
+                }
+
+                return new ResponseModel()
+                {
+                    ResponseCode = result.StatusCode.ToString()
+                };
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in UserStaffService||EditUserStaff ErrorMessage: {ex.Message}");
+                throw ex;
+            }
         }
 
-        public Task<object> GetUserStaff(string id, string token)
+        public async Task<object> GetUserStaff(string id, string token)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var responseClient = _httpClientFactory.CreateClient("AssetAPI");
+
+                responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var result = await responseClient.GetAsync("api/UserStaffs/" + id);
+
+                if (result.StatusCode != HttpStatusCode.OK)
+                {
+                    var faliedResponse = await result.Content.ReadAsJsonAsync<RestException>();
+                    return new ResponseModel()
+                    {
+                        ResponseMessage = faliedResponse.Errors.ToString(),
+                        ResponseCode = result.StatusCode.ToString()
+                    };
+                }
+
+                var successResponse = await result.Content.ReadAsJsonAsync<UserStaffDTO>();
+
+                return successResponse;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in UserStaffService||GetUserStaff ErrorMessage: {ex.Message}");
+                throw ex;
+            }
         }
 
         public async Task<object> GetUserStaffs(string token)
@@ -102,7 +156,7 @@ namespace AssetManagementWeb.Repositories.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error encountered in AssetService||CreateAsset ErrorMessage: {ex.Message}");
+                _logger.LogError($"Error encountered in UserStaffService||GetUserStaffs ErrorMessage: {ex.Message}");
                 throw ex;
             }
         }

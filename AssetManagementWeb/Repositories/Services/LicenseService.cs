@@ -26,7 +26,7 @@ namespace AssetManagementWeb.Repositories.Services
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<ResponseModel> CreateLicense(LicenseDTO licenseDTO, string token)
+        public async Task<ResponseModel> CreateLicense(License license, string token)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace AssetManagementWeb.Repositories.Services
 
                 responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var result = await responseClient.PostAsJsonAsync<LicenseDTO>("api/Assets/", licenseDTO);
+                var result = await responseClient.PostAsJsonAsync<License>("api/License/", license);
 
                 result.Content.ReadAsStringAsync().ToString();
 
@@ -55,29 +55,110 @@ namespace AssetManagementWeb.Repositories.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error encountered in AssetService||CreateAsset ErrorMessage: {ex.Message}");
+                _logger.LogError($"Error encountered in LicenseService||CreateLicense ErrorMessage: {ex.Message}");
                 throw ex;
             }
         }
 
-        public Task<ResponseModel> DeleteLicense(LicenseDTO licenseDTO, string token)
+        public Task<ResponseModel> DeleteLicense(License license, string token)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ResponseModel> EditLicense(LicenseDTO licenseDTO, string token)
+        public async Task<ResponseModel> EditLicense(License license, string token)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var responseClient = _httpClientFactory.CreateClient("AssetAPI");
+
+                responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var result = await responseClient.PutAsJsonAsync<License>("api/License/" + license.Id, license);
+
+                if (result.StatusCode != HttpStatusCode.OK)
+                {
+                    var faliedResponse = await result.Content.ReadAsJsonAsync<RestException>();
+                    return new ResponseModel()
+                    {
+                        ResponseMessage = faliedResponse.Errors.ToString(),
+                        ResponseCode = result.StatusCode.ToString()
+                    };
+                }
+
+                return new ResponseModel()
+                {
+                    ResponseCode = result.StatusCode.ToString()
+                };
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in LicenseService||EditLicense ErrorMessage: {ex.Message}");
+                throw ex;
+            }
         }
 
-        public Task<object> GetLicense(string id, string token)
+        public async Task<object> GetLicense(string id, string token)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var responseClient = _httpClientFactory.CreateClient("AssetAPI");
+
+                responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var result = await responseClient.GetAsync("api/License/" + id);
+
+                if (result.StatusCode != HttpStatusCode.OK)
+                {
+                    var faliedResponse = await result.Content.ReadAsJsonAsync<RestException>();
+                    return new ResponseModel()
+                    {
+                        ResponseMessage = faliedResponse.Errors.ToString(),
+                        ResponseCode = result.StatusCode.ToString()
+                    };
+                }
+
+                var successResponse = await result.Content.ReadAsJsonAsync<LicenseDTO>();
+
+                return successResponse;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in LicenseService||GetLicense ErrorMessage: {ex.Message}");
+                throw ex;
+            }
         }
 
-        public Task<object> GetLicenses(string token)
+        public async Task<object> GetLicenses(string token)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var responseClient = _httpClientFactory.CreateClient("AssetAPI");
+
+                responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var result = await responseClient.GetAsync("api/License/");
+
+                if (result.StatusCode != HttpStatusCode.OK)
+                {
+                    var faliedResponse = await result.Content.ReadAsJsonAsync<RestException>();
+                    return new ResponseModel()
+                    {
+                        ResponseMessage = faliedResponse.Errors.ToString(),
+                        ResponseCode = result.StatusCode.ToString()
+                    };
+                }
+
+                var successResponse = await result.Content.ReadAsJsonAsync<List<LicenseDTO>>();
+
+                return successResponse;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in AssetService||CreateAsset ErrorMessage: {ex.Message}");
+                throw ex;
+            }
         }
     }
 }
