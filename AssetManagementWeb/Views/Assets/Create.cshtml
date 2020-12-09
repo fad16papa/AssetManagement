@@ -4,13 +4,14 @@
     Layout = null;
 }
 
-<div class="modal fade" id="CreateAsset" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="CreateAsset" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-hidden="true">
     <div class="modal-dialog modal-primary modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Create a new Asset</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+                    <span aria-hidden="true">Ã—</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -24,30 +25,34 @@
                                 </div>
                                 <div class="card-body">
                                     <form method="post" id="formCreateAsset">
-                                        <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+                                        <input name="IsValid" type="hidden"
+                                            value="@ViewData.ModelState.IsValid.ToString()" />
                                         <div class="row">
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="HostName">HostName</label>
                                                     <input asp-for="HostName" class="form-control" autocomplete="off"
-                                                           placeholder="HostName">
-                                                    <div><span asp-validation-for="HostName" class="text-danger"></span></div>
+                                                        placeholder="HostName">
+                                                    <div><span asp-validation-for="HostName" class="text-danger"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="SerialNo">SerialNo</label>
                                                     <input asp-for="SerialNo" class="form-control" autocomplete="off"
-                                                           placeholder="SerialNo">
-                                                    <div><span asp-validation-for="SerialNo" class="text-danger"></span></div>
+                                                        placeholder="SerialNo">
+                                                    <div><span asp-validation-for="SerialNo" class="text-danger"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="ExpressCode">ExpressCode</label>
                                                     <input asp-for="ExpressCode" class="form-control" autocomplete="off"
-                                                           placeholder="ExpressCode">
-                                                    <div><span asp-validation-for="ExpressCode" class="text-danger"></span></div>
+                                                        placeholder="ExpressCode">
+                                                    <div><span asp-validation-for="ExpressCode"
+                                                            class="text-danger"></span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -56,27 +61,30 @@
                                                 <div class="form-group">
                                                     <label asp-for="Brand">Brand</label>
                                                     <input asp-for="Brand" class="form-control" autocomplete="off"
-                                                           placeholder="Brand">
-                                                    <div><span asp-validation-for="Brand" class="text-danger"></span></div>
+                                                        placeholder="Brand">
+                                                    <div><span asp-validation-for="Brand" class="text-danger"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="Model">Model</label>
                                                     <input asp-for="Model" class="form-control" autocomplete="off"
-                                                           placeholder="Model">
-                                                    <div><span asp-validation-for="Model" class="text-danger"></span></div>
+                                                        placeholder="Model">
+                                                    <div><span asp-validation-for="Model" class="text-danger"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="Type">Type</label>
                                                     <select asp-for="Type" class="form-control"
-                                                            asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.TypeModel>()"
-                                                            required>
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.TypeModel>()"
+                                                        required>
                                                         <option value="">Select Type</option>
                                                     </select>
-                                                    <div><span asp-validation-for="Type" class="text-danger"></span></div>
+                                                    <div><span asp-validation-for="Type" class="text-danger"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -85,41 +93,46 @@
                                                 <div class="form-group">
                                                     <label asp-for="Status">Status</label>
                                                     <select asp-for="Status" class="form-control"
-                                                            asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.StatusModel>()"
-                                                            required>
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.StatusModel>()"
+                                                        required>
                                                         <option value="">Select Status</option>
                                                     </select>
-                                                    <div><span asp-validation-for="Status" class="text-danger"></span></div>
+                                                    <div><span asp-validation-for="Status" class="text-danger"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="Location">Location</label>
                                                     <select asp-for="Location" class="form-control"
-                                                            asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.LocationModel>()"
-                                                            required>
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.LocationModel>()"
+                                                        required>
                                                         <option value="">Select Location</option>
                                                     </select>
+                                                    <div><span asp-validation-for="Location" class="text-danger"></span>
+                                                    </div>
                                                 </div>
-                                                <div><span asp-validation-for="Location" class="text-danger"></span></div>
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="IsAvailable">IsAvailable</label>
                                                     <select asp-for="IsAvailable" class="form-control"
-                                                            asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.AvailabilityModel>()"
-                                                            required>
-                                                        <option value="">Select Location</option>
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.AvailabilityModel>()"
+                                                        required>
+                                                        <option value="">Select IsAvailable</option>
                                                     </select>
+                                                    <div><span asp-validation-for="IsAvailable"
+                                                            class="text-danger"></span>
+                                                    </div>
                                                 </div>
-                                                <div><span asp-validation-for="IsAvailable" class="text-danger"></span></div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label asp-for="Remarks"></label>
-                                                    <textarea asp-for="Remarks" class="form-control textarea"></textarea>
+                                                    <textarea asp-for="Remarks"
+                                                        class="form-control textarea"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -129,8 +142,10 @@
                                 <div class="modal-footer">
                                     <div class="row">
                                         <div class="update ml-auto mr-auto p-2">
-                                            <button type="submit" class="btn btn-info btn-fill btn-wd" onclick="CreateAsset()">Create</button>
-                                            <button type="button" class="btn btn-danger btn-fill btn-wd" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-info btn-fill btn-wd"
+                                                onclick="CreateAsset()">Create</button>
+                                            <button type="button" class="btn btn-danger btn-fill btn-wd"
+                                                data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>

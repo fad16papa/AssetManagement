@@ -16,5 +16,6 @@ namespace AssetManagementWeb.Controllers
             return View();
         }
 
+
     }
 }

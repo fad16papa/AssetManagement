@@ -4,7 +4,8 @@
     Layout = null;
 }
 
-<div class="modal fade" id="CreateUserStaff" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="CreateUserStaff" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-hidden="true">
     <div class="modal-dialog modal-primary modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,40 +25,47 @@
                                 </div>
                                 <div class="card-body">
                                     <form method="post" id="formCreateUserStaff">
-                                        <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+                                        <input name="IsValid" type="hidden"
+                                            value="@ViewData.ModelState.IsValid.ToString()" />
                                         <div class="row">
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="DisplayName">DisplayName</label>
                                                     <input asp-for="DisplayName" class="form-control" autocomplete="off"
-                                                           placeholder="DisplayName">
-                                                    <div><span asp-validation-for="DisplayName" class="text-danger"></span></div>
+                                                        placeholder="DisplayName">
+                                                    <div><span asp-validation-for="DisplayName"
+                                                            class="text-danger"></span></div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="Department">Department</label>
                                                     <input asp-for="Department" class="form-control" autocomplete="off"
-                                                           placeholder="Department">
-                                                    <div><span asp-validation-for="Department" class="text-danger"></span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4 pr-1">
-                                                <div class="form-group">
-                                                    <label asp-for="Department">Department</label>
-                                                    <input asp-for="Department" class="form-control" autocomplete="off"
-                                                           placeholder="Department">
-                                                    <div><span asp-validation-for="Department" class="text-danger"></span></div>
+                                                        placeholder="Department">
+                                                    <div><span asp-validation-for="Department"
+                                                            class="text-danger"></span></div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="Location">Location</label>
-                                                    <input asp-for="Location" class="form-control" autocomplete="off"
-                                                           placeholder="Location">
-                                                    <div><span asp-validation-for="Location" class="text-danger"></span></div>
+                                                    <select asp-for="Location" class="form-control"
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.LocationModel>()"
+                                                        required>
+                                                        <option value="">Select Location</option>
+                                                    </select>
+                                                    <span asp-validation-for="Location" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="IsActive">IsActive</label>
+                                                    <select asp-for="IsActive" class="form-control"
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.AvailabilityModel>()"
+                                                        required>
+                                                        <option value="">Select </option>
+                                                    </select>
+                                                    <span asp-validation-for="IsActive" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -66,8 +74,10 @@
                                 <div class="modal-footer">
                                     <div class="row">
                                         <div class="update ml-auto mr-auto p-2">
-                                            <button type="submit" class="btn btn-info btn-fill btn-wd" onclick="CreateUserStaff()">Create</button>
-                                            <button type="button" class="btn btn-danger btn-fill btn-wd" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-info btn-fill btn-wd"
+                                                onclick="CreateUserStaff()">Create</button>
+                                            <button type="button" class="btn btn-danger btn-fill btn-wd"
+                                                data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>
