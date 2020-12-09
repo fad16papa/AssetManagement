@@ -28,7 +28,7 @@ namespace Application.Licenses
                 RuleFor(x => x.ProductVersion).NotEmpty();
                 RuleFor(x => x.LicenseKey).NotEmpty();
                 RuleFor(x => x.Expiration).NotEmpty();
-                // RuleFor(x => x.ExpiredOn).NotEmpty();
+                RuleFor(x => x.ExpiredOn).NotEmpty();
                 RuleFor(x => x.Remarks).NotEmpty();
             }
         }
@@ -52,9 +52,11 @@ namespace Application.Licenses
                     ProductVersion = request.ProductVersion,
                     LicenseKey = request.LicenseKey,
                     Expiration = request.Expiration,
-                    ExpiredOn = DateTime.Now,
+                    ExpiredOn = request.ExpiredOn,
                     Remarks = request.Remarks
                 };
+
+                _context.Licenses.Add(license);
 
                 var success = await _context.SaveChangesAsync() > 0;
 

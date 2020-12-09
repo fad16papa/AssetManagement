@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/AssetAPI/bin/Debug/netcoreapp3.1/AssetAPI.dll",
+            "program": "${workspaceFolder}/AssetManagementWeb/bin/Debug/netcoreapp3.1/AssetManagementWeb.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/AssetAPI",
+            "cwd": "${workspaceFolder}/AssetManagementWeb",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
