@@ -45,7 +45,7 @@ function CreateUserStaff() {
             DisplaySuccessModal(successHeader, successBody);
 
             //function call
-            viewAssets();
+            viewUserStaffs();
         }
     }).fail(function () {
 
@@ -127,7 +127,7 @@ function viewUserStaffs() {
     }).fail(function (xhdr, statusText, errorText) {
 
         let errorHeader = "System Error!";
-        let errorBody = "Error displaying the user's list! \nPlease contact administrator.";
+        let errorBody = "Error! \nPlease contact administrator.";
 
         //function calln to display the Error Message
         DisplayErrorModal(errorHeader, errorBody);

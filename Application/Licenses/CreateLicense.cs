@@ -28,11 +28,8 @@ namespace Application.Licenses
                 RuleFor(x => x.ProductVersion).NotEmpty();
                 RuleFor(x => x.LicenseKey).NotEmpty();
                 RuleFor(x => x.Expiration).NotEmpty();
-                RuleFor(x => x.ExpiredOn).NotEmpty();
-                RuleFor(x => x.Remarks).NotEmpty();
             }
         }
-
 
         public class Handler : IRequestHandler<Command>
         {

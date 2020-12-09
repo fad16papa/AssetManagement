@@ -72,11 +72,6 @@ namespace AssetManagementWeb.Controllers
                 TypeModel typeModel = (TypeModel)Enum.Parse(typeof(TypeModel), assetsDTO.Type);
                 AvailabilityModel availabilityModel = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), assetsDTO.IsAvailable);
 
-                assetsDTO.Status = statusModel.ToString();
-                assetsDTO.Location = locationModel.ToString();
-                assetsDTO.Type = typeModel.ToString();
-                assetsDTO.IsAvailable = availabilityModel.ToString();
-
                 Asset asset = new Asset()
                 {
                     Brand = assetsDTO.Brand,

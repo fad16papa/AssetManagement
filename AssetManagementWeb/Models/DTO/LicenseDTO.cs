@@ -17,9 +17,7 @@ namespace AssetManagementWeb.Models.DTO
         public string LicenseKey { get; set; }
         [Required]
         public string Expiration { get; set; }
-        [Required]
         public DateTime ExpiredOn { get; set; }
-        [Required]
         public string Remarks { get; set; }
     }
 }

@@ -1,0 +1,115 @@
+@model AssetManagementWeb.Models.DTO.LicenseDTO
+
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="CreateLicense" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-hidden="true">
+    <div class="modal-dialog modal-primary modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create a new License</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-user">
+                                <div class="card-header">
+                                    <h5 class="card-title">Please provide informations</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form method="post" id="formCreateLicense">
+                                        <input name="IsValid" type="hidden"
+                                            value="@ViewData.ModelState.IsValid.ToString()" />
+                                        <div class="row">
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="ProductName">ProductName</label>
+                                                    <input asp-for="ProductName" class="form-control" autocomplete="off"
+                                                        placeholder="ProductName">
+                                                    <div><span asp-validation-for="ProductName"
+                                                            class="text-danger"></span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="ProductVersion">ProductVersion</label>
+                                                    <input asp-for="ProductVersion" class="form-control"
+                                                        autocomplete="off" placeholder="ProductVersion">
+                                                    <div><span asp-validation-for="ProductVersion"
+                                                            class="text-danger"></span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label asp-for="LicenseKey">LicenseKey</label>
+                                                        <input asp-for="LicenseKey" class="form-control"
+                                                            autocomplete="off" placeholder="LicenseKey">
+                                                        <div><span asp-validation-for="LicenseKey"
+                                                                class="text-danger"></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="Expiration">Expiration</label>
+                                                    <div>
+                                                        <input id="rdoYes" onclick="enable()" type="radio" name="radioButton" value="Yes">Yes &nbsp; &nbsp;
+                                                        <input id="rdoNo" onclick="disable()" type="radio" name="radioButton" value="No">No
+                                                    </div>
+                                                    <div>
+                                                        <span asp-validation-for="Expiration"
+                                                              class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label asp-for="ExpiredOn">Expiration</label>
+                                                        <input id="expiration" asp-for="ExpiredOn" class="form-control"
+                                                            autocomplete="off" placeholder="Expiration" type="date" disabled="disabled">
+                                                        <div><span asp-validation-for="ExpiredOn"
+                                                                class="text-danger"></span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label asp-for="Remarks"></label>
+                                                    <textarea asp-for="Remarks"
+                                                              class="form-control textarea"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="row">
+                                        <div class="update ml-auto mr-auto p-2">
+                                            <button type="submit" class="btn btn-info btn-fill btn-wd"
+                                                onclick="CreateLicense()">Create</button>
+                                            <button type="button" class="btn btn-danger btn-fill btn-wd"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
