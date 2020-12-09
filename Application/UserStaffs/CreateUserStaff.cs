@@ -26,6 +26,7 @@ namespace Application.UserStaffs
                 RuleFor(x => x.DisplayName).NotEmpty();
                 RuleFor(x => x.Department).NotEmpty();
                 RuleFor(x => x.Location).NotEmpty();
+                RuleFor(x => x.IsActive).NotEmpty();
             }
         }
 

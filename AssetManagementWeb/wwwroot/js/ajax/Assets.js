@@ -13,7 +13,7 @@ function CreateAssetModal() {
     }).fail(function (xhdr, statusText, errorText) {
 
         let errorHeader = "System Error!";
-        let errorBody = "Error displaying the Register User window! \nPlease contact administrator.";
+        let errorBody = "Error! \nPlease contact administrator.";
 
         //function calln to display the Error Message
         DisplayErrorModal(errorHeader, errorBody);
@@ -50,7 +50,7 @@ function CreateAsset() {
     }).fail(function () {
 
         let errorHeader = "System Error!";
-        let errorBody = "Error adding a user account! \nPlease contact administrator.";
+        let errorBody = "Error! \nPlease contact administrator.";
 
         //function calln to display the Error Message
         DisplayErrorModal(errorHeader, errorBody);
@@ -73,7 +73,7 @@ function UpdateAssetModal(paramAssetId) {
     }).fail(function (xhdr, statusText, errorText) {
 
         let errorHeader = "System Error!";
-        let errorBody = "Error displaying the Register User window! \nPlease contact administrator.";
+        let errorBody = "Error! \nPlease contact administrator.";
 
         //function calln to display the Error Message
         DisplayErrorModal(errorHeader, errorBody);
@@ -110,7 +110,7 @@ function UpdateAsset() {
     }).fail(function () {
 
         let errorHeader = "System Error!";
-        let errorBody = "Error adding a user account! \nPlease contact administrator.";
+        let errorBody = "Error! \nPlease contact administrator.";
 
         //function calln to display the Error Message
         DisplayErrorModal(errorHeader, errorBody);
@@ -126,7 +126,7 @@ function viewAssets() {
     }).fail(function (xhdr, statusText, errorText) {
 
         let errorHeader = "System Error!";
-        let errorBody = "Error displaying the user's list! \nPlease contact administrator.";
+        let errorBody = "Error! \nPlease contact administrator.";
 
         //function calln to display the Error Message
         DisplayErrorModal(errorHeader, errorBody);

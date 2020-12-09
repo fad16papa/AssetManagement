@@ -13,7 +13,7 @@ function CreateUserStaffModal() {
     }).fail(function (xhdr, statusText, errorText) {
 
         let errorHeader = "System Error!";
-        let errorBody = "Error displaying the Register User window! \nPlease contact administrator.";
+        let errorBody = "Error! \nPlease contact administrator.";
 
         //function calln to display the Error Message
         DisplayErrorModal(errorHeader, errorBody);
@@ -39,7 +39,7 @@ function CreateUserStaff() {
             placeholderElement.find('.modal').modal('hide');
 
             let successHeader = "User Action!";
-            let successBody = "New asset has been created!";
+            let successBody = "New user staff has been created!";
 
             //function call to display the Error Message
             DisplaySuccessModal(successHeader, successBody);
@@ -50,22 +50,23 @@ function CreateUserStaff() {
     }).fail(function () {
 
         let errorHeader = "System Error!";
-        let errorBody = "Error adding a user account! \nPlease contact administrator.";
+        let errorBody = "Error! \nPlease contact administrator.";
 
         //function calln to display the Error Message
         DisplayErrorModal(errorHeader, errorBody);
     });
 }
 
-function UpdateUserStaffModal(paramAssetId) {
+//This will call the modal to register a user
+function UpdateUserStaffModal(paramUserStaffId) {
     //DIV placeholder for the Modal
     var placeholderElement = $('#ModalPlaceholder');
 
     $.ajax({
         method: 'GET',
-        url: "/Assets/Update",
+        url: "/UserStaffs/Update",
         data: ({
-            AssetId: paramAssetId
+            userStaffId: paramUserStaffId
         })
     }).done(function (data, statusText, xhdr) {
         placeholderElement.html(data);
@@ -73,7 +74,7 @@ function UpdateUserStaffModal(paramAssetId) {
     }).fail(function (xhdr, statusText, errorText) {
 
         let errorHeader = "System Error!";
-        let errorBody = "Error displaying the Register User window! \nPlease contact administrator.";
+        let errorBody = "Error! \nPlease contact administrator.";
 
         //function calln to display the Error Message
         DisplayErrorModal(errorHeader, errorBody);
@@ -84,8 +85,8 @@ function UpdateUserStaff() {
 
     $.ajax({
         method: 'PUT',
-        url: "/Assets/Update",
-        data: $("#formUpdateAsset").serialize(),
+        url: "/UserStaffs/Update",
+        data: $("#formUpdateUserStaff").serialize(),
     }).done(function (data) {
 
         var newBody = $('.modal-body', data);
@@ -99,18 +100,18 @@ function UpdateUserStaff() {
             placeholderElement.find('.modal').modal('hide');
 
             let successHeader = "User Action!";
-            let successBody = "Success updating asset";
+            let successBody = "New user staff has been created!";
 
             //function call to display the Error Message
             DisplaySuccessModal(successHeader, successBody);
 
             //function call
-            viewAssets();
+            viewUserStaffs();
         }
     }).fail(function () {
 
         let errorHeader = "System Error!";
-        let errorBody = "Error adding a user account! \nPlease contact administrator.";
+        let errorBody = "Error! \nPlease contact administrator.";
 
         //function calln to display the Error Message
         DisplayErrorModal(errorHeader, errorBody);
