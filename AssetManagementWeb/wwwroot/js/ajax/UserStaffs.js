@@ -85,7 +85,7 @@ function UpdateUserStaff() {
 
     $.ajax({
         method: 'PUT',
-        url: "/UserStaffs/Update",
+        url: "UserStaffs/Update",
         data: $("#formUpdateUserStaff").serialize(),
     }).done(function (data) {
 

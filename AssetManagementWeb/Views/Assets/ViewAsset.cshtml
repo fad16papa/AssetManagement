@@ -1,0 +1,163 @@
+@model AssetManagementWeb.Models.DTO.AssetsDTO
+
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="ViewAsset" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-hidden="true">
+    <div class="modal-dialog modal-primary modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Asset Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-user">
+                                <div class="card-header">
+                                    <h5 class="card-title">Please provide informations</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form method="post" id="formViewAsset">
+                                        <input name="IsValid" type="hidden"
+                                            value="@ViewData.ModelState.IsValid.ToString()" />
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <span asp-validation-for="Id" class="text-danger"></span>
+                                                <label asp-for="Id" class="control-label" hidden></label>
+                                                <input asp-for="Id" class="form-control" hidden />
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="HostName">HostName</label>
+                                                    <input asp-for="HostName" class="form-control" autocomplete="off"
+                                                           placeholder="HostName" disabled>
+                                                    <div>
+                                                        <span asp-validation-for="HostName" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="SerialNo">SerialNo</label>
+                                                    <input asp-for="SerialNo" class="form-control" autocomplete="off"
+                                                           placeholder="SerialNo" disabled>
+                                                    <div>
+                                                        <span asp-validation-for="SerialNo" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="ExpressCode">ExpressCode</label>
+                                                    <input asp-for="ExpressCode" class="form-control" autocomplete="off"
+                                                           placeholder="ExpressCode" disabled>
+                                                    <div>
+                                                        <span asp-validation-for="ExpressCode"
+                                                              class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="Brand">Brand</label>
+                                                    <input asp-for="Brand" class="form-control" autocomplete="off"
+                                                        placeholder="Brand" disabled>
+                                                    <div><span asp-validation-for="Brand" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="Model">Model</label>
+                                                    <input asp-for="Model" class="form-control" autocomplete="off"
+                                                        placeholder="Model" disabled>
+                                                    <div><span asp-validation-for="Model" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="Type">Type</label>
+                                                    <select asp-for="Type" class="form-control"
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.TypeModel>()"
+                                                        disabled>
+                                                    </select>
+                                                    <div><span asp-validation-for="Type" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="Status">Status</label>
+                                                    <select asp-for="Status" class="form-control"
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.StatusModel>()"
+                                                        disabled>
+                                                    </select>
+                                                    <div><span asp-validation-for="Status" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="Location">Location</label>
+                                                    <select asp-for="Location" class="form-control"
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.LocationModel>()"
+                                                        disabled>
+                                                    </select>
+                                                    <div><span asp-validation-for="Location" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="IsAvailable">IsAvailable</label>
+                                                    <select asp-for="IsAvailable" class="form-control"
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.AvailabilityModel>()"
+                                                        disabled>
+                                                    </select>
+                                                    <div><span asp-validation-for="IsAvailable"
+                                                            class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label asp-for="Remarks"></label>
+                                                    <textarea asp-for="Remarks"
+                                                        class="form-control textarea"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="row">
+                                        <div class="update ml-auto mr-auto p-2">
+                                            @* <button type="submit" class="btn btn-info btn-fill btn-wd"
+                                                onclick="CreateAsset()">Create</button> *@
+                                            <button type="button" class="btn btn-danger btn-fill btn-wd"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

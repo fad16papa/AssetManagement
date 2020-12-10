@@ -1,6 +1,7 @@
 D:\AssetManagement\Domain\bin\Debug\netcoreapp3.1\Domain.deps.json
 D:\AssetManagement\Domain\bin\Debug\netcoreapp3.1\Domain.dll
 D:\AssetManagement\Domain\bin\Debug\netcoreapp3.1\Domain.pdb
+D:\AssetManagement\Domain\obj\Debug\netcoreapp3.1\Domain.csprojAssemblyReference.cache
 D:\AssetManagement\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfoInputs.cache
 D:\AssetManagement\Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfo.cs
 D:\AssetManagement\Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CoreCompileInputs.cache

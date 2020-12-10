@@ -39,6 +39,22 @@ namespace AssetManagementWeb.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> ViewAsset(string AssetId)
+        {
+            try
+            {
+                var result = await _assetInterface.GetAsset(AssetId, Request.Cookies["AssetReference"].ToString());
+
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in AssetsController||Index ErrorMessage: {ex.Message}");
+                return RedirectToAction("Index", "Error");
+            }
+        }
+
+        [HttpGet]
         public IActionResult Create()
         {
             try
@@ -107,7 +123,7 @@ namespace AssetManagementWeb.Controllers
                     return RedirectToAction("Index", "Error");
                 }
 
-                var asset = await _assetInterface.GetAsset(AssetId, Request.Cookies["AssetReference"].ToString()); 
+                var asset = await _assetInterface.GetAsset(AssetId, Request.Cookies["AssetReference"].ToString());
 
                 return View(asset);
             }

@@ -133,6 +133,27 @@ function viewAssets() {
 
     });
 }
+
+function viewAssetsDetails(paramAssetId) {
+    $.ajax({
+        method: 'GET',
+        url: "/Assets/ViewAsset",
+        data: ({
+            AssetId: paramAssetId
+        })
+    }).done(function (data, statusText, xhdr) {
+
+    }).fail(function (xhdr, statusText, errorText) {
+
+        let errorHeader = "System Error!";
+        let errorBody = "Error! \nPlease contact administrator.";
+
+        //function calln to display the Error Message
+        DisplayErrorModal(errorHeader, errorBody);
+
+    });
+}
+
 function realoadAssetPage() {
     window.location.reload();
 }
