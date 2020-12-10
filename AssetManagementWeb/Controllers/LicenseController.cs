@@ -55,12 +55,10 @@ namespace AssetManagementWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(LicenseDTO licenseDTO, string radioBtn)
+        public async Task<IActionResult> Create(LicenseDTO licenseDTO)
         {
             try
             {
-                licenseDTO.Expiration = radioBtn;
-
                 if (!ModelState.IsValid)
                 {
                     return View(licenseDTO);
@@ -70,11 +68,11 @@ namespace AssetManagementWeb.Controllers
 
                 var license = new License()
                 {
-                    ProductName = licenseDTO.ProductName, 
-                    ProductVersion = licenseDTO.ProductVersion, 
-                    LicenseKey = licenseDTO.LicenseKey, 
-                    Expiration = availabilityModel.ToString(), 
-                    ExpiredOn = licenseDTO.ExpiredOn, 
+                    ProductName = licenseDTO.ProductName,
+                    ProductVersion = licenseDTO.ProductVersion,
+                    LicenseKey = licenseDTO.LicenseKey,
+                    Expiration = availabilityModel.ToString(),
+                    ExpiredOn = licenseDTO.ExpiredOn,
                     Remarks = licenseDTO.Remarks
                 };
 
@@ -85,6 +83,62 @@ namespace AssetManagementWeb.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"Error encountered in LicenseController||Create ErrorMessage: {ex.Message}");
+                return RedirectToAction("Index", "Error");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(string licenseId)
+        {
+            try
+            {
+                if (Request.Cookies["AssetReference"] == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                var license = await _licenseInterface.GetLicense(licenseId, Request.Cookies["AssetReference"].ToString());
+
+                return View(license);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in LicenseController||Update ErrorMessage: {ex.Message}");
+                return RedirectToAction("Index", "Error");
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(LicenseDTO licenseDTO)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(licenseDTO);
+                }
+
+                AvailabilityModel availabilityModel = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), licenseDTO.Expiration);
+
+                var license = new License()
+                {
+                    Id = licenseDTO.Id,
+                    ProductName = licenseDTO.ProductName,
+                    ProductVersion = licenseDTO.ProductVersion,
+                    LicenseKey = licenseDTO.LicenseKey,
+                    Expiration = availabilityModel.ToString(),
+                    ExpiredOn = licenseDTO.ExpiredOn,
+                    Remarks = licenseDTO.Remarks
+                };
+
+                var result = await _licenseInterface.EditLicense(license, Request.Cookies["AssetReference"].ToString());
+
+                return View(licenseDTO);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in AssetsController||Update ErrorMessage: {ex.Message}");
                 return RedirectToAction("Index", "Error");
             }
         }
