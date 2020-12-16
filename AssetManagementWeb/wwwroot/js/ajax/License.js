@@ -172,8 +172,8 @@ function realoadLicensePage() {
 }
 
 function disable() {
-    document.getElementById("expiration").disabled = true;
+    document.getElementById("expiration").style.visibility = "hidden";
 }
 function enable() {
-    document.getElementById("expiration").disabled = false;
+    document.getElementById("expiration").style.visibility = "visible";
 }

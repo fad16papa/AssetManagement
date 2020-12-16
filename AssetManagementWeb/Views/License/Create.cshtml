@@ -63,7 +63,7 @@
                                                 <div class="form-group">
                                                     <label asp-for="Expiration">Expiration</label>
                                                     <div>
-                                                        <input id="rdoYes" onclick="enable()" type="radio" name="radioButton" value="Yes">Yes &nbsp; &nbsp;
+                                                        <input id="rdoYes" onclick="enable()" type="radio" checked name="radioButton" value="Yes">Yes &nbsp; &nbsp;
                                                         <input id="rdoNo" onclick="disable()" type="radio" name="radioButton" value="No">No
                                                     </div>
                                                     <div>
@@ -74,10 +74,10 @@
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
-                                                    <div class="form-group">
+                                                    <div id="expiration" class="form-group">
                                                         <label asp-for="ExpiredOn">Expiration</label>
-                                                        <input id="expiration" asp-for="ExpiredOn" class="form-control"
-                                                            autocomplete="off" placeholder="Expiration" type="date" disabled="disabled">
+                                                        <input asp-for="ExpiredOn" class="form-control"
+                                                            autocomplete="off" placeholder="Expiration" type="date">
                                                         <div><span asp-validation-for="ExpiredOn"
                                                                 class="text-danger"></span></div>
                                                     </div>
