@@ -16,13 +16,13 @@ namespace AssetAPI.Controllers
             return await Mediator.Send(new ListUserAssets.Query());
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet, Route("User/{Id}")]
         public async Task<ActionResult<List<UserAssets>>> DetailsUser(Guid Id)
         {
             return await Mediator.Send(new DetailsUser.Query { UserId = Id });
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet, Route("Asset/{Id}")]
         public async Task<ActionResult<List<UserAssets>>> DetailsAssets(Guid Id)
         {
             return await Mediator.Send(new DetailsAssets.Query { AssetId = Id });

@@ -47,6 +47,8 @@ namespace Application.UserAsset
                     ReturnedOn = request.ReturnedOn
                 };
 
+                _context.UserAssets.Add(userAsset);
+
                 var success = await _context.SaveChangesAsync() > 0;
 
                 if (success)
