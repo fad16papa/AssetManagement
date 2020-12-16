@@ -36,6 +36,27 @@ namespace AssetManagementWeb.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> ViewLicense(string LicenseId)
+        {
+            try
+            {
+                if (Request.Cookies["AssetReference"] == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                var result = await _licenseInterface.GetLicense(LicenseId, Request.Cookies["AssetReference"].ToString());
+
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in LicenseController||ViewLicense ErrorMessage: {ex.Message}");
+                return RedirectToAction("Index", "Error");
+            }
+        }
+
+        [HttpGet]
         public IActionResult Create()
         {
             try

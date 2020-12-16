@@ -1,3 +1,7 @@
+D:\AssetManagement\Application\obj\Debug\netcoreapp3.1\Application.csprojAssemblyReference.cache
+D:\AssetManagement\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfoInputs.cache
+D:\AssetManagement\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfo.cs
+D:\AssetManagement\Application\obj\Debug\netcoreapp3.1\Application.csproj.CoreCompileInputs.cache
 D:\AssetManagement\Application\bin\Debug\netcoreapp3.1\Application.deps.json
 D:\AssetManagement\Application\bin\Debug\netcoreapp3.1\Application.dll
 D:\AssetManagement\Application\bin\Debug\netcoreapp3.1\Application.pdb
@@ -5,10 +9,6 @@ D:\AssetManagement\Application\bin\Debug\netcoreapp3.1\Domain.dll
 D:\AssetManagement\Application\bin\Debug\netcoreapp3.1\Persistence.dll
 D:\AssetManagement\Application\bin\Debug\netcoreapp3.1\Domain.pdb
 D:\AssetManagement\Application\bin\Debug\netcoreapp3.1\Persistence.pdb
-D:\AssetManagement\Application\obj\Debug\netcoreapp3.1\Application.csprojAssemblyReference.cache
-D:\AssetManagement\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfoInputs.cache
-D:\AssetManagement\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfo.cs
-D:\AssetManagement\Application\obj\Debug\netcoreapp3.1\Application.csproj.CoreCompileInputs.cache
 D:\AssetManagement\Application\obj\Debug\netcoreapp3.1\Application.csproj.CopyComplete
 D:\AssetManagement\Application\obj\Debug\netcoreapp3.1\Application.dll
 D:\AssetManagement\Application\obj\Debug\netcoreapp3.1\Application.pdb

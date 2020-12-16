@@ -177,6 +177,12 @@ namespace Persistence.Migrations
                     b.Property<Guid>("UserStaffId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("IssuedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ReturnedOn")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("AssetsId", "UserStaffId");
 
                     b.HasIndex("UserStaffId");

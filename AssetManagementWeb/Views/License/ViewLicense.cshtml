@@ -1,0 +1,97 @@
+﻿@model AssetManagementWeb.Models.DTO.LicenseDTO
+
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="ViewLicense" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-primary modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">View License Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-user">
+                                <div class="card-header">
+                                    <h5 class="card-title">License Details</h5>
+                                </div>
+                                <div class="card-body">
+                                    <input name="IsValid" type="hidden"
+                                            value="@ViewData.ModelState.IsValid.ToString()" />
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label asp-for="ProductName">ProductName</label>
+                                                <input asp-for="ProductName" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label asp-for="ProductVersion">ProductVersion</label>
+                                                <input asp-for="ProductVersion" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label asp-for="LicenseKey">LicenseKey</label>
+                                                    <input asp-for="LicenseKey" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label asp-for="Expiration">Expiration</label>
+                                                <input asp-for="Expiration" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        @if (!Model.Expiration.Equals("No"))
+                                        {
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label asp-for="ExpiredOn">Expiration</label>
+                                                        <input id="expiration" asp-for="ExpiredOn" class="form-control" type="date" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label asp-for="Remarks"></label>
+                                                <textarea asp-for="Remarks"
+                                                            class="form-control textarea" disabled></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="row">
+                                        <div class="update ml-auto mr-auto p-2">
+                                            <button type="button" class="btn btn-danger btn-fill btn-wd"
+                                                    data-dismiss="modal">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

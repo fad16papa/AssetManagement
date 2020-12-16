@@ -135,14 +135,19 @@ function viewAssets() {
 }
 
 function viewAssetsDetails(paramAssetId) {
+    //DIV placeholder for the Modal
+    var placeholderElement = $('#ModalPlaceholder');
+
     $.ajax({
         method: 'GET',
         url: "/Assets/ViewAsset",
         data: ({
             AssetId: paramAssetId
         })
-    }).done(function (data, statusText, xhdr) {
 
+    }).done(function (data, statusText, xhdr) {
+        placeholderElement.html(data);
+        placeholderElement.find('.modal').modal('show');
     }).fail(function (xhdr, statusText, errorText) {
 
         let errorHeader = "System Error!";
@@ -150,7 +155,6 @@ function viewAssetsDetails(paramAssetId) {
 
         //function calln to display the Error Message
         DisplayErrorModal(errorHeader, errorBody);
-
     });
 }
 

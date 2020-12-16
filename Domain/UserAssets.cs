@@ -9,7 +9,9 @@ namespace Domain
     {
         public Guid AssetsId { get; set; }
         public virtual Asset Asset { get; set; }
-        public  Guid UserStaffId { get; set; }
+        public Guid UserStaffId { get; set; }
         public virtual UserStaff UserStaff { get; set; }
+        public DateTime IssuedOn { get; set; }
+        public DateTime ReturnedOn { get; set; }
     }
 }

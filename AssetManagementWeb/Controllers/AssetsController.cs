@@ -27,6 +27,11 @@ namespace AssetManagementWeb.Controllers
         {
             try
             {
+                if (Request.Cookies["AssetReference"] == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
                 var result = await _assetInterface.GetAssets(Request.Cookies["AssetReference"].ToString());
 
                 return View(result);
@@ -43,13 +48,18 @@ namespace AssetManagementWeb.Controllers
         {
             try
             {
+                if (Request.Cookies["AssetReference"] == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
                 var result = await _assetInterface.GetAsset(AssetId, Request.Cookies["AssetReference"].ToString());
 
                 return View(result);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error encountered in AssetsController||Index ErrorMessage: {ex.Message}");
+                _logger.LogError($"Error encountered in AssetsController||ViewAsset ErrorMessage: {ex.Message}");
                 return RedirectToAction("Index", "Error");
             }
         }
@@ -129,7 +139,7 @@ namespace AssetManagementWeb.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error encountered in AssetsController||Create ErrorMessage: {ex.Message}");
+                _logger.LogError($"Error encountered in AssetsController||Update ErrorMessage: {ex.Message}");
                 return RedirectToAction("Index", "Error");
             }
         }

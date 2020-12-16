@@ -1,4 +1,4 @@
-@model AssetManagementWeb.Models.DTO.UserStaffDTO
+@model AssetManagementWeb.Models.VIewModel.UserAssetsViewModel
 
 @{
     Layout = null;
@@ -29,54 +29,54 @@
                                             value="@ViewData.ModelState.IsValid.ToString()" />
                                         <div class="row">
                                             <div class="form-group">
-                                                <span asp-validation-for="Id" class="text-danger"></span>
-                                                <label asp-for="Id" class="control-label" hidden></label>
-                                                <input asp-for="Id" class="form-control" hidden />
+                                                <span asp-validation-for="UserStaff.Id" class="text-danger"></span>
+                                                <label asp-for="UserStaff.Id" class="control-label" hidden></label>
+                                                <input asp-for="UserStaff.Id" class="form-control" hidden />
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
-                                                    <label asp-for="DisplayName">DisplayName</label>
-                                                    <input asp-for="DisplayName" class="form-control" autocomplete="off"
+                                                    <label asp-for="UserStaff.DisplayName">DisplayName</label>
+                                                    <input asp-for="UserStaff.DisplayName" class="form-control" autocomplete="off"
                                                            placeholder="DisplayName">
                                                     <div>
-                                                        <span asp-validation-for="DisplayName"
+                                                        <span asp-validation-for="UserStaff.DisplayName"
                                                               class="text-danger"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
-                                                    <label asp-for="Department">Department</label>
-                                                    <input asp-for="Department" class="form-control" autocomplete="off"
+                                                    <label asp-for="UserStaff.Department">Department</label>
+                                                    <input asp-for="UserStaff.Department" class="form-control" autocomplete="off"
                                                            placeholder="Department">
                                                     <div>
-                                                        <span asp-validation-for="Department"
+                                                        <span asp-validation-for="UserStaff.Department"
                                                               class="text-danger"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
-                                                    <label asp-for="Location">Location</label>
-                                                    <select asp-for="Location" class="form-control"
+                                                    <label asp-for="UserStaff.Location">Location</label>
+                                                    <select asp-for="UserStaff.Location" class="form-control"
                                                             asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.LocationModel>()"
                                                             required>
                                                     </select>
                                                     <div>
-                                                        <span asp-validation-for="Location"
+                                                        <span asp-validation-for="UserStaff.Location"
                                                               class="text-danger"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
-                                                    <label asp-for="IsActive">IsActive</label>
-                                                    <select asp-for="IsActive" class="form-control"
+                                                    <label asp-for="UserStaff.IsActive">IsActive</label>
+                                                    <select asp-for="UserStaff.IsActive" class="form-control"
                                                             asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.AvailabilityModel>()"
                                                             required>
                                                     </select>
                                                     <div>
-                                                        <span asp-validation-for="IsActive"
+                                                        <span asp-validation-for="UserStaff.IsActive"
                                                               class="text-danger"></span>
                                                     </div>
                                                 </div>

@@ -37,6 +37,27 @@ namespace AssetManagementWeb.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> ViewUserStaff(string UserStaffId)
+        {
+            try
+            {
+                if (Request.Cookies["AssetReference"] == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                var result = await _userStaffInterface.GetUserStaff(UserStaffId, Request.Cookies["AssetReference"].ToString());
+
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in UserStaffsController||ViewUserStaff ErrorMessage: {ex.Message}");
+                return RedirectToAction("Index", "Error");
+            }
+        }
+
+        [HttpGet]
         public IActionResult Create()
         {
             try
