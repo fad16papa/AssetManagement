@@ -47,6 +47,7 @@ namespace AssetManagementWeb.Controllers
 
                 var result = await _licenseInterface.GetLicense(LicenseId, Request.Cookies["AssetReference"].ToString());
 
+
                 return View(result);
             }
             catch (Exception ex)
@@ -65,6 +66,10 @@ namespace AssetManagementWeb.Controllers
                 {
                     return RedirectToAction("Index", "Error");
                 }
+
+                //Set the Date to its initial value
+                var date = DateTime.Now;
+                ViewBag.Date = date.ToString("yyyy-MM-dd");
 
                 return View();
             }
@@ -86,6 +91,11 @@ namespace AssetManagementWeb.Controllers
                 }
 
                 AvailabilityModel availabilityModel = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), licenseDTO.Expiration);
+
+                if(licenseDTO.Expiration.Equals("No"))
+                {
+                    licenseDTO.ExpiredOn = DateTime.MinValue;
+                }
 
                 var license = new License()
                 {

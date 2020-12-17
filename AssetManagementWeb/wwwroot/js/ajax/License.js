@@ -24,7 +24,13 @@ function CreateLicense() {
     var paramRadioButton = $("input[name='radioButton']:checked").val(); 
     var formData = $("#formCreateLicense").serializeArray(); 
 
-    formData.push({ name: "Expiration", value: paramRadioButton});
+    formData.push({ name: "Expiration", value: paramRadioButton });
+
+    console.log(paramRadioButton);
+
+    if (paramRadioButton === 'No') {
+        formData.push({ name: "ExpiredOn", value: document.getElementById('expiredOnValue') });
+    }
 
     $.ajax({
         method: 'POST',
@@ -86,7 +92,6 @@ function UpdateLicenseModal(paramLicenseId)
 }
 
 function UpdateLicense() {
-
     var paramRadioButton = $("input[name='radioButton']:checked").val();
     var formData = $("#formUpdateLicense").serializeArray();
 

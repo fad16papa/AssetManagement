@@ -2,7 +2,7 @@
 
 @{
     Layout = null;
-}
+} 
 
 <div class="modal fade" id="CreateLicense" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
     aria-hidden="true">
@@ -75,10 +75,11 @@
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <div id="expiration" class="form-group">
-                                                        <label asp-for="ExpiredOn">Expiration</label>
-                                                        <input asp-for="ExpiredOn" class="form-control"
-                                                            autocomplete="off" placeholder="Expiration" type="date">
-                                                        <div><span asp-validation-for="ExpiredOn"
+                                                        <label asp-for="ExpiredOn">ExpiredOn</label>
+                                                        <input id="expiredOnValue" asp-for="ExpiredOn" class="form-control"
+                                                            autocomplete="off" type="date" value="@ViewBag.Date">
+                                                        <div><span><small>Format Date DD-MM-YYYY</small></span>
+                                                        <span asp-validation-for="ExpiredOn"
                                                                 class="text-danger"></span></div>
                                                     </div>
                                                 </div>
