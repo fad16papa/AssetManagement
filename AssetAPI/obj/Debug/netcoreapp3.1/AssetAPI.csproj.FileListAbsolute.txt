@@ -70,4 +70,4 @@ D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.csproj.CopyComplete
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.dll
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.pdb
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.genruntimeconfig.cache
-D:\AssetManagement\AssetAPI\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\scopedcss\bundle\AssetAPI.styles.css
