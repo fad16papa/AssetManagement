@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Domain
 {
@@ -18,6 +19,6 @@ namespace Domain
         public string Remarks { get; set; }
         public DateTime IssuedOn { get; set; }
         public DateTime ReturnedOn { get; set; }
-        public virtual ICollection<UserAssets> UserAssets { get; set; }
+        public virtual IList<UserAssets> UserAssets { get; set; }
     }
 }

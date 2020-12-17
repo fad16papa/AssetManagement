@@ -6,17 +6,12 @@ namespace Domain
 {
     public class UserStaff
     {
-        public UserStaff()
-        {
-            UserAssets = new Collection<UserAssets>();
-        }
-
         public Guid Id { get; set; }
         public string DisplayName { get; set; }
         public string Department { get; set; }
         public string Location { get; set; }
         public string IsActive { get; set; }
         public DateTime DateCreated { get; set; }
-        public virtual ICollection<UserAssets> UserAssets { get; set; }
+        public virtual IList<UserAssets> UserAssets { get; set; }
     }
 }

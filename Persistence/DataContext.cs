@@ -22,14 +22,14 @@ namespace Persistence
             builder.Entity<UserAssets>(x => x.HasKey(ua => new { ua.AssetsId, ua.UserStaffId }));
 
             builder.Entity<UserAssets>()
-            .HasOne(u => u.UserStaff)
-            .WithMany(a => a.UserAssets)
-            .HasForeignKey(u => u.UserStaffId);
-
-            builder.Entity<UserAssets>()
             .HasOne(a => a.Asset)
             .WithMany(u => u.UserAssets)
             .HasForeignKey(a => a.AssetsId);
+
+            builder.Entity<UserAssets>()
+           .HasOne(u => u.UserStaff)
+           .WithMany(a => a.UserAssets)
+           .HasForeignKey(u => u.UserStaffId);
         }
     }
 }
