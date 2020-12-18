@@ -201,7 +201,7 @@ function AssignAssetsUser() {
             placeholderElement.find('.modal').modal('hide');
 
             let successHeader = "User Action!";
-            let successBody = "New asset has been created!";
+            let successBody = "Asset successfully assigned to user!";
 
             //function call to display the Error Message
             DisplaySuccessModal(successHeader, successBody);

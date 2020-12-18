@@ -32,7 +32,7 @@ namespace AssetManagementWeb.Repositories.Services
 
                 responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var result = await responseClient.PostAsJsonAsync<UserAssets>("api/UserAssets/", userAssets);
+                var result = await responseClient.PostAsJsonAsync<UserAssets>("api/UserAssets", userAssets);
 
                 result.Content.ReadAsStringAsync().ToString();
 

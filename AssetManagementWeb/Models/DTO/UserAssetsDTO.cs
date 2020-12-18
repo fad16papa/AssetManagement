@@ -7,6 +7,7 @@ namespace AssetManagementWeb.Models.DTO
 {
     public class UserAssetsDTO
     {
+        public Guid Id { get; set; }
         public Guid AssetsId { get; set; }
         public virtual AssetsDTO AssetsDTO { get; set; }
         public Guid UserStaffId { get; set; }

@@ -63,9 +63,32 @@ namespace AssetManagementWeb.Controllers
                     return RedirectToAction("Index", "Error");
                 }
 
-                var result = await _assetInterface.GetAsset(assetId, Request.Cookies["AssetReference"].ToString());
+                var asset = await _assetInterface.GetAsset(assetId, Request.Cookies["AssetReference"].ToString());
 
-                return View(result);
+                if(asset == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                var userAssets = await _userAssetsInterface.GetAssetsOfUser(assetId, Request.Cookies["AssetReference"].ToString());
+
+                if(userAssets == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                //Map the objects results to corresponding DTO's
+                AssetsDTO assetsDTO = _mapper.Map<AssetsDTO>(asset);
+                List<UserAssetsDTO> userAssetsDTOs = userAssets as List<UserAssetsDTO>;
+
+                //Instantiate AssetsUserVIewModel
+                var viewAssetsUserViewModel = new ViewAssetsUserViewModel()
+                {
+                    AssetsDTO = assetsDTO,
+                    UserAssetsDTOs = userAssetsDTOs
+                };
+
+                return View(viewAssetsUserViewModel);
             }
             catch (Exception ex)
             {
@@ -138,17 +161,17 @@ namespace AssetManagementWeb.Controllers
                 List<UserStaffDTO> userStaffDTO = _mapper.Map<List<UserStaffDTO>>(user);
 
                 //Instantiate AssetsUserVIewModel
-                AssetsUserVIewModel assetsUserVIewModel = new AssetsUserVIewModel()
+                var assetsUserVIewModel = new AssetsUserVIewModel()
                 {
                     AssetsDTO = assetsDTO,
                     UserStaffDTOs = userStaffDTO
                 };
 
-                ViewData["ListUserStaff"] = assetsUserVIewModel.UserStaffDTOs;
-
                 //Set the Date to its initial value
                 var date = DateTime.Now;
                 ViewBag.Date = date.ToString("yyyy-MM-dd");
+
+                ViewBag.AssetId = assetsUserVIewModel.AssetsDTO.Id;
 
                 return View(assetsUserVIewModel);
             }
@@ -169,15 +192,38 @@ namespace AssetManagementWeb.Controllers
                     return View(assetsUserVIewModel);
                 }
 
+                //Check if the user is already assigned in target asset 
+                var checkUser = await _userAssetsInterface.GetUserOfAssets(assetsUserVIewModel.UserStaffId.ToString(), Request.Cookies["AssetReference"].ToString());
+
                 var userAssets = new UserAssets()
                 {
                     AssetsId = assetsUserVIewModel.AssetId,
-                    UserStaffId = assetsUserVIewModel.UserStaffId
+                    UserStaffId = assetsUserVIewModel.UserStaffId,
+                    IssuedOn = assetsUserVIewModel.IssuedOn,
+                    ReturnedOn = assetsUserVIewModel.ReturedOn
                 };
 
                 var result = await _userAssetsInterface.CreateUserAssets(userAssets, Request.Cookies["AssetReference"].ToString());
 
-                return View();
+                var user = await _userStaffInterface.GetUserStaffs(Request.Cookies["AssetReference"].ToString());
+
+                if (user == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                //Map the objects results to corresponding DTO's
+                List<UserStaffDTO> userStaffDTO = _mapper.Map<List<UserStaffDTO>>(user);
+
+                //Instantiate AssetsUserVIewModel
+                AssetsUserVIewModel model = new AssetsUserVIewModel()
+                {
+                    UserStaffDTOs = userStaffDTO
+                };
+
+                ViewBag.AssetId = userAssets.AssetsId;
+
+                return View(model);
             }
             catch (Exception ex)
             {

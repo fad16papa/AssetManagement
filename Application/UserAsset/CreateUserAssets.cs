@@ -12,6 +12,7 @@ namespace Application.UserAsset
     {
         public class Command : IRequest
         {
+            public Guid Id { get; set; }
             public Guid AssetsId { get; set; }
             public Guid UserStaffId { get; set; }
             public DateTime IssuedOn { get; set; }
@@ -41,6 +42,7 @@ namespace Application.UserAsset
                 //logic goes here
                 var userAsset = new UserAssets()
                 {
+                    Id = request.Id,
                     AssetsId = request.AssetsId,
                     UserStaffId = request.UserStaffId,
                     IssuedOn = request.IssuedOn,

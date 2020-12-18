@@ -1,4 +1,4 @@
-@model AssetManagementWeb.Models.DTO.AssetsDTO
+@model AssetManagementWeb.Models.ViewModel.ViewAssetsUserViewModel
 
 @{
     Layout = null;
@@ -24,73 +24,120 @@
                                 </div>
                                 <div class="card-body">
                                     <input name="IsValid" type="hidden"
-                                        value="@ViewData.ModelState.IsValid.ToString()" />
+                                           value="@ViewData.ModelState.IsValid.ToString()" />
                                     <div class="row">
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="HostName">HostName</label>
-                                                <input asp-for="HostName" class="form-control" disabled>
+                                                <label asp-for="AssetsDTO.HostName">HostName</label>
+                                                <input asp-for="AssetsDTO.HostName" class="form-control" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="SerialNo">SerialNo</label>
-                                                <input asp-for="SerialNo" class="form-control" disabled>
+                                                <label asp-for="AssetsDTO.SerialNo">SerialNo</label>
+                                                <input asp-for="AssetsDTO.SerialNo" class="form-control" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="ExpressCode">ExpressCode</label>
-                                                <input asp-for="ExpressCode" class="form-control" disabled>
+                                                <label asp-for="AssetsDTO.ExpressCode">ExpressCode</label>
+                                                <input asp-for="AssetsDTO.ExpressCode" class="form-control" disabled>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="Brand">Brand</label>
-                                                <input asp-for="Brand" class="form-control" disabled>
+                                                <label asp-for="AssetsDTO.Brand">Brand</label>
+                                                <input asp-for="AssetsDTO.Brand" class="form-control" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="Model">Model</label>
-                                                <input asp-for="Model" class="form-control" disabled>
+                                                <label asp-for="AssetsDTO.Model">Model</label>
+                                                <input asp-for="AssetsDTO.Model" class="form-control" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="Type">Type</label>
-                                                <input asp-for="Type" class="form-control" disabled>
+                                                <label asp-for="AssetsDTO.Type">Type</label>
+                                                <input asp-for="AssetsDTO.Type" class="form-control" disabled>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="Status">Status</label>
-                                                <input asp-for="Status" class="form-control" disabled>
+                                                <label asp-for="AssetsDTO.Status">Status</label>
+                                                <input asp-for="AssetsDTO.Status" class="form-control" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="Location">Location</label>
-                                                <input asp-for="Location" class="form-control" disabled>
+                                                <label asp-for="AssetsDTO.Location">Location</label>
+                                                <input asp-for="AssetsDTO.Location" class="form-control" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="IsAvailable">IsAvailable</label>
-                                                <input asp-for="IsAvailable" class="form-control" disabled>
+                                                <label asp-for="AssetsDTO.IsAvailable">IsAvailable</label>
+                                                <input asp-for="AssetsDTO.IsAvailable" class="form-control" disabled>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label asp-for="Remarks"></label>
-                                                <textarea asp-for="Remarks"
-                                                    class="form-control textarea" disabled></textarea>
+                                                <label asp-for="AssetsDTO.Remarks"></label>
+                                                <textarea asp-for="AssetsDTO.Remarks"
+                                                          class="form-control textarea" disabled></textarea>
+                                            </div>
+                                        </div>
+                                    </div>                                 
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="table-responsive">
+                                                    @{
+                                                        var counterUser = 1;
+                                                    }
+                                                    <table class="table">
+                                                        <thead class=" text-primary">
+                                                            <tr>
+                                                                <th>
+                                                                    S/N
+                                                                </th>
+                                                                <th>
+                                                                    Display Name
+                                                                </th>
+                                                                <th>
+                                                                    Department
+                                                                </th>
+                                                                <th>
+                                                                    Location
+                                                                </th>
+                                                                <th>
+                                                                    IsActive
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in Model.UserAssetsDTOs)
+                                                            {
+                                                                <tr>
+                                                                    <td>
+                                                                        @counterUser
+                                                                    </td>
+                                                                    <td>@Html.DisplayFor(modelItem => item.UserStaffDTO.DisplayName)</td>
+                                                                    <td>@Html.DisplayFor(modelItem => item.UserStaffDTO.Department)</td>
+                                                                    <td>@Html.DisplayFor(modelItem => item.UserStaffDTO.Location)</td>
+                                                                    <td>@Html.DisplayFor(modelItem => item.UserStaffDTO.IsActive)</td>                                                               
+                                                                </tr>
+                                                                counterUser++;
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
