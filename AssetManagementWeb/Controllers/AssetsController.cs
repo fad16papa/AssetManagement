@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AssetManagementWeb.Models;
 using AssetManagementWeb.Models.DTO;
+using AssetManagementWeb.Models.ViewModel;
 using AssetManagementWeb.Repositories.Interfaces;
+using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,11 +17,18 @@ namespace AssetManagementWeb.Controllers
         private readonly ILogger<AssetsController> _logger;
         private readonly IAssetInterface _assetInterface;
         private readonly IUserInterface _userInterface;
+        private readonly IUserStaffInterface _userStaffInterface;
+        private readonly IMapper _mapper;
+        private readonly IUserAssetsInterface _userAssetsInterface;
 
-        public AssetsController(ILogger<AssetsController> logger, IAssetInterface assetInterface, IUserInterface userInterface)
+        public AssetsController(ILogger<AssetsController> logger, IAssetInterface assetInterface, IUserInterface userInterface, IUserStaffInterface userStaffInterface, 
+            IMapper mapper, IUserAssetsInterface userAssetsInterface)
         {
             _assetInterface = assetInterface;
             _userInterface = userInterface;
+            _userStaffInterface = userStaffInterface;
+            _mapper = mapper;
+            _userAssetsInterface = userAssetsInterface;
             _logger = logger;
         }
 
@@ -44,7 +54,7 @@ namespace AssetManagementWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ViewAsset(string AssetId)
+        public async Task<IActionResult> ViewAsset(string assetId)
         {
             try
             {
@@ -53,7 +63,7 @@ namespace AssetManagementWeb.Controllers
                     return RedirectToAction("Index", "Error");
                 }
 
-                var result = await _assetInterface.GetAsset(AssetId, Request.Cookies["AssetReference"].ToString());
+                var result = await _assetInterface.GetAsset(assetId, Request.Cookies["AssetReference"].ToString());
 
                 return View(result);
             }
@@ -79,6 +89,99 @@ namespace AssetManagementWeb.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"Error encountered in AssetsController||Create ErrorMessage: {ex.Message}");
+                return RedirectToAction("Index", "Error");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(string assetId)
+        {
+            try
+            {
+                if (Request.Cookies["AssetReference"] == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                var asset = await _assetInterface.GetAsset(assetId, Request.Cookies["AssetReference"].ToString());
+
+                return View(asset);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in AssetsController||Update ErrorMessage: {ex.Message}");
+                return RedirectToAction("Index", "Error");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AssignAssetsUsers(string assetId)
+        {
+            try
+            {
+                var asset = await _assetInterface.GetAsset(assetId, Request.Cookies["AssetReference"].ToString());
+
+                if (asset == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                var user = await _userStaffInterface.GetUserStaffs(Request.Cookies["AssetReference"].ToString());
+
+                if(user == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }    
+
+                //Map the objects results to corresponding DTO's
+                AssetsDTO assetsDTO = _mapper.Map<AssetsDTO>(asset);
+                List<UserStaffDTO> userStaffDTO = _mapper.Map<List<UserStaffDTO>>(user);
+
+                //Instantiate AssetsUserVIewModel
+                AssetsUserVIewModel assetsUserVIewModel = new AssetsUserVIewModel()
+                {
+                    AssetsDTO = assetsDTO,
+                    UserStaffDTOs = userStaffDTO
+                };
+
+                ViewData["ListUserStaff"] = assetsUserVIewModel.UserStaffDTOs;
+
+                //Set the Date to its initial value
+                var date = DateTime.Now;
+                ViewBag.Date = date.ToString("yyyy-MM-dd");
+
+                return View(assetsUserVIewModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in AssetsController||AssignAssetsUsers ErrorMessage: {ex.Message}");
+                return RedirectToAction("Index", "Error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AssignAssetsUsers(AssetsUserVIewModel assetsUserVIewModel)
+        {
+            try
+            {
+                if(!ModelState.IsValid)
+                {
+                    return View(assetsUserVIewModel);
+                }
+
+                var userAssets = new UserAssets()
+                {
+                    AssetsId = assetsUserVIewModel.AssetId,
+                    UserStaffId = assetsUserVIewModel.UserStaffId
+                };
+
+                var result = await _userAssetsInterface.CreateUserAssets(userAssets, Request.Cookies["AssetReference"].ToString());
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in AssetsController||AssignAssetsUsers ErrorMessage: {ex.Message}");
                 return RedirectToAction("Index", "Error");
             }
         }
@@ -119,27 +222,6 @@ namespace AssetManagementWeb.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"Error encountered in AssetsController||Create ErrorMessage: {ex.Message}");
-                return RedirectToAction("Index", "Error");
-            }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Update(string AssetId)
-        {
-            try
-            {
-                if (Request.Cookies["AssetReference"] == null)
-                {
-                    return RedirectToAction("Index", "Error");
-                }
-
-                var asset = await _assetInterface.GetAsset(AssetId, Request.Cookies["AssetReference"].ToString());
-
-                return View(asset);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error encountered in AssetsController||Update ErrorMessage: {ex.Message}");
                 return RedirectToAction("Index", "Error");
             }
         }

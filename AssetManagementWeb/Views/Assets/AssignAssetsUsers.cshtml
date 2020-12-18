@@ -1,0 +1,140 @@
+﻿@model AssetManagementWeb.Models.ViewModel.AssetsUserVIewModel
+
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="AssignAssetsUser" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-primary modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Assign Asset To User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-user">
+                                <div class="card-header">
+                                    <h5 class="card-title">Select a UserStaff</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form method="post" id="formAssignAssetUser">
+                                        <input name="IsValid" type="hidden"
+                                               value="@ViewData.ModelState.IsValid.ToString()" />
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label asp-for="AssetId" class="control-label" hidden></label>
+                                                <input asp-for="AssetId" class="form-control" value="@Model.AssetsDTO.Id" hidden />
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="AssetsDTO.HostName">HostName</label>
+                                                    <input asp-for="AssetsDTO.HostName" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="AssetsDTO.SerialNo">SerialNo</label>
+                                                    <input asp-for="AssetsDTO.SerialNo" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="AssetsDTO.ExpressCode">ExpressCode</label>
+                                                    <input asp-for="AssetsDTO.ExpressCode" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="AssetsDTO.Brand">Brand</label>
+                                                    <input asp-for="AssetsDTO.Brand" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="AssetsDTO.Model">Model</label>
+                                                    <input asp-for="AssetsDTO.Model" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="AssetsDTO.Type">Type</label>
+                                                    <input asp-for="AssetsDTO.Type" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="AssetsDTO.Status">Status</label>
+                                                    <input asp-for="AssetsDTO.Status" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="AssetsDTO.Location">Location</label>
+                                                    <input asp-for="AssetsDTO.Location" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="AssetsDTO.IsAvailable">IsAvailable</label>
+                                                    <input asp-for="AssetsDTO.IsAvailable" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label  asp-for="UserStaffId">Select UserStaff</label>
+                                                    <select asp-for="UserStaffId" class="form-control"
+                                                            asp-items="@(new SelectList(Model.UserStaffDTOs, "Id", "DisplayName"))"
+                                                            required>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="IssuedOn">Issued On</label>
+                                                    <input asp-for="IssuedOn" class="form-control" type="date" required value="@ViewBag.Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="ReturedOn">Retured On</label>
+                                                    <input asp-for="ReturedOn" class="form-control" type="date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="row">
+                                        <div class="update ml-auto mr-auto p-2">
+                                            <button type="button" class="btn btn-info btn-fill btn-wd" onclick="AssignAssetsUser()">
+                                                Assign
+                                            </button>
+                                        </div>
+                                        <div class="update ml-auto mr-auto p-2">
+                                            <button type="button" class="btn btn-danger btn-fill btn-wd"
+                                                    data-dismiss="modal">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

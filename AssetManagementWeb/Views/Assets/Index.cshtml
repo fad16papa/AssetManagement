@@ -57,11 +57,16 @@
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     . . .
                                                 </button>
-                                                <div class="dropdown-menu">  
-                                                    <a class="dropdown-item" href="#" data-target="ViewAsset"
-                                                        onclick="viewAssetsDetails('@item.Id')">View</a>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#" data-target="#ViewAsset"
+                                                       onclick="viewAssetsDetails('@item.Id')">View</a>
                                                     <a class="dropdown-item" href="#" data-target="#UpdateAsset"
-                                                        onclick="UpdateAssetModal('@item.Id')">Update</a>
+                                                       onclick="UpdateAssetModal('@item.Id')">Update</a>
+                                                    @if (!item.IsAvailable.Equals("No"))
+                                                    {
+                                                        <a class="dropdown-item" href="#" data-target="#AssignAssetsUser"
+                                                           onclick="viewAssignAssetsUser('@item.Id')">Assign User</a>
+                                                    }
                                                 </div>
                                             </div>
                                         </td>

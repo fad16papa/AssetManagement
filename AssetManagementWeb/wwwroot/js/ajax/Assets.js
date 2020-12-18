@@ -65,7 +65,7 @@ function UpdateAssetModal(paramAssetId) {
         method: 'GET',
         url: "/Assets/Update",
         data: ({
-            AssetId: paramAssetId
+            assetId: paramAssetId
         })
     }).done(function (data, statusText, xhdr) {
         placeholderElement.html(data);
@@ -142,13 +142,74 @@ function viewAssetsDetails(paramAssetId) {
         method: 'GET',
         url: "/Assets/ViewAsset",
         data: ({
-            AssetId: paramAssetId
+            assetId: paramAssetId
         })
 
     }).done(function (data, statusText, xhdr) {
         placeholderElement.html(data);
         placeholderElement.find('.modal').modal('show');
     }).fail(function (xhdr, statusText, errorText) {
+
+        let errorHeader = "System Error!";
+        let errorBody = "Error! \nPlease contact administrator.";
+
+        //function calln to display the Error Message
+        DisplayErrorModal(errorHeader, errorBody);
+    });
+}
+
+function viewAssignAssetsUser(paramAssetId) {
+    //DIV placeholder for the Modal
+    var placeholderElement = $('#ModalPlaceholder');
+
+    $.ajax({
+        method: 'GET',
+        url: "/Assets/AssignAssetsUsers",
+        data: ({
+            assetId: paramAssetId
+        })
+
+    }).done(function (data, statusText, xhdr) {
+        placeholderElement.html(data);
+        placeholderElement.find('.modal').modal('show');
+    }).fail(function (xhdr, statusText, errorText) {
+
+        let errorHeader = "System Error!";
+        let errorBody = "Error! \nPlease contact administrator.";
+
+        //function calln to display the Error Message
+        DisplayErrorModal(errorHeader, errorBody);
+    });
+}
+
+function AssignAssetsUser() {
+
+    $.ajax({
+        method: 'POST',
+        url: "/Assets/AssignAssetsUsers",
+        data: $("#formAssignAssetUser").serialize(),
+    }).done(function (data) {
+
+        var newBody = $('.modal-body', data);
+        var placeholderElement = $('#ModalPlaceholder');
+        placeholderElement.find('.modal-body').replaceWith(newBody);
+
+        // find IsValid input field and check it's value
+        // if it's valid then hide modal window
+        var isValid = newBody.find('[name="IsValid"]').val() == 'True';
+        if (isValid) {
+            placeholderElement.find('.modal').modal('hide');
+
+            let successHeader = "User Action!";
+            let successBody = "New asset has been created!";
+
+            //function call to display the Error Message
+            DisplaySuccessModal(successHeader, successBody);
+
+            //function call
+            viewAssets();
+        }
+    }).fail(function () {
 
         let errorHeader = "System Error!";
         let errorBody = "Error! \nPlease contact administrator.";

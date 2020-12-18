@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Application.Errors;
 using AspNetCore.Http.Extensions;
 using AssetManagementWeb.Models.ApiResponse;
+using AssetManagementWeb.Models.DTO;
 using AssetManagementWeb.Repositories.Interfaces;
 using Domain;
 using Microsoft.Extensions.Logging;
@@ -65,7 +66,7 @@ namespace AssetManagementWeb.Repositories.Services
 
                 responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var result = await responseClient.GetAsync("api/UserAssets/Asset" + AssetId);
+                var result = await responseClient.GetAsync("api/UserAssets/Asset/" + AssetId);
 
                 if (result.StatusCode != HttpStatusCode.OK)
                 {
@@ -109,7 +110,7 @@ namespace AssetManagementWeb.Repositories.Services
                     };
                 }
 
-                var successResponse = await result.Content.ReadAsJsonAsync<List<UserAssets>>();
+                var successResponse = await result.Content.ReadAsJsonAsync<List<UserAssetsDTO>>();
 
                 return successResponse;
 
@@ -129,7 +130,7 @@ namespace AssetManagementWeb.Repositories.Services
 
                 responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var result = await responseClient.GetAsync("api/UserAssets/User" + UserId);
+                var result = await responseClient.GetAsync("api/UserAssets/User/" + UserId);
 
                 if (result.StatusCode != HttpStatusCode.OK)
                 {
