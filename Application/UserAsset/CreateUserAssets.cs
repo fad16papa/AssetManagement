@@ -71,18 +71,6 @@ namespace Application.UserAsset
 
                 _context.UserAssets.Add(userAsset);
 
-                var hsitoryUserAssets = new HistoryUserAssets()
-                {
-                    Id = request.Id,
-                    AssetsId = request.AssetsId,
-                    UserStaffId = request.UserStaffId,
-                    IssuedOn = request.IssuedOn,
-                    ReturnedOn = request.ReturnedOn,
-                    IsActive = request.IsActive
-                };
-
-                _context.HistoryUserAssets.Add(hsitoryUserAssets);
-
                 var success = await _context.SaveChangesAsync() > 0;
 
                 if (success)
