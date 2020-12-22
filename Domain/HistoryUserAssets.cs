@@ -1,13 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain
 {
-    public class UserAssets
+    public class HistoryUserAssets
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

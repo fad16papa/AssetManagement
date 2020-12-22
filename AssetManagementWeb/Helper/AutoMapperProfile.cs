@@ -12,6 +12,7 @@ namespace AssetManagementWeb.Helper
         public AutoMapperProfile()
         {
             //CreateMap<object, AssetsDTO>();
+            CreateMap<List<object>, UserAssetsDTO>();
         }
     }
 }

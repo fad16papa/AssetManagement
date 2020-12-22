@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using AssetManagementWeb.Models;
 using AssetManagementWeb.Models.DTO;
@@ -21,7 +22,7 @@ namespace AssetManagementWeb.Controllers
         private readonly IMapper _mapper;
         private readonly IUserAssetsInterface _userAssetsInterface;
 
-        public AssetsController(ILogger<AssetsController> logger, IAssetInterface assetInterface, IUserInterface userInterface, IUserStaffInterface userStaffInterface, 
+        public AssetsController(ILogger<AssetsController> logger, IAssetInterface assetInterface, IUserInterface userInterface, IUserStaffInterface userStaffInterface,
             IMapper mapper, IUserAssetsInterface userAssetsInterface)
         {
             _assetInterface = assetInterface;
@@ -65,23 +66,23 @@ namespace AssetManagementWeb.Controllers
 
                 var asset = await _assetInterface.GetAsset(assetId, Request.Cookies["AssetReference"].ToString());
 
-                if(asset == null)
+                if (asset == null)
                 {
                     return RedirectToAction("Index", "Error");
                 }
 
                 var userAssets = await _userAssetsInterface.GetAssetsOfUser(assetId, Request.Cookies["AssetReference"].ToString());
 
-                if(userAssets == null)
+                if (userAssets == null)
                 {
                     return RedirectToAction("Index", "Error");
                 }
 
                 //Map the objects results to corresponding DTO's
                 AssetsDTO assetsDTO = _mapper.Map<AssetsDTO>(asset);
-                List<UserAssetsDTO> userAssetsDTOs = userAssets as List<UserAssetsDTO>;
+                List<UserAssets> userAssetsDTOs = _mapper.Map<List<UserAssets>>(userAssets);
 
-                //Instantiate AssetsUserVIewModel
+                //Instantiate AssetsUserVIewModel 
                 var viewAssetsUserViewModel = new ViewAssetsUserViewModel()
                 {
                     AssetsDTO = assetsDTO,
@@ -151,10 +152,10 @@ namespace AssetManagementWeb.Controllers
 
                 var user = await _userStaffInterface.GetUserStaffs(Request.Cookies["AssetReference"].ToString());
 
-                if(user == null)
+                if (user == null)
                 {
                     return RedirectToAction("Index", "Error");
-                }    
+                }
 
                 //Map the objects results to corresponding DTO's
                 AssetsDTO assetsDTO = _mapper.Map<AssetsDTO>(asset);
@@ -187,7 +188,7 @@ namespace AssetManagementWeb.Controllers
         {
             try
             {
-                if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     return View(assetsUserVIewModel);
                 }
@@ -200,10 +201,17 @@ namespace AssetManagementWeb.Controllers
                     AssetsId = assetsUserVIewModel.AssetId,
                     UserStaffId = assetsUserVIewModel.UserStaffId,
                     IssuedOn = assetsUserVIewModel.IssuedOn,
-                    ReturnedOn = assetsUserVIewModel.ReturedOn
+                    ReturnedOn = assetsUserVIewModel.ReturedOn,
+                    IsActive = "Yes"
                 };
 
                 var result = await _userAssetsInterface.CreateUserAssets(userAssets, Request.Cookies["AssetReference"].ToString());
+
+                if (result.ResponseCode != HttpStatusCode.OK.ToString())
+                {
+                    ViewBag.ErrorResponse = result.ResponseMessage;
+                    return View();
+                }
 
                 var user = await _userStaffInterface.GetUserStaffs(Request.Cookies["AssetReference"].ToString());
 

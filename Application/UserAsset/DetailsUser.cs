@@ -31,7 +31,7 @@ namespace Application.UserAsset
             public async Task<List<UserAssets>> Handle(Query request, CancellationToken cancellationToken)
             {
                 //handler logic goes here
-                var users = await _context.UserAssets.Where(x => x.UserStaffId == request.UserId).ToListAsync();
+                var users = await _context.UserAssets.Where(x => x.UserStaffId == request.UserId).OrderByDescending(x => x.IssuedOn).ToListAsync();
 
                 if (users == null)
                     throw new RestException(HttpStatusCode.NotFound, "Not found");

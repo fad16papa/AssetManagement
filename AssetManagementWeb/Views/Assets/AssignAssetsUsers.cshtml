@@ -5,7 +5,7 @@
 }
 
 <div class="modal fade" id="AssignAssetsUser" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog modal-primary modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -25,11 +25,13 @@
                                 <div class="card-body">
                                     <form method="post" id="formAssignAssetUser">
                                         <input name="IsValid" type="hidden"
-                                               value="@ViewData.ModelState.IsValid.ToString()" />
+                                            value="@ViewData.ModelState.IsValid.ToString()" />
+                                        <span>@ViewBag.ErrorResponse</span>
                                         <div class="row">
                                             <div class="form-group">
                                                 <label asp-for="AssetId" class="control-label" hidden></label>
-                                                <input asp-for="AssetId" class="form-control" hidden value="@ViewBag.AssetId"/>
+                                                <input asp-for="AssetId" class="form-control" hidden
+                                                    value="@ViewBag.AssetId" />
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
@@ -46,7 +48,8 @@
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="AssetsDTO.ExpressCode">ExpressCode</label>
-                                                    <input asp-for="AssetsDTO.ExpressCode" class="form-control" disabled>
+                                                    <input asp-for="AssetsDTO.ExpressCode" class="form-control"
+                                                        disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -86,24 +89,26 @@
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="AssetsDTO.IsAvailable">IsAvailable</label>
-                                                    <input asp-for="AssetsDTO.IsAvailable" class="form-control" disabled>
+                                                    <input asp-for="AssetsDTO.IsAvailable" class="form-control"
+                                                        disabled>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
-                                                    <label  asp-for="UserStaffId">Select UserStaff</label>
+                                                    <label asp-for="UserStaffId">Select UserStaff</label>
                                                     <select asp-for="UserStaffId" class="form-control"
-                                                            asp-items="@(new SelectList(Model.UserStaffDTOs, "Id", "DisplayName"))"
-                                                            required>
+                                                        asp-items="@(new SelectList(Model.UserStaffDTOs, "Id", "DisplayName"))"
+                                                        required>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="IssuedOn">Issued On</label>
-                                                    <input asp-for="IssuedOn" class="form-control" type="date" required value="@ViewBag.Date">
+                                                    <input asp-for="IssuedOn" class="form-control" type="date" required
+                                                        value="@ViewBag.Date">
                                                 </div>
                                             </div>
                                             <div class="col-md-4 pr-1">
@@ -118,13 +123,14 @@
                                 <div class="modal-footer">
                                     <div class="row">
                                         <div class="update ml-auto mr-auto p-2">
-                                            <button type="button" class="btn btn-info btn-fill btn-wd" onclick="AssignAssetsUser()">
+                                            <button type="button" class="btn btn-info btn-fill btn-wd"
+                                                onclick="AssignAssetsUser()">
                                                 Assign
                                             </button>
                                         </div>
                                         <div class="update ml-auto mr-auto p-2">
                                             <button type="button" class="btn btn-danger btn-fill btn-wd"
-                                                    data-dismiss="modal">
+                                                data-dismiss="modal">
                                                 Close
                                             </button>
                                         </div>

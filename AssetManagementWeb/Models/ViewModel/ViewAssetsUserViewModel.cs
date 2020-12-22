@@ -1,4 +1,5 @@
 ﻿using AssetManagementWeb.Models.DTO;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace AssetManagementWeb.Models.ViewModel
     public class ViewAssetsUserViewModel
     {
         public AssetsDTO AssetsDTO { get; set; }
-        public List<UserAssetsDTO> UserAssetsDTOs { get; set; }
+        public List<UserAssets> UserAssetsDTOs { get; set; }
     }
 }
