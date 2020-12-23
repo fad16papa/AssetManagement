@@ -6,16 +6,16 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.UserAsset
+namespace Application.UserLicenses
 {
-    public class ListHistoryUserAssets
+    public class ListUserLicense
     {
-        public class Query : IRequest<List<HistoryUserAssets>>
+        public class Query : IRequest<List<UserLicense>>
         {
 
         }
 
-        public class Handler : IRequestHandler<Query, List<HistoryUserAssets>>
+        public class Handler : IRequestHandler<Query, List<UserLicense>>
         {
             private readonly DataContext _context;
 
@@ -24,12 +24,12 @@ namespace Application.UserAsset
                 _context = context;
             }
 
-            public async Task<List<HistoryUserAssets>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<List<UserLicense>> Handle(Query request, CancellationToken cancellationToken)
             {
                 //handler logic goes here
-                var historyUserAssets = await _context.HistoryUserAssets.ToListAsync();
+                var userLicenses = await _context.UserLicenses.ToListAsync();
 
-                return historyUserAssets;
+                return userLicenses;
             }
         }
     }

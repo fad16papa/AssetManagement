@@ -16,13 +16,6 @@ namespace AssetAPI.Controllers
             return await Mediator.Send(new ListUserAssets.Query());
         }
 
-        [HttpGet, Route("HistoryUserAssets")]
-        public async Task<ActionResult<List<HistoryUserAssets>>> ListHisotryUserAssets()
-        {
-            return await Mediator.Send(new ListHistoryUserAssets.Query());
-        }
-
-
         [HttpGet, Route("User/{Id}")]
         public async Task<ActionResult<List<UserAssets>>> DetailsUser(Guid Id)
         {
@@ -37,12 +30,6 @@ namespace AssetAPI.Controllers
 
         [HttpPost]
         public async Task<ActionResult<Unit>> Create(CreateUserAssets.Command command)
-        {
-            return await Mediator.Send(command);
-        }
-
-        [HttpPost, Route("HistoryUserAssets")]
-        public async Task<ActionResult<Unit>> Create(CreateHistoryUserAssets.Command command)
         {
             return await Mediator.Send(command);
         }

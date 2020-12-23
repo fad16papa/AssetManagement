@@ -8,6 +8,7 @@ using Application.Interfaces;
 using Application.Licenses;
 using Application.User;
 using Application.UserAsset;
+using Application.UserLicenses;
 using Application.UserStaffs;
 using AssetAPI.Middleware;
 using AutoMapper;
@@ -71,8 +72,8 @@ namespace AssetAPI
             services.AddAutoMapper(typeof(ListLicense.Handler));
             services.AddMediatR(typeof(ListUserAssets).Assembly);
             services.AddAutoMapper(typeof(ListUserAssets.Handler));
-            services.AddMediatR(typeof(ListHistoryUserAssets).Assembly);
-            services.AddAutoMapper(typeof(ListHistoryUserAssets.Handler));
+            services.AddMediatR(typeof(ListUserLicense).Assembly);
+            services.AddAutoMapper(typeof(ListUserLicense.Handler));
             services.AddSignalR();
             services.AddControllers(opt =>
             {
@@ -85,7 +86,7 @@ namespace AssetAPI
                 cfg.RegisterValidatorsFromAssemblyContaining<CreateUserStaff>();
                 cfg.RegisterValidatorsFromAssemblyContaining<CreateLicense>();
                 cfg.RegisterValidatorsFromAssemblyContaining<CreateUserAssets>();
-                cfg.RegisterValidatorsFromAssemblyContaining<CreateHistoryUserAssets>();
+                cfg.RegisterValidatorsFromAssemblyContaining<CreateUserLicense>();
             });
 
             services.AddControllersWithViews()

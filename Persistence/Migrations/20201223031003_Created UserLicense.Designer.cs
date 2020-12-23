@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20201223031003_Created UserLicense")]
+    partial class CreatedUserLicense
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -199,36 +201,6 @@ namespace Persistence.Migrations
                     b.ToTable("UserAssets");
                 });
 
-            modelBuilder.Entity("Domain.UserLicense", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IsActive")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("IssuedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("LicenseId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("ReturnedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("UserStaffId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LicenseId");
-
-                    b.HasIndex("UserStaffId");
-
-                    b.ToTable("UserLicenses");
-                });
-
             modelBuilder.Entity("Domain.UserStaff", b =>
                 {
                     b.Property<Guid>("Id")
@@ -396,21 +368,6 @@ namespace Persistence.Migrations
 
                     b.HasOne("Domain.UserStaff", "UserStaff")
                         .WithMany("UserAssets")
-                        .HasForeignKey("UserStaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.UserLicense", b =>
-                {
-                    b.HasOne("Domain.License", "License")
-                        .WithMany()
-                        .HasForeignKey("LicenseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.UserStaff", "UserStaff")
-                        .WithMany()
                         .HasForeignKey("UserStaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -52,7 +52,7 @@ namespace Application.UserAsset
                 if (result != null)
                     throw new RestException(HttpStatusCode.Conflict, "The user is already been assigned to this asset and its active");
 
-                var userAssets = await _context.UserAssets.ToListAsync();
+                var userAssets = await _context.UserAssets.Where(x => x.AssetsId == request.AssetsId).ToListAsync();
 
                 foreach (var item in userAssets)
                 {
