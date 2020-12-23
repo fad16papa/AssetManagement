@@ -10,6 +10,6 @@ namespace AssetManagementWeb.Models.ViewModel
     public class ViewAssetsUserViewModel
     {
         public AssetsDTO AssetsDTO { get; set; }
-        public List<UserAssets> UserAssetsDTOs { get; set; }
+        public List<UserAssets> UserAssets { get; set; }
     }
 }

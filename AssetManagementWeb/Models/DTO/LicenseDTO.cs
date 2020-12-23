@@ -18,6 +18,9 @@ namespace AssetManagementWeb.Models.DTO
         [Required]
         public string Expiration { get; set; }
         public DateTime ExpiredOn { get; set; }
+        [Required]
+        [Display(Name = "Availability")]
+        public string IsAvailable { get; set; }
         public string Remarks { get; set; }
     }
 }

@@ -86,7 +86,7 @@ namespace AssetManagementWeb.Controllers
                 var viewAssetsUserViewModel = new ViewAssetsUserViewModel()
                 {
                     AssetsDTO = assetsDTO,
-                    UserAssetsDTOs = userAssetsDTOs
+                    UserAssets = userAssetsDTOs
                 };
 
                 return View(viewAssetsUserViewModel);

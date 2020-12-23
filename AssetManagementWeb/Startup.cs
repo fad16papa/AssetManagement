@@ -35,6 +35,7 @@ namespace AssetManagementWeb
             services.AddTransient<IUserStaffInterface, UserStaffService>();
             services.AddTransient<ILicenseInterface, LicenseService>();
             services.AddTransient<IUserAssetsInterface, UserAssetsService>();
+            services.AddTransient<IUserLicenseInterface, UserLicenseService>();
             #endregion
 
             services.AddHttpClient("AssetAPI", options =>

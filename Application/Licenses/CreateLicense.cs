@@ -17,6 +17,7 @@ namespace Application.Licenses
             public string LicenseKey { get; set; }
             public string Expiration { get; set; }
             public DateTime ExpiredOn { get; set; }
+            public string IsAvailable { get; set; }
             public string Remarks { get; set; }
         }
 
@@ -28,6 +29,7 @@ namespace Application.Licenses
                 RuleFor(x => x.ProductVersion).NotEmpty();
                 RuleFor(x => x.LicenseKey).NotEmpty();
                 RuleFor(x => x.Expiration).NotEmpty();
+                RuleFor(x => x.IsAvailable).NotEmpty();
             }
         }
 
@@ -50,7 +52,8 @@ namespace Application.Licenses
                     LicenseKey = request.LicenseKey,
                     Expiration = request.Expiration,
                     ExpiredOn = request.ExpiredOn,
-                    Remarks = request.Remarks
+                    Remarks = request.Remarks,
+                    IsAvailable = request.IsAvailable
                 };
 
                 _context.Licenses.Add(license);

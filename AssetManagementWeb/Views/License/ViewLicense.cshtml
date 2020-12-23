@@ -1,11 +1,11 @@
-﻿@model AssetManagementWeb.Models.DTO.LicenseDTO
+﻿@model AssetManagementWeb.Models.ViewModel.ViewLicenseUserViewModel
 
 @{
     Layout = null;
 }
 
 <div class="modal fade" id="ViewLicense" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog modal-primary modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -25,25 +25,27 @@
                                 </div>
                                 <div class="card-body">
                                     <input name="IsValid" type="hidden"
-                                            value="@ViewData.ModelState.IsValid.ToString()" />
+                                        value="@ViewData.ModelState.IsValid.ToString()" />
                                     <div class="row">
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="ProductName">ProductName</label>
-                                                <input asp-for="ProductName" class="form-control" disabled>
+                                                <label asp-for="LicenseDTO.ProductName">ProductName</label>
+                                                <input asp-for="LicenseDTO.ProductName" class="form-control" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="ProductVersion">ProductVersion</label>
-                                                <input asp-for="ProductVersion" class="form-control" disabled>
+                                                <label asp-for="LicenseDTO.ProductVersion">ProductVersion</label>
+                                                <input asp-for="LicenseDTO.ProductVersion" class="form-control"
+                                                    disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <label asp-for="LicenseKey">LicenseKey</label>
-                                                    <input asp-for="LicenseKey" class="form-control" disabled>
+                                                    <label asp-for="LicenseDTO.LicenseKey">LicenseKey</label>
+                                                    <input asp-for="LicenseDTO.LicenseKey" class="form-control"
+                                                        disabled>
                                                 </div>
                                             </div>
                                         </div>
@@ -51,17 +53,18 @@
                                     <div class="row">
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="Expiration">Expiration</label>
-                                                <input asp-for="Expiration" class="form-control" disabled>
+                                                <label asp-for="LicenseDTO.Expiration">Expiration</label>
+                                                <input asp-for="LicenseDTO.Expiration" class="form-control" disabled>
                                             </div>
                                         </div>
-                                        @if (!Model.Expiration.Equals("No"))
+                                        @if (!Model.LicenseDTO.Expiration.Equals("No"))
                                         {
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
                                                     <div class="form-group">
-                                                        <label asp-for="ExpiredOn">Expiration</label>
-                                                        <input id="expiration" asp-for="ExpiredOn" class="form-control" type="date" disabled>
+                                                        <label asp-for="LicenseDTO.ExpiredOn">Expiration</label>
+                                                        <input id="expiration" asp-for="LicenseDTO.ExpiredOn"
+                                                            class="form-control" type="date" disabled>
                                                     </div>
                                                 </div>
                                             </div>
@@ -70,9 +73,69 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label asp-for="Remarks"></label>
-                                                <textarea asp-for="Remarks"
-                                                            class="form-control textarea" disabled></textarea>
+                                                <label asp-for="LicenseDTO.Remarks"></label>
+                                                <textarea asp-for="LicenseDTO.Remarks" class="form-control textarea"
+                                                    disabled></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="table-responsive">
+                                                    @{
+                                                        var counterUser = 1;
+                                                    }
+                                                    <table class="table">
+                                                        <thead class=" text-primary">
+                                                            <tr>
+                                                                <th>
+                                                                    S/N
+                                                                </th>
+                                                                <th>
+                                                                    Display Name
+                                                                </th>
+                                                                <th>
+                                                                    Department
+                                                                </th>
+                                                                <th>
+                                                                    Issued On
+                                                                </th>
+                                                                <th>
+                                                                    Returned On
+                                                                </th>
+                                                                <th>
+                                                                    Is Active
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in Model.UserLicenses)
+                                                            {
+                                                                <tr>
+                                                                    <td>
+                                                                        @counterUser
+                                                                    </td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.UserStaff.DisplayName)</td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.UserStaff.Department)</td>
+                                                                    <td>@Html.DisplayFor(modelItem => item.IssuedOn)</td>
+                                                                    @if (item.ReturnedOn == DateTime.MinValue)
+                                                                    {
+                                                                        <td>NIL</td>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <td>@Html.DisplayFor(modelItem => item.ReturnedOn)</td>
+                                                                    }
+                                                                    <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
+                                                                </tr>
+                                                                counterUser++;
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -81,7 +144,7 @@
                                     <div class="row">
                                         <div class="update ml-auto mr-auto p-2">
                                             <button type="button" class="btn btn-danger btn-fill btn-wd"
-                                                    data-dismiss="modal">
+                                                data-dismiss="modal">
                                                 Close
                                             </button>
                                         </div>

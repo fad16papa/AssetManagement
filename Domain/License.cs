@@ -11,6 +11,7 @@ namespace Domain
         public string LicenseKey { get; set; }
         public string Expiration { get; set; }
         public DateTime ExpiredOn { get; set; }
+        public string IsAvailable { get; set; }
         public string Remarks { get; set; }
     }
 }
