@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AssetManagementWeb.Models;
 using AssetManagementWeb.Models.DTO;
 using AssetManagementWeb.Repositories.Interfaces;
+using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,8 +14,12 @@ namespace AssetManagementWeb.Controllers
     {
         private readonly ILogger<LicenseController> _logger;
         private readonly ILicenseInterface _licenseInterface;
-        public LicenseController(ILogger<LicenseController> logger, ILicenseInterface licenseInterface)
+        private readonly IMapper _mapper;
+        private readonly IUserLicenseInterface _userLicenseInterface;
+        public LicenseController(ILogger<LicenseController> logger, ILicenseInterface licenseInterface, IMapper mapper, IUserLicenseInterface userLicenseInterface)
         {
+            _userLicenseInterface = userLicenseInterface;
+            _mapper = mapper;
             _licenseInterface = licenseInterface;
             _logger = logger;
         }
@@ -92,7 +97,7 @@ namespace AssetManagementWeb.Controllers
 
                 AvailabilityModel availabilityModel = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), licenseDTO.Expiration);
 
-                if(licenseDTO.Expiration.Equals("No"))
+                if (licenseDTO.Expiration.Equals("No"))
                 {
                     licenseDTO.ExpiredOn = DateTime.MinValue;
                 }
