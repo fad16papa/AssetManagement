@@ -130,6 +130,17 @@
                                                     }
                                                 </div>
                                             </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="IsAvailable">IsAvailable</label>
+                                                    <select asp-for="IsAvailable" class="form-control"
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.AvailabilityModel>()"
+                                                        required>
+                                                    </select>
+                                                </div>
+                                                <div><span asp-validation-for="IsAvailable" class="text-danger"></span>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">

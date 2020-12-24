@@ -186,7 +186,8 @@ namespace AssetManagementWeb.Controllers
                     return View(licenseDTO);
                 }
 
-                AvailabilityModel availabilityModel = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), licenseDTO.Expiration);
+                AvailabilityModel expiration = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), licenseDTO.Expiration);
+                AvailabilityModel availabilityModel = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), licenseDTO.IsAvailable);
 
                 var license = new License()
                 {
@@ -194,9 +195,10 @@ namespace AssetManagementWeb.Controllers
                     ProductName = licenseDTO.ProductName,
                     ProductVersion = licenseDTO.ProductVersion,
                     LicenseKey = licenseDTO.LicenseKey,
-                    Expiration = availabilityModel.ToString(),
+                    Expiration = expiration.ToString(),
                     ExpiredOn = licenseDTO.ExpiredOn,
-                    Remarks = licenseDTO.Remarks
+                    Remarks = licenseDTO.Remarks,
+                    IsAvailable = availabilityModel.ToString()
                 };
 
                 var result = await _licenseInterface.EditLicense(license, Request.Cookies["AssetReference"].ToString());
@@ -223,7 +225,7 @@ namespace AssetManagementWeb.Controllers
                     return RedirectToAction("Index", "Error");
                 }
 
-                var user = await _userLicenseInterface.GetUserLicense(Request.Cookies["AssetReference"].ToString());
+                var user = await _userStaffInterface.GetUserStaffs(Request.Cookies["AssetReference"].ToString());
 
                 if (user == null)
                 {
@@ -297,7 +299,7 @@ namespace AssetManagementWeb.Controllers
                 List<UserStaffDTO> userStaffDTO = _mapper.Map<List<UserStaffDTO>>(user);
 
                 //Instantiate AssetsUserVIewModel
-                AssetsUserVIewModel model = new AssetsUserVIewModel()
+                LicenseUserViewModel model = new LicenseUserViewModel()
                 {
                     UserStaffDTOs = userStaffDTO
                 };
