@@ -110,7 +110,7 @@ namespace AssetManagementWeb.Repositories.Services
                     };
                 }
 
-                var successResponse = await result.Content.ReadAsJsonAsync<List<UserLicenseDTO>>();
+                var successResponse = await result.Content.ReadAsJsonAsync<List<UserLicense>>();
 
                 return successResponse;
 

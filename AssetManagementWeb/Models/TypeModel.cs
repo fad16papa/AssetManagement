@@ -14,9 +14,5 @@ namespace AssetManagementWeb.Models
         Server,
         [Display(Name = "Monitor")]
         Monitor,
-        [Display(Name = "Keyboard")]
-        Keyboard,
-        [Display(Name = "Mouse")]
-        Mouse
     }
 }

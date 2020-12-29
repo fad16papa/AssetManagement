@@ -5,69 +5,9 @@
 
 <div class="content">
     <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="card card-stats">
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-5 col-md-4">
-                            <div class="icon-big text-center icon-warning">
-                                <i class="nc-icon nc-globe text-warning"></i>
-                            </div>
-                        </div>
-                        @await Component.InvokeAsync("AssetsComponent")
-                    </div>
-                </div>
-                <div class="card-footer ">
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-refresh"></i>
-                        Update Now
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="card card-stats">
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-5 col-md-4">
-                            <div class="icon-big text-center icon-warning">
-                                <i class="nc-icon nc-money-coins text-success"></i>
-                            </div>
-                        </div>
-                        @await Component.InvokeAsync("LicenseComponent")
-                    </div>
-                </div>
-                <div class="card-footer ">
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-calendar-o"></i>
-                        Last day
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="card card-stats">
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-5 col-md-4">
-                            <div class="icon-big text-center icon-warning">
-                                <i class="nc-icon nc-vector text-danger"></i>
-                            </div>
-                        </div>
-                        @await Component.InvokeAsync("UserStaffsComponents")
-                    </div>
-                </div>
-                <div class="card-footer ">
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-clock-o"></i>
-                        In the last hour
-                    </div>
-                </div>
-            </div>
-        </div>
+        @await Component.InvokeAsync("AssetsComponent")
+        @await Component.InvokeAsync("LicenseComponent")
+        @await Component.InvokeAsync("UserStaffsComponents")
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -89,51 +29,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <div class="card ">
-                <div class="card-header ">
-                    <h5 class="card-title">Assigned Asset Users</h5>
-                    <p class="card-category">List of new Assigned Assets to Users</p>
-                </div>
-                <div class="card-body ">
-                    <canvas id="chartEmail"></canvas>
-                </div>
-                <div class="card-footer ">
-                    <div class="legend">
-                        <i class="fa fa-circle text-primary"></i> Opened
-                        <i class="fa fa-circle text-warning"></i> Read
-                        <i class="fa fa-circle text-danger"></i> Deleted
-                        <i class="fa fa-circle text-gray"></i> Unopened
-                    </div>
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-calendar"></i> Number of emails sent
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card ">
-                <div class="card-header ">
-                    <h5 class="card-title">Assigned License Users</h5>
-                    <p class="card-category">List of new Assigned Licenses to Users</p>
-                </div>
-                <div class="card-body ">
-                    <canvas id="chartEmail"></canvas>
-                </div>
-                <div class="card-footer ">
-                    <div class="legend">
-                        <i class="fa fa-circle text-primary"></i> Opened
-                        <i class="fa fa-circle text-warning"></i> Read
-                        <i class="fa fa-circle text-danger"></i> Deleted
-                        <i class="fa fa-circle text-gray"></i> Unopened
-                    </div>
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-calendar"></i> Number of emails sent
-                    </div>
-                </div>
-            </div>
-        </div>
+        @await Component.InvokeAsync("UserAssetsComponents")
+        @await Component.InvokeAsync("UserLicenseComponents")
     </div>
 </div>

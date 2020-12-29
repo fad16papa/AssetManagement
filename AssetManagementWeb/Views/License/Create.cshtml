@@ -77,11 +77,26 @@
                                                     <div id="expiration" class="form-group">
                                                         <label asp-for="ExpiredOn">ExpiredOn</label>
                                                         <input id="expiredOnValue" asp-for="ExpiredOn" class="form-control"
-                                                            autocomplete="off" type="date" value="@ViewBag.Date">
-                                                        <div><span><small>Format Date DD-MM-YYYY</small></span>
-                                                        <span asp-validation-for="ExpiredOn"
-                                                                class="text-danger"></span></div>
+                                                               autocomplete="off" type="date" value="@ViewBag.Date">
+                                                        <div>
+                                                            <span><small>Format Date DD-MM-YYYY</small></span>
+                                                            <span asp-validation-for="ExpiredOn"
+                                                                  class="text-danger"></span>
+                                                        </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="IsAvailable">IsAvailable</label>
+                                                    <select asp-for="IsAvailable" class="form-control"
+                                                            asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.AvailabilityModel>()"
+                                                            required>
+                                                        <option value="">Select Availability</option>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <span asp-validation-for="IsAvailable" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         </div>

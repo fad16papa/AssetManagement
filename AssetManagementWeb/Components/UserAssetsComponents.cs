@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AssetManagementWeb.Models.DTO;
 using AssetManagementWeb.Repositories.Interfaces;
 using AutoMapper;
+using Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AssetManagementWeb.Components
@@ -23,9 +24,11 @@ namespace AssetManagementWeb.Components
             var result = await _userAssetsInterface.GetUserAssets(Request.Cookies["AssetReference"].ToString());
 
             //Map the objects results to corresponding DTO's
-            IEnumerable<UserAssetsDTO> userAssetsDTOs = _mapper.Map<IEnumerable<UserAssetsDTO>>(result);
+            IEnumerable<UserAssets> userAssets = _mapper.Map<IEnumerable<UserAssets>>(result);
 
-            var resultUserAssets = userAssetsDTOs.Where(x => x.IsActive == "Yes").ToList();
+            var resultUserAssets = userAssets.OrderByDescending(x => x.IssuedOn).Where(x => x.IsActive == "Yes").ToList();
+
+            ViewBag.TotalUserAssetsCount = resultUserAssets.Count();
 
             return View(resultUserAssets);
         }

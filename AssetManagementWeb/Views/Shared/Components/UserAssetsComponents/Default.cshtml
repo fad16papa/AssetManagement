@@ -1,0 +1,85 @@
+@model IEnumerable<UserAssets>
+
+<div class="col-md-6">
+    <div class="card ">
+        <div class="card-header ">
+            <h5 class="card-title">Assigned Asset Users</h5>
+            <p class="card-category">Summary List of new Assigned Assets to Users</p>
+        </div>
+        <div class="card-body ">
+            <div class="table-responsive">
+                @{
+                    var counterUser = 1;
+                }
+                <table class="table">
+                    <thead class=" text-primary">
+                        <tr>
+                            <th>
+                                S/N
+                            </th>
+                            <th>
+                                User Staff
+                            </th>
+                            <th>
+                                Product
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            @if(item.Asset.Type.Equals("Laptop"))
+                            {
+                                 <tr class="text-primary">
+                                    <td>
+                                        @counterUser
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
+                                </tr>
+                            }
+                            @if(item.Asset.Type.Equals("Server"))
+                            {
+                                 <tr class="text-danger">
+                                    <td>
+                                        @counterUser
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
+                                </tr>
+                            }
+                            @if(item.Asset.Type.Equals("Monitor"))
+                            {                           
+                                 <tr class="text-warning">
+                                    <td>
+                                        @counterUser
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
+                                </tr>
+                            }                     
+                            counterUser++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer ">
+            <div class="legend">
+                <i class="fa fa-circle text-primary"></i> Laptop
+                <i class="fa fa-circle text-danger"></i> Server
+                <i class="fa fa-circle text-warning"></i> Monitor
+            </div>
+            <hr>
+            <div class="stats">
+                <i class="nc-icon nc-laptop"></i> Total Count: @ViewBag.TotalUserAssetsCount
+            </div>
+        </div>
+    </div>
+</div>

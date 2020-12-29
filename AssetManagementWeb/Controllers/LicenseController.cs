@@ -127,7 +127,8 @@ namespace AssetManagementWeb.Controllers
                     return View(licenseDTO);
                 }
 
-                AvailabilityModel availabilityModel = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), licenseDTO.Expiration);
+                AvailabilityModel expiration = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), licenseDTO.Expiration);
+                AvailabilityModel availabilityModel = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), licenseDTO.IsAvailable);
 
                 if (licenseDTO.Expiration.Equals("No"))
                 {
@@ -139,9 +140,10 @@ namespace AssetManagementWeb.Controllers
                     ProductName = licenseDTO.ProductName,
                     ProductVersion = licenseDTO.ProductVersion,
                     LicenseKey = licenseDTO.LicenseKey,
-                    Expiration = availabilityModel.ToString(),
+                    Expiration = expiration.ToString(),
                     ExpiredOn = licenseDTO.ExpiredOn,
-                    Remarks = licenseDTO.Remarks
+                    Remarks = licenseDTO.Remarks,
+                    IsAvailable = availabilityModel.ToString()
                 };
 
                 var result = await _licenseInterface.CreateLicense(license, Request.Cookies["AssetReference"].ToString());

@@ -26,8 +26,6 @@ function CreateLicense() {
 
     formData.push({ name: "Expiration", value: paramRadioButton });
 
-    console.log(paramRadioButton);
-
     if (paramRadioButton === 'No') {
         formData.push({ name: "ExpiredOn", value: document.getElementById('expiredOnValue') });
     }
