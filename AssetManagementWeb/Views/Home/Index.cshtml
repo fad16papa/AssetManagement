@@ -14,13 +14,7 @@
                                 <i class="nc-icon nc-globe text-warning"></i>
                             </div>
                         </div>
-                        <div class="col-7 col-md-8">
-                            <div class="numbers">
-                                <p class="card-category">Total Count: 10</p>
-                                <p class="card-title">Assets
-                                <p>
-                            </div>
-                        </div>
+                        @await Component.InvokeAsync("AssetsComponent")
                     </div>
                 </div>
                 <div class="card-footer ">
@@ -41,13 +35,7 @@
                                 <i class="nc-icon nc-money-coins text-success"></i>
                             </div>
                         </div>
-                        <div class="col-7 col-md-8">
-                            <div class="numbers">
-                                <p class="card-category">Total Count: 10</p>
-                                <p class="card-title">License
-                                <p>
-                            </div>
-                        </div>
+                        @await Component.InvokeAsync("LicenseComponent")
                     </div>
                 </div>
                 <div class="card-footer ">
@@ -68,13 +56,7 @@
                                 <i class="nc-icon nc-vector text-danger"></i>
                             </div>
                         </div>
-                        <div class="col-7 col-md-8">
-                            <div class="numbers">
-                                <p class="card-category">Total Count: 10</p>
-                                <p class="card-title">User Staffs
-                                <p>
-                            </div>
-                        </div>
+                        @await Component.InvokeAsync("UserStaffsComponents")
                     </div>
                 </div>
                 <div class="card-footer ">
