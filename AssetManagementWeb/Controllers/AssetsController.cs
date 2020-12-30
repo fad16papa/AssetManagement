@@ -202,7 +202,7 @@ namespace AssetManagementWeb.Controllers
                     UserStaffId = assetsUserVIewModel.UserStaffId,
                     IssuedOn = assetsUserVIewModel.IssuedOn,
                     ReturnedOn = assetsUserVIewModel.ReturedOn,
-                    IsActive = "Yes", 
+                    IsActive = "Yes",
                 };
 
                 var result = await _userAssetsInterface.CreateUserAssets(userAssets, Request.Cookies["AssetReference"].ToString());
@@ -213,13 +213,23 @@ namespace AssetManagementWeb.Controllers
                     return View();
                 }
 
-                var assets = new Asset()
+                var asset = new Asset()
                 {
                     Id = assetsUserVIewModel.AssetId,
-                    IsAssinged = "Yes",
+                    Brand = "fad",
+                    HostName = "fad",
+                    ExpressCode = "fad",
+                    IsAvailable = "fad",
+                    Location = "fad",
+                    Status = "fad",
+                    Model = "fad",
+                    Remarks = "fad",
+                    SerialNo = "fad",
+                    Type = "fad",
+                    IsAssinged = "Yes"
                 };
 
-                var response = await _assetInterface.EditAsset(assets, Request.Cookies["AssetRefreence"].ToString());
+                var response = await _assetInterface.EditAsset(asset, Request.Cookies["AssetReference"].ToString());
 
                 if (response.ResponseCode != HttpStatusCode.OK.ToString())
                 {
