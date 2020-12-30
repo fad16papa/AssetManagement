@@ -202,8 +202,21 @@ namespace AssetManagementWeb.Controllers
                     UserStaffId = assetsUserVIewModel.UserStaffId,
                     IssuedOn = assetsUserVIewModel.IssuedOn,
                     ReturnedOn = assetsUserVIewModel.ReturedOn,
-                    IsActive = "Yes"
+                    IsActive = "Yes",
                 };
+
+                var assets = new Asset()
+                {
+                    Id = assetsUserVIewModel.AssetId,
+                    IsAssinged = true
+                };
+
+                var response = await _assetInterface.EditAsset(assets, Request.Cookies["AssetReference"].ToString());
+
+                if (response.ResponseCode != HttpStatusCode.OK.ToString())
+                {
+                    return RedirectToAction("Index", "Error");
+                }
 
                 var result = await _userAssetsInterface.CreateUserAssets(userAssets, Request.Cookies["AssetReference"].ToString());
 

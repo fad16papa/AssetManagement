@@ -17,63 +17,114 @@
             </div>
         }      
         <div class="card-body ">
-            <div class="table-responsive">
+            <div class="table table-responsive table-hover">
                 @{
                     var counterUser = 1;
                 }
                 <table class="table">
                     <thead class=" text-primary">
                         <tr>
-                            <th>
-                                S/N
-                            </th>
-                            <th>
-                                User Staff
-                            </th>
-                            <th>
-                                Product
-                            </th>
-                            <th>
-                                Type
-                            </th>
+                            @if(@ViewBag.isActive == "Yes")
+                            {
+                                <th>
+                                    S/N
+                                </th>
+                                <th>
+                                    User Staff
+                                </th>
+                                <th>
+                                    Product
+                                </th>
+                                <th>
+                                    Type
+                                </th>
+                            }
+                            else
+                            {                             
+                                <th>
+                                    S/N
+                                </th>
+                                <th>
+                                    Product
+                                </th>
+                                <th>
+                                    Type
+                                </th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            @if(item.Asset.Type.Equals("Laptop"))
+                            @if(@ViewBag.isActive == "Yes")
                             {
-                                 <tr class="text-primary">
-                                    <td>
-                                        @counterUser
-                                    </td>
-                                    <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
-                                </tr>
+                                @if(item.Asset.Type.Equals("Laptop"))
+                                {
+                                    <tr class="text-primary">
+                                        <td>
+                                            @counterUser
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
+                                    </tr>
+                                }
+                                @if(item.Asset.Type.Equals("Server"))
+                                {
+                                    <tr class="text-danger">
+                                        <td>
+                                            @counterUser
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
+                                    </tr>
+                                }
+                                @if(item.Asset.Type.Equals("Monitor"))
+                                {                           
+                                    <tr class="text-warning">
+                                        <td>
+                                            @counterUser
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
+                                    </tr>
+                                }                     
                             }
-                            @if(item.Asset.Type.Equals("Server"))
+                            else
                             {
-                                 <tr class="text-danger">
-                                    <td>
-                                        @counterUser
-                                    </td>
-                                    <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
-                                </tr>
+                                @if(item.Asset.Type.Equals("Laptop"))
+                                {
+                                    <tr class="text-primary">
+                                        <td>
+                                            @counterUser
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
+                                    </tr>
+                                }
+                                @if(item.Asset.Type.Equals("Server"))
+                                {
+                                    <tr class="text-danger">
+                                        <td>
+                                            @counterUser
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
+                                    </tr>
+                                }
+                                @if(item.Asset.Type.Equals("Monitor"))
+                                {                           
+                                    <tr class="text-warning">
+                                        <td>
+                                            @counterUser
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
+                                    </tr>
+                                }                     
                             }
-                            @if(item.Asset.Type.Equals("Monitor"))
-                            {                           
-                                 <tr class="text-warning">
-                                    <td>
-                                        @counterUser
-                                    </td>
-                                    <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
-                                </tr>
-                            }                     
                             counterUser++;
                         }
                     </tbody>

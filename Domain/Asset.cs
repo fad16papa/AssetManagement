@@ -16,6 +16,7 @@ namespace Domain
         public string Status { get; set; }
         public string Location { get; set; }
         public string IsAvailable { get; set; }
+        public bool IsAssinged { get; set; }
         public string Remarks { get; set; }
         public DateTime IssuedOn { get; set; }
         public DateTime ReturnedOn { get; set; }

@@ -71,7 +71,7 @@ namespace AssetManagementWeb.Repositories.Services
 
                 responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var result = await responseClient.PutAsJsonAsync<Asset>("api/Assets/"+ asset.Id, asset);
+                var result = await responseClient.PutAsJsonAsync<Asset>("api/Assets/" + asset.Id, asset);
 
                 if (result.StatusCode != HttpStatusCode.OK)
                 {
