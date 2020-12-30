@@ -19,16 +19,17 @@ namespace AssetManagementWeb.Components
             _mapper = mapper;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(string isActive)
         {
             var result = await _userLicenseInterface.GetUserLicense(Request.Cookies["AssetReference"].ToString());
 
             //Map the objects results to corresponding DTO's
             IEnumerable<UserLicense> userLicenses = _mapper.Map<IEnumerable<UserLicense>>(result);
 
-            var resultUserLicense = userLicenses.OrderByDescending(x => x.IssuedOn).Where(x => x.IsActive == "Yes").ToList();
+            var resultUserLicense = userLicenses.OrderByDescending(x => x.IssuedOn).Where(x => x.IsActive == isActive).ToList();
 
             ViewBag.TotalUserLicenseCount = resultUserLicense.Count();
+            ViewBag.isActive = isActive;
 
             return View(resultUserLicense);
         }

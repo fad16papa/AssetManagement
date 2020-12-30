@@ -19,16 +19,17 @@ namespace AssetManagementWeb.Components
             _userAssetsInterface = userAssetsInterface;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(string isActive)
         {
             var result = await _userAssetsInterface.GetUserAssets(Request.Cookies["AssetReference"].ToString());
 
             //Map the objects results to corresponding DTO's
             IEnumerable<UserAssets> userAssets = _mapper.Map<IEnumerable<UserAssets>>(result);
 
-            var resultUserAssets = userAssets.OrderByDescending(x => x.IssuedOn).Where(x => x.IsActive == "Yes").ToList();
+            var resultUserAssets = userAssets.OrderByDescending(x => x.IssuedOn).Where(x => x.IsActive == isActive).ToList();
 
             ViewBag.TotalUserAssetsCount = resultUserAssets.Count();
+            ViewBag.isActive = isActive;
 
             return View(resultUserAssets);
         }

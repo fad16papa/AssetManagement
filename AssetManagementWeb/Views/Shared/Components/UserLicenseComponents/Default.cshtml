@@ -2,10 +2,20 @@
 
 <div class="col-md-6">
     <div class="card ">
-        <div class="card-header ">
-            <h5 class="card-title">Assigned License Users</h5>
-            <p class="card-category">Summary List of new Assigned Licenses to Users</p>
-        </div>
+       @if(ViewBag.isActive == "Yes")
+       {
+            <div class="card-header ">
+                <h5 class="card-title">Assigned License Users</h5>
+                <p class="card-category">Summary List of new Assigned Licenses to Users</p>
+            </div>
+       }
+       else
+       {    
+            <div class="card-header ">
+                <h5 class="card-title">UnAssigned License Users</h5>
+                <p class="card-category">Summary List of UnAssigned Licenses to Users</p>
+            </div>
+       }
         <div class="card-body ">
            <div class="table-responsive">
                 @{

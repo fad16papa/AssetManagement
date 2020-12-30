@@ -10,26 +10,11 @@
         @await Component.InvokeAsync("UserStaffsComponents")
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <div class="card ">
-                <div class="card-header ">
-                    <h5 class="card-title">Users Behavior</h5>
-                    <p class="card-category">24 Hours performance</p>
-                </div>
-                <div class="card-body ">
-                    <canvas id=chartHours width="400" height="100"></canvas>
-                </div>
-                <div class="card-footer ">
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                    </div>
-                </div>
-            </div>
-        </div>
+        @await Component.InvokeAsync("UserAssetsComponents", new { isActive = @ViewBag.NoActive})
+        @await Component.InvokeAsync("UserLicenseComponents", new { isActive = @ViewBag.NoActive})
     </div>
     <div class="row">
-        @await Component.InvokeAsync("UserAssetsComponents")
-        @await Component.InvokeAsync("UserLicenseComponents")
+        @await Component.InvokeAsync("UserAssetsComponents", new { isActive = @ViewBag.YesActive})
+        @await Component.InvokeAsync("UserLicenseComponents", new { isActive = @ViewBag.YesActive})
     </div>
 </div>

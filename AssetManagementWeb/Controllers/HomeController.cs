@@ -30,47 +30,15 @@ namespace AssetManagementWeb.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             if (Request.Cookies["AssetReference"] == null)
             {
                 return RedirectToAction("Index", "Error");
             }
 
-            var assets = await _assetInterface.GetAssets(Request.Cookies["AssetReference"].ToString());
-
-            if (assets == null)
-            {
-                assets = 0;
-            }
-
-            var license = await _licenseInterface.GetLicenses(Request.Cookies["AssetReference"].ToString());
-
-            if (license == null)
-            {
-                license = 0;
-            }
-
-            var userStaffs = await _userStaffInterface.GetUserStaffs(Request.Cookies["AssetReference"].ToString());
-
-            if (userStaffs == null)
-            {
-                userStaffs = 0;
-            }
-
-            var userAssets = await _userAssetsInterface.GetUserAssets(Request.Cookies["AssetReference"].ToString());
-
-            if (userAssets == null)
-            {
-                userAssets = 0;
-            }
-
-            var userLicenses = await _userLicenseInterface.GetUserLicense(Request.Cookies["AssetReference"].ToString());
-
-            if (userLicenses == null)
-            {
-                userLicenses = 0;
-            }
+            ViewBag.YesActive = "Yes";
+            ViewBag.NoActive = "No";
 
             return View();
         }
