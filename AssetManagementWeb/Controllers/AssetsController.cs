@@ -202,21 +202,8 @@ namespace AssetManagementWeb.Controllers
                     UserStaffId = assetsUserVIewModel.UserStaffId,
                     IssuedOn = assetsUserVIewModel.IssuedOn,
                     ReturnedOn = assetsUserVIewModel.ReturedOn,
-                    IsActive = "Yes",
+                    IsActive = "Yes", 
                 };
-
-                var assets = new Asset()
-                {
-                    Id = assetsUserVIewModel.AssetId,
-                    IsAssinged = true
-                };
-
-                var response = await _assetInterface.EditAsset(assets, Request.Cookies["AssetReference"].ToString());
-
-                if (response.ResponseCode != HttpStatusCode.OK.ToString())
-                {
-                    return RedirectToAction("Index", "Error");
-                }
 
                 var result = await _userAssetsInterface.CreateUserAssets(userAssets, Request.Cookies["AssetReference"].ToString());
 
@@ -224,6 +211,19 @@ namespace AssetManagementWeb.Controllers
                 {
                     ViewBag.ErrorResponse = result.ResponseMessage;
                     return View();
+                }
+
+                var assets = new Asset()
+                {
+                    Id = assetsUserVIewModel.AssetId,
+                    IsAssinged = "Yes",
+                };
+
+                var response = await _assetInterface.EditAsset(assets, Request.Cookies["AssetRefreence"].ToString());
+
+                if (response.ResponseCode != HttpStatusCode.OK.ToString())
+                {
+                    return RedirectToAction("Index", "Error");
                 }
 
                 var user = await _userStaffInterface.GetUserStaffs(Request.Cookies["AssetReference"].ToString());
@@ -313,7 +313,7 @@ namespace AssetManagementWeb.Controllers
                 assetsDTO.Type = typeModel.ToString();
                 assetsDTO.IsAvailable = availabilityModel.ToString();
 
-                Asset asset = new Asset()
+                var asset = new Asset()
                 {
                     Id = assetsDTO.Id,
                     Brand = assetsDTO.Brand,

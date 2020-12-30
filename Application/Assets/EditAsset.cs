@@ -23,7 +23,7 @@ namespace Application.Assets
             public string Status { get; set; }
             public string Location { get; set; }
             public string IsAvailable { get; set; }
-            public bool? IsAssigned { get; set; }
+            public string IsAssinged { get; set; }
             public string Remarks { get; set; }
         }
 
@@ -56,8 +56,7 @@ namespace Application.Assets
                 asset.Location = request.Location ?? asset.Location;
                 asset.IsAvailable = request.IsAvailable ?? asset.IsAvailable;
                 asset.Remarks = request.Remarks ?? asset.Remarks;
-                asset.IsAssinged = request.IsAssigned ?? asset.IsAssinged;
-
+                asset.IsAssinged = request.IsAssinged ?? asset.IsAssinged;
 
                 var success = await _context.SaveChangesAsync() > 0;
 
