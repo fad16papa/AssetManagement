@@ -1,11 +1,11 @@
-@model IEnumerable<UserAssets>
+@model IEnumerable<AssetsDTO>
 
 <div class="col-md-6">
     <div class="card ">
         <div class="card-header">
-            <h5 class="card-title">Assigned Asset Users</h5>
-            <p class="card-category">Summary List of new Assigned Assets to Users</p>
-        </div> 
+            <h5 class="card-title">UnAssigned Asset Users</h5>
+            <p class="card-category">Summary List of UnAssigned Assets to Users</p>
+        </div>    
         <div class="card-body ">
             <div class="table table-responsive table-hover">
                 @{
@@ -13,57 +13,51 @@
                 }
                 <table class="table">
                     <thead class=" text-primary">
-                        <tr>                        
+                        <tr>                            
                             <th>
                                 S/N
-                            </th>
-                            <th>
-                                User Staff
                             </th>
                             <th>
                                 Product
                             </th>
                             <th>
                                 Type
-                            </th>                                          
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
-                        {
-                            @if(item.Asset.Type.Equals("Laptop"))
+                        {                        
+                            @if(item.Type.Equals("Laptop"))
                             {
                                 <tr class="text-primary">
                                     <td>
                                         @counterUser
                                     </td>
-                                    <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Model)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Type)</td>
                                 </tr>
                             }
-                            @if(item.Asset.Type.Equals("Server"))
+                            @if(item.Type.Equals("Server"))
                             {
                                 <tr class="text-danger">
                                     <td>
                                         @counterUser
                                     </td>
-                                    <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Model)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Type)</td>
                                 </tr>
                             }
-                            @if(item.Asset.Type.Equals("Monitor"))
+                            @if(item.Type.Equals("Monitor"))
                             {                           
                                 <tr class="text-warning">
                                     <td>
                                         @counterUser
                                     </td>
-                                    <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Asset.Model)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Asset.Type)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Model)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Type)</td>
                                 </tr>
-                            }                     
+                            }                                                
                             counterUser++;
                         }
                     </tbody>
@@ -78,7 +72,7 @@
             </div>
             <hr>
             <div class="stats">
-                <i class="nc-icon nc-laptop"></i> Total Count: @ViewBag.TotalUserAssetsCount
+                <i class="nc-icon nc-laptop"></i> Total Count: @ViewBag.TotalUnAssignedAssetsCount
             </div>
         </div>
     </div>

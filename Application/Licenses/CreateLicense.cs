@@ -19,6 +19,7 @@ namespace Application.Licenses
             public DateTime ExpiredOn { get; set; }
             public string IsAvailable { get; set; }
             public string Remarks { get; set; }
+            public string IsAssigned { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -30,6 +31,7 @@ namespace Application.Licenses
                 RuleFor(x => x.LicenseKey).NotEmpty();
                 RuleFor(x => x.Expiration).NotEmpty();
                 RuleFor(x => x.IsAvailable).NotEmpty();
+                RuleFor(x => x.IsAssigned).NotEmpty();
             }
         }
 
@@ -53,7 +55,8 @@ namespace Application.Licenses
                     Expiration = request.Expiration,
                     ExpiredOn = request.ExpiredOn,
                     Remarks = request.Remarks,
-                    IsAvailable = request.IsAvailable
+                    IsAvailable = request.IsAvailable,
+                    IsAssigned = request.IsAssigned
                 };
 
                 _context.Licenses.Add(license);

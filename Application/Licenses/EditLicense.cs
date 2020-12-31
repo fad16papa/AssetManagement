@@ -20,6 +20,7 @@ namespace Application.Licenses
             public DateTime ExpiredOn { get; set; }
             public string Remarks { get; set; }
             public string IsAvailable { get; set; }
+            public string IsAssigned { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -48,6 +49,7 @@ namespace Application.Licenses
                 license.ExpiredOn = request.ExpiredOn;
                 license.Remarks = request.Remarks ?? license.Remarks;
                 license.IsAvailable = request.IsAvailable ?? license.IsAvailable;
+                license.IsAssigned = request.IsAssigned ?? license.IsAssigned;
 
                 var success = await _context.SaveChangesAsync() > 0;
 

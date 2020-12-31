@@ -22,6 +22,7 @@ namespace Application.Assets
             public string Status { get; set; }
             public string Location { get; set; }
             public string IsAvailable { get; set; }
+            public string IsAssinged { get; set; }
             public string Remarks { get; set; }
             public DateTime IssuedOn { get; set; }
         }
@@ -39,6 +40,7 @@ namespace Application.Assets
                 RuleFor(x => x.Status).NotEmpty();
                 RuleFor(x => x.Location).NotEmpty();
                 RuleFor(x => x.IsAvailable).NotEmpty();
+                RuleFor(x => x.IsAssinged).NotEmpty();
             }
         }
 
@@ -67,7 +69,8 @@ namespace Application.Assets
                     IsAvailable = request.IsAvailable,
                     Remarks = request.Remarks,
                     Location = request.Location,
-                    IssuedOn = request.IssuedOn
+                    IssuedOn = request.IssuedOn,
+                    IsAssinged = request.IsAssinged
                 };
 
                 _context.Assets.Add(asset);

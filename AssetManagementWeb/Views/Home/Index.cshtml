@@ -10,8 +10,8 @@
         @await Component.InvokeAsync("UserStaffsComponents")
     </div>
     <div class="row">
-        @await Component.InvokeAsync("UserAssetsComponents", new { isActive = @ViewBag.NoActive})
-        @await Component.InvokeAsync("UserLicenseComponents", new { isActive = @ViewBag.NoActive})
+        @await Component.InvokeAsync("UnAssingedAssetsComponent")
+        @await Component.InvokeAsync("UnAssignedLicenseComponent")
     </div>
     <div class="row">
         @await Component.InvokeAsync("UserAssetsComponents", new { isActive = @ViewBag.YesActive})

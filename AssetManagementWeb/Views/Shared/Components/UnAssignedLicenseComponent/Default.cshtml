@@ -1,0 +1,68 @@
+@model IEnumerable<LicenseDTO>
+
+<div class="col-md-6">
+    <div class="card ">  
+        <div class="card-header ">
+            <h5 class="card-title">UnAssigned License Users</h5>
+            <p class="card-category">Summary List of UnAssigned Licenses to Users</p>
+        </div>
+        <div class="card-body ">
+           <div class="table table-responsive table-hover">
+                @{
+                    var counterUser = 1;
+                }
+                <table class="table">
+                    <thead class=" text-primary">
+                        <tr>                           
+                            <th>
+                                S/N
+                            </th>
+                            <th>
+                                Product
+                            </th>
+                            <th>
+                                Version
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            @if(item.Expiration.Equals("Yes"))
+                            {
+                                <tr class="text-warning">
+                                    <td>
+                                        @counterUser
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ProductVersion)</td>
+                                </tr>
+                            }
+                            @if(item.Expiration.Equals("No"))
+                            {
+                                <tr class="text-danger">
+                                    <td>
+                                        @counterUser
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ProductVersion)</td>
+                                </tr>
+                            }                  
+                            counterUser++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer ">
+            <div class="legend">
+                <i class="fa fa-circle text-warning"></i> Have Expiration
+                <i class="fa fa-circle text-danger"></i> Don't have Expiration
+            </div>
+            <hr>
+            <div class="stats">
+                <i class="nc-icon nc-tag-content"></i>Total Count: @ViewBag.TotalUnAssignedLicensesCount
+            </div>
+        </div>
+    </div>
+</div>

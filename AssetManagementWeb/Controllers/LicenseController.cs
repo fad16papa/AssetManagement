@@ -143,7 +143,8 @@ namespace AssetManagementWeb.Controllers
                     Expiration = expiration.ToString(),
                     ExpiredOn = licenseDTO.ExpiredOn,
                     Remarks = licenseDTO.Remarks,
-                    IsAvailable = availabilityModel.ToString()
+                    IsAvailable = availabilityModel.ToString(),
+                    IsAssigned = "No"
                 };
 
                 var result = await _licenseInterface.CreateLicense(license, Request.Cookies["AssetReference"].ToString());
@@ -288,6 +289,19 @@ namespace AssetManagementWeb.Controllers
                 {
                     ViewBag.ErrorResponse = result.ResponseMessage;
                     return View();
+                }
+
+                var license = new License()
+                {
+                    Id = licenseUserViewModel.LicenseId,
+                    IsAssigned = "Yes"
+                };
+
+                var response = await _licenseInterface.EditLicense(license, Request.Cookies["AssetReference"].ToString());
+
+                if (response.ResponseCode != HttpStatusCode.OK.ToString())
+                {
+                    return RedirectToAction("Index", "Error");
                 }
 
                 var user = await _userStaffInterface.GetUserStaffs(Request.Cookies["AssetReference"].ToString());

@@ -26,7 +26,7 @@ namespace AssetManagementWeb.Components
             //Map the objects results to corresponding DTO's
             IEnumerable<UserAssets> userAssets = _mapper.Map<IEnumerable<UserAssets>>(result);
 
-            var resultUserAssets = userAssets.OrderByDescending(x => x.IssuedOn).Where(x => x.IsActive == isActive).ToList();
+            var resultUserAssets = userAssets.OrderByDescending(x => x.IssuedOn).Where(x => x.IsActive == isActive && x.Asset.IsAssinged == isActive).ToList();
 
             ViewBag.TotalUserAssetsCount = resultUserAssets.Count();
             ViewBag.isActive = isActive;

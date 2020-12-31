@@ -25,6 +25,7 @@ namespace AssetManagementWeb.Models.DTO
         [Required]
         [Display(Name = "Availability")]
         public string IsAvailable { get; set; }
+        public string IsAssinged { get; set; }
         public string Remarks { get; set; }
     }
 }

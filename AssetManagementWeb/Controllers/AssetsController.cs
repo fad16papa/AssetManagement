@@ -216,16 +216,6 @@ namespace AssetManagementWeb.Controllers
                 var asset = new Asset()
                 {
                     Id = assetsUserVIewModel.AssetId,
-                    Brand = "fad",
-                    HostName = "fad",
-                    ExpressCode = "fad",
-                    IsAvailable = "fad",
-                    Location = "fad",
-                    Status = "fad",
-                    Model = "fad",
-                    Remarks = "fad",
-                    SerialNo = "fad",
-                    Type = "fad",
                     IsAssinged = "Yes"
                 };
 
@@ -290,6 +280,7 @@ namespace AssetManagementWeb.Controllers
                     Remarks = assetsDTO.Remarks,
                     SerialNo = assetsDTO.SerialNo,
                     Type = typeModel.ToString(),
+                    IsAssinged = "No"
                 };
 
                 var result = await _assetInterface.CreateAsset(asset, Request.Cookies["AssetReference"].ToString());
