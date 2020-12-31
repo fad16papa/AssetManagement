@@ -75,6 +75,8 @@ body {
   background-color: green;
 }
 
-.tablecomponents {
-  max-height: 300px;
+.table-wrapper {
+  max-height: 100px;
+  overflow: auto;
+  display: inline-block;
 }

@@ -2,108 +2,57 @@
 
 <div class="col-md-6">
     <div class="card ">
-       @if(ViewBag.isActive == "Yes")
-       {
-            <div class="card-header ">
-                <h5 class="card-title">Assigned License Users</h5>
-                <p class="card-category">Summary List of new Assigned Licenses to Users</p>
-            </div>
-       }
-       else
-       {    
-            <div class="card-header ">
-                <h5 class="card-title">UnAssigned License Users</h5>
-                <p class="card-category">Summary List of UnAssigned Licenses to Users</p>
-            </div>
-       }
+        <div class="card-header ">
+            <h5 class="card-title">Assigned License Users</h5>
+            <p class="card-category">Summary List of new Assigned Licenses to Users</p>
+        </div>     
         <div class="card-body ">
            <div class="table table-responsive table-hover">
                 @{
                     var counterUser = 1;
                 }
                 <table class="table">
-                    <thead class=" text-primary">
+                    <thead class="table-secondary text-primary">
                         <tr>
-                            @if(@ViewBag.isActive == "Yes")
-                            {
-                                <th>
-                                    S/N
-                                </th>
-                                <th>
-                                    User Staff
-                                </th>
-                                <th>
-                                    Product
-                                </th>
-                                <th>
-                                    Version
-                                </th>
-                            }
-                            else
-                            {                             
-                                <th>
-                                    S/N
-                                </th>
-                                <th>
-                                    Product
-                                </th>
-                                <th>
-                                    Version
-                                </th>
-                            }
+                            <th>
+                                S/N
+                            </th>
+                            <th>
+                                User Staff
+                            </th>
+                            <th>
+                                Product
+                            </th>
+                            <th>
+                                Version
+                            </th>                       
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                           @if(@ViewBag.isActive == "Yes")
-                           {
-                                @if(item.License.Expiration.Equals("Yes"))
-                                {
-                                    <tr class="text-warning">
-                                        <td>
-                                            @counterUser
-                                        </td>
-                                        <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.License.ProductName)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.License.ProductVersion)</td>
-                                    </tr>
-                                }
-                                @if(item.License.Expiration.Equals("No"))
-                                {
-                                    <tr class="text-danger">
-                                        <td>
-                                            @counterUser
-                                        </td>
-                                        <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.License.ProductName)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.License.ProductVersion)</td>
-                                    </tr>
-                                }                  
-                           }
-                           else
-                           {
-                                @if(item.License.Expiration.Equals("Yes"))
-                                {
-                                    <tr class="text-warning">
-                                        <td>
-                                            @counterUser
-                                        </td>
-                                        <td>@Html.DisplayFor(modelItem => item.License.ProductName)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.License.ProductVersion)</td>
-                                    </tr>
-                                }
-                                @if(item.License.Expiration.Equals("No"))
-                                {
-                                    <tr class="text-danger">
-                                        <td>
-                                            @counterUser
-                                        </td>
-                                        <td>@Html.DisplayFor(modelItem => item.License.ProductName)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.License.ProductVersion)</td>
-                                    </tr>
-                                }                  
+                            @if(item.License.Expiration.Equals("Yes"))
+                            {
+                                <tr class="text-warning">
+                                    <td>
+                                        @counterUser
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.License.ProductName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.License.ProductVersion)</td>
+                                </tr>
                             }
+                            @if(item.License.Expiration.Equals("No"))
+                            {
+                                <tr class="text-danger">
+                                    <td>
+                                        @counterUser
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.UserStaff.DisplayName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.License.ProductName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.License.ProductVersion)</td>
+                                </tr>
+                            }                                                                   
                             counterUser++;
                         }
                     </tbody>

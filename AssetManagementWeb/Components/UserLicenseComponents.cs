@@ -26,7 +26,7 @@ namespace AssetManagementWeb.Components
             //Map the objects results to corresponding DTO's
             IEnumerable<UserLicense> userLicenses = _mapper.Map<IEnumerable<UserLicense>>(result);
 
-            var resultUserLicense = userLicenses.OrderByDescending(x => x.IssuedOn).Where(x => x.IsActive == isActive && x.License.IsAssigned == isActive).ToList().Take(5);
+            var resultUserLicense = userLicenses.OrderByDescending(x => x.IssuedOn).Where(x => x.IsActive == isActive && x.License.IsAssigned == isActive).ToList().Take(10);
 
             ViewBag.TotalUserLicenseCount = resultUserLicense.Count();
             ViewBag.isActive = isActive;
