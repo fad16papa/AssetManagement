@@ -76,7 +76,7 @@ body {
 }
 
 .table-wrapper {
-  max-height: 100px;
+  height: 270px;
   overflow: auto;
   display: inline-block;
 }
