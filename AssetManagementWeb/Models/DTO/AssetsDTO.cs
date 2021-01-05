@@ -6,11 +6,9 @@ namespace AssetManagementWeb.Models.DTO
     public class AssetsDTO
     {
         public Guid Id { get; set; }
-        [Required]
         public string HostName { get; set; }
         [Required]
         public string SerialNo { get; set; }
-        [Required]
         public string ExpressCode { get; set; }
         [Required]
         public string Brand { get; set; }

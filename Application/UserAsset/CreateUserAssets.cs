@@ -16,7 +16,6 @@ namespace Application.UserAsset
     {
         public class Command : IRequest
         {
-            public Guid Id { get; set; }
             public Guid AssetsId { get; set; }
             public Guid UserStaffId { get; set; }
             public DateTime IssuedOn { get; set; }
@@ -46,13 +45,13 @@ namespace Application.UserAsset
             {
                 //logic goes here
                 //Check the userId and AssetsId is already been created and if its IsActive to Yes
-                var result = await _context.UserAssets.Where(x => x.UserStaffId == request.UserStaffId && x.AssetsId == request.AssetsId
-                && x.IsActive == request.IsActive).FirstOrDefaultAsync();
+                // var result = await _context.UserAssets.Where(x => x.UserStaffId == request.UserStaffId && x.AssetsId == request.AssetsId
+                // && x.IsActive == request.IsActive).FirstOrDefaultAsync();
 
-                if (result != null)
-                    throw new RestException(HttpStatusCode.Conflict, "The user is already been assigned to this asset and its active");
+                // if (result != null)
+                //     throw new RestException(HttpStatusCode.Conflict, "The user is already been assigned to this asset and its active");
 
-                var userAssets = await _context.UserAssets.Where(x => x.AssetsId == request.AssetsId).ToListAsync();
+                var userAssets = await _context.UserAssets.Where(x => x.AssetsId == request.AssetsId).AsNoTracking().ToListAsync();
 
                 foreach (var item in userAssets)
                 {
@@ -61,7 +60,7 @@ namespace Application.UserAsset
 
                 var userAsset = new UserAssets()
                 {
-                    Id = request.Id,
+                    Id = Guid.NewGuid(),
                     AssetsId = request.AssetsId,
                     UserStaffId = request.UserStaffId,
                     IssuedOn = request.IssuedOn,

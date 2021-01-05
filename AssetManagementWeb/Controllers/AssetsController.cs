@@ -308,11 +308,13 @@ namespace AssetManagementWeb.Controllers
                 LocationModel locationModel = (LocationModel)Enum.Parse(typeof(LocationModel), assetsDTO.Location);
                 TypeModel typeModel = (TypeModel)Enum.Parse(typeof(TypeModel), assetsDTO.Type);
                 AvailabilityModel availabilityModel = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), assetsDTO.IsAvailable);
+                AvailabilityModel assigned = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), assetsDTO.IsAssinged);
 
                 assetsDTO.Status = statusModel.ToString();
                 assetsDTO.Location = locationModel.ToString();
                 assetsDTO.Type = typeModel.ToString();
                 assetsDTO.IsAvailable = availabilityModel.ToString();
+                assetsDTO.IsAssinged = assetsDTO.ToString();
 
                 var asset = new Asset()
                 {
@@ -327,6 +329,7 @@ namespace AssetManagementWeb.Controllers
                     Remarks = assetsDTO.Remarks,
                     SerialNo = assetsDTO.SerialNo,
                     Type = typeModel.ToString(),
+                    IsAssinged = assigned.ToString()
                 };
 
                 var result = await _assetInterface.EditAsset(asset, Request.Cookies["AssetReference"].ToString());

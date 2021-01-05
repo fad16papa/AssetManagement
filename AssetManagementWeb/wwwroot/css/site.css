@@ -80,3 +80,7 @@ body {
   overflow: auto;
   display: inline-block;
 }
+
+.item-center {
+  align-items: center;
+}

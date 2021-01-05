@@ -30,12 +30,12 @@ namespace AssetManagementWeb
         public void ConfigureServices(IServiceCollection services)
         {
             #region Dependency Injection
-            services.AddTransient<IAssetInterface, AssetService>();
-            services.AddTransient<IUserInterface, UserService>();
-            services.AddTransient<IUserStaffInterface, UserStaffService>();
-            services.AddTransient<ILicenseInterface, LicenseService>();
-            services.AddTransient<IUserAssetsInterface, UserAssetsService>();
-            services.AddTransient<IUserLicenseInterface, UserLicenseService>();
+            services.AddScoped<IAssetInterface, AssetService>();
+            services.AddScoped<IUserInterface, UserService>();
+            services.AddScoped<IUserStaffInterface, UserStaffService>();
+            services.AddScoped<ILicenseInterface, LicenseService>();
+            services.AddScoped<IUserAssetsInterface, UserAssetsService>();
+            services.AddScoped<IUserLicenseInterface, UserLicenseService>();
             #endregion
 
             services.AddHttpClient("AssetAPI", options =>

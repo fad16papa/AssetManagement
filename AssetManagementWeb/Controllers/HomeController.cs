@@ -39,7 +39,6 @@ namespace AssetManagementWeb.Controllers
 
             ViewBag.YesActive = "Yes";
             ViewBag.NoActive = "No";
-            ViewBag.Active = "active";
 
             return View();
         }

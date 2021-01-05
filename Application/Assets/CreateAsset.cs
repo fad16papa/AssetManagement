@@ -31,9 +31,7 @@ namespace Application.Assets
         {
             public CommandValidator()
             {
-                RuleFor(x => x.HostName).NotEmpty();
                 RuleFor(x => x.SerialNo).NotEmpty();
-                RuleFor(x => x.ExpressCode).NotEmpty();
                 RuleFor(x => x.Brand).NotEmpty();
                 RuleFor(x => x.Model).NotEmpty();
                 RuleFor(x => x.Type).NotEmpty();

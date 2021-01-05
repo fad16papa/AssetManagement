@@ -93,7 +93,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-4 pr-1">
+                                            <div class="col-md-3 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="Status">Status</label>
                                                     <select asp-for="Status" class="form-control"
@@ -104,7 +104,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 pr-1">
+                                            <div class="col-md-3 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="Location">Location</label>
                                                     <select asp-for="Location" class="form-control"
@@ -115,7 +115,7 @@
                                                 <div><span asp-validation-for="Location" class="text-danger"></span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 pr-1">
+                                            <div class="col-md-3 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="IsAvailable">IsAvailable</label>
                                                     <select asp-for="IsAvailable" class="form-control"
@@ -124,6 +124,17 @@
                                                     </select>
                                                 </div>
                                                 <div><span asp-validation-for="IsAvailable" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="IsAssinged">IsAssinged</label>
+                                                    <select asp-for="IsAssinged" class="form-control"
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.AvailabilityModel>()"
+                                                        required>
+                                                    </select>
+                                                </div>
+                                                <div><span asp-validation-for="IsAssinged" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         </div>

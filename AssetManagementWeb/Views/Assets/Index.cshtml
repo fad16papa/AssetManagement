@@ -37,6 +37,9 @@
                                     <th>
                                         Availability
                                     </th>
+                                    <th>
+                                        Assigned
+                                    </th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -50,7 +53,8 @@
                                         <td>@Html.DisplayFor(modelItem => item.SerialNo)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Brand)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Type)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.IsAvailable)</td>
+                                        <td class="item-center">@Html.DisplayFor(modelItem => item.IsAvailable)</td>
+                                        <td class="item-center">@Html.DisplayFor(modelItem => item.IsAssinged)</td>
                                         <td>
                                             <div class="btn-group">
                                                 <button class="btn btn-secondary btn-sm dropdown-t" type="button"
@@ -62,7 +66,7 @@
                                                         onclick="viewAssetsDetails('@item.Id')">View</a>
                                                     <a class="dropdown-item" href="#" data-target="#UpdateAsset"
                                                         onclick="UpdateAssetModal('@item.Id')">Update</a>
-                                                    @if (!item.IsAvailable.Equals("No"))
+                                                    @if (item.IsAvailable.Equals("Yes") && item.IsAssinged.Equals("No"))
                                                     {
                                                         <a class="dropdown-item" href="#" data-target="#AssignAssetsUser"
                                                             onclick="viewAssignAssetsUser('@item.Id')">Assign User</a>
