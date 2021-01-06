@@ -15,6 +15,7 @@ namespace Application.Assets
         {
             public Guid Id { get; set; }
             public string HostName { get; set; }
+            public string AssetNo { get; set; }
             public string SerialNo { get; set; }
             public string ExpressCode { get; set; }
             public string Brand { get; set; }
@@ -47,6 +48,7 @@ namespace Application.Assets
                 }
 
                 asset.HostName = request.HostName ?? asset.HostName;
+                asset.AssetNo = request.AssetNo ?? asset.AssetNo;
                 asset.SerialNo = request.SerialNo ?? asset.SerialNo;
                 asset.ExpressCode = request.ExpressCode ?? asset.ExpressCode;
                 asset.Brand = request.Brand ?? asset.Brand;

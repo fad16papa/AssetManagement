@@ -8,6 +8,7 @@ namespace Domain
     {
         public Guid Id { get; set; }
         public string HostName { get; set; }
+        public string AssetNo { get; set; }
         public string SerialNo { get; set; }
         public string ExpressCode { get; set; }
         public string Brand { get; set; }

@@ -58,17 +58,21 @@ namespace Application.UserAsset
                     item.IsActive = "No";
                 }
 
-                var userAsset = new UserAssets()
+                foreach (var item in userAssets.Where(x => !_context.UserAssets.Any(ua => x.AssetsId == ua.AssetsId && x.UserStaffId == ua.UserStaffId)))
                 {
-                    Id = Guid.NewGuid(),
-                    AssetsId = request.AssetsId,
-                    UserStaffId = request.UserStaffId,
-                    IssuedOn = request.IssuedOn,
-                    ReturnedOn = request.ReturnedOn,
-                    IsActive = request.IsActive
-                };
+                    var userAsset = new UserAssets()
+                    {
+                        Id = Guid.NewGuid(),
+                        AssetsId = request.AssetsId,
+                        UserStaffId = request.UserStaffId,
+                        IssuedOn = request.IssuedOn,
+                        ReturnedOn = request.ReturnedOn,
+                        IsActive = request.IsActive
+                    };
 
-                _context.UserAssets.Add(userAsset);
+                    _context.UserAssets.Add(item);
+
+                }
 
                 var success = await _context.SaveChangesAsync() > 0;
 

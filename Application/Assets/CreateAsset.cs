@@ -14,6 +14,7 @@ namespace Application.Assets
         {
             public Guid Id { get; set; }
             public string HostName { get; set; }
+            public string AssetNo { get; set; }
             public string SerialNo { get; set; }
             public string ExpressCode { get; set; }
             public string Brand { get; set; }
@@ -32,6 +33,7 @@ namespace Application.Assets
             public CommandValidator()
             {
                 RuleFor(x => x.SerialNo).NotEmpty();
+                RuleFor(x => x.AssetNo).NotEmpty();
                 RuleFor(x => x.Brand).NotEmpty();
                 RuleFor(x => x.Model).NotEmpty();
                 RuleFor(x => x.Type).NotEmpty();
@@ -58,6 +60,7 @@ namespace Application.Assets
                 {
                     Id = request.Id,
                     HostName = request.HostName,
+                    AssetNo = request.AssetNo,
                     SerialNo = request.SerialNo,
                     ExpressCode = request.ExpressCode,
                     Brand = request.Brand,

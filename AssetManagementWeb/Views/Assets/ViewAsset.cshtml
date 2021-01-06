@@ -26,19 +26,25 @@
                                     <input name="IsValid" type="hidden"
                                         value="@ViewData.ModelState.IsValid.ToString()" />
                                     <div class="row">
-                                        <div class="col-md-4 pr-1">
+                                        <div class="col-md-3 pr-1">
                                             <div class="form-group">
                                                 <label asp-for="AssetsDTO.HostName">HostName</label>
                                                 <input asp-for="AssetsDTO.HostName" class="form-control" disabled>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 pr-1">
+                                        <div class="col-md-3 pr-1">
+                                            <div class="form-group">
+                                                <label asp-for="AssetsDTO.AssetNo">AssetNo</label>
+                                                <input asp-for="AssetsDTO.AssetNo" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 pr-1">
                                             <div class="form-group">
                                                 <label asp-for="AssetsDTO.SerialNo">SerialNo</label>
                                                 <input asp-for="AssetsDTO.SerialNo" class="form-control" disabled>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 pr-1">
+                                        <div class="col-md-3 pr-1">
                                             <div class="form-group">
                                                 <label asp-for="AssetsDTO.ExpressCode">ExpressCode</label>
                                                 <input asp-for="AssetsDTO.ExpressCode" class="form-control" disabled>

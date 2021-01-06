@@ -271,6 +271,7 @@ namespace AssetManagementWeb.Controllers
                 Asset asset = new Asset()
                 {
                     Brand = assetsDTO.Brand,
+                    AssetNo = assetsDTO.AssetNo,
                     HostName = assetsDTO.HostName,
                     ExpressCode = assetsDTO.ExpressCode,
                     IsAvailable = availabilityModel.ToString(),
@@ -321,6 +322,7 @@ namespace AssetManagementWeb.Controllers
                     Id = assetsDTO.Id,
                     Brand = assetsDTO.Brand,
                     HostName = assetsDTO.HostName,
+                    AssetNo = assetsDTO.AssetNo,
                     ExpressCode = assetsDTO.ExpressCode,
                     IsAvailable = availabilityModel.ToString(),
                     Location = locationModel.ToString(),

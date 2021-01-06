@@ -33,7 +33,7 @@
                                                 <label asp-for="Id" class="control-label" hidden></label>
                                                 <input asp-for="Id" class="form-control" hidden />
                                             </div>
-                                            <div class="col-md-4 pr-1">
+                                            <div class="col-md-3 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="HostName">HostName</label>
                                                     <input asp-for="HostName" class="form-control" autocomplete="off"
@@ -42,7 +42,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 pr-1">
+                                            <div class="col-md-3 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="AssetNo">AssetNo</label>
+                                                    <input asp-for="AssetNo" class="form-control" autocomplete="off"
+                                                        placeholder="AssetNo">
+                                                    <div><span asp-validation-for="AssetNo" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="SerialNo">SerialNo</label>
                                                     <input asp-for="SerialNo" class="form-control" autocomplete="off"
@@ -51,7 +60,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 pr-1">
+                                            <div class="col-md-3 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="ExpressCode">ExpressCode</label>
                                                     <input asp-for="ExpressCode" class="form-control" autocomplete="off"
