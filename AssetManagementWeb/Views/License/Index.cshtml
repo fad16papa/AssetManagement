@@ -37,6 +37,9 @@
                                     <th>
                                         Availability
                                     </th>
+                                    <th>
+                                        Assigned
+                                    </th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -51,6 +54,7 @@
                                         <td>@Html.DisplayFor(modelItem => item.ProductVersion)</td>
                                         <td>@Html.DisplayFor(modelItem => item.Expiration)</td>
                                         <td>@Html.DisplayFor(modelItem => item.IsAvailable)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.IsAssigned)</td>
                                         <td>
                                             <div class="btn-group">
                                                 <button class="btn btn-secondary btn-sm dropdown-t" type="button"
@@ -62,7 +66,7 @@
                                                         onclick="viewLicenseDetails('@item.Id')">View</a>
                                                     <a class="dropdown-item" href="#" data-target="#UpdateAsset"
                                                         onclick="UpdateLicenseModal('@item.Id')">Update</a>
-                                                    @if (!item.IsAvailable.Equals("No"))
+                                                    @if (item.IsAvailable.Equals("Yes") && item.IsAssigned.Equals("No"))
                                                     {
                                                         <a class="dropdown-item" href="#" data-target="#AssignLicenseUser"
                                                             onclick="viewAssignLicenseUser('@item.Id')">Assign User</a>

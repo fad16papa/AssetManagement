@@ -44,13 +44,6 @@ namespace Application.UserAsset
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 //logic goes here
-                //Check the userId and AssetsId is already been created and if its IsActive to Yes
-                // var result = await _context.UserAssets.Where(x => x.UserStaffId == request.UserStaffId && x.AssetsId == request.AssetsId
-                // && x.IsActive == request.IsActive).FirstOrDefaultAsync();
-
-                // if (result != null)
-                //     throw new RestException(HttpStatusCode.Conflict, "The user is already been assigned to this asset and its active");
-
                 var userAssets = await _context.UserAssets.Where(x => x.AssetsId == request.AssetsId).AsNoTracking().ToListAsync();
 
                 foreach (var item in userAssets)
@@ -58,21 +51,19 @@ namespace Application.UserAsset
                     item.IsActive = "No";
                 }
 
-                foreach (var item in userAssets.Where(x => !_context.UserAssets.Any(ua => x.AssetsId == ua.AssetsId && x.UserStaffId == ua.UserStaffId)))
+
+                var userAsset = new UserAssets()
                 {
-                    var userAsset = new UserAssets()
-                    {
-                        Id = Guid.NewGuid(),
-                        AssetsId = request.AssetsId,
-                        UserStaffId = request.UserStaffId,
-                        IssuedOn = request.IssuedOn,
-                        ReturnedOn = request.ReturnedOn,
-                        IsActive = request.IsActive
-                    };
+                    Id = Guid.NewGuid(),
+                    AssetsId = request.AssetsId,
+                    UserStaffId = request.UserStaffId,
+                    IssuedOn = request.IssuedOn,
+                    ReturnedOn = request.ReturnedOn,
+                    IsActive = request.IsActive
+                };
 
-                    _context.UserAssets.Add(item);
+                _context.UserAssets.Add(userAsset);
 
-                }
 
                 var success = await _context.SaveChangesAsync() > 0;
 

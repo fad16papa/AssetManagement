@@ -191,6 +191,7 @@ namespace AssetManagementWeb.Controllers
 
                 AvailabilityModel expiration = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), licenseDTO.Expiration);
                 AvailabilityModel availabilityModel = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), licenseDTO.IsAvailable);
+                AvailabilityModel assigned = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), licenseDTO.IsAssigned);
 
                 var license = new License()
                 {
@@ -201,7 +202,8 @@ namespace AssetManagementWeb.Controllers
                     Expiration = expiration.ToString(),
                     ExpiredOn = licenseDTO.ExpiredOn,
                     Remarks = licenseDTO.Remarks,
-                    IsAvailable = availabilityModel.ToString()
+                    IsAvailable = availabilityModel.ToString(),
+                    IsAssigned = assigned.ToString()
                 };
 
                 var result = await _licenseInterface.EditLicense(license, Request.Cookies["AssetReference"].ToString());

@@ -70,7 +70,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-4 pr-1">
+                                            <div class="col-md-3 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="Expiration">Expiration</label>
                                                     <div class="m-sm-2">
@@ -104,33 +104,31 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 pr-1">
+                                            <div class="col-md-3 pr-1">
                                                 <div id="expiration" class="form-group">
                                                     @if (Model.Expiration.Equals("Yes"))
                                                     {
                                                         <label asp-for="ExpiredOn">Expiration</label>
-                                                        <input asp-for="ExpiredOn" class="form-control"
-                                                               autocomplete="off" placeholder="Expiration" type="date">
+                                                        <input asp-for="ExpiredOn" class="form-control" autocomplete="off"
+                                                            placeholder="Expiration" type="date">
                                                         <div>
                                                             <span><small>Format Date DD-MM-YYYY</small></span>
-                                                            <span asp-validation-for="ExpiredOn"
-                                                                  class="text-danger"></span>
+                                                            <span asp-validation-for="ExpiredOn" class="text-danger"></span>
                                                         </div>
                                                     }
                                                     else
                                                     {
                                                         <label asp-for="ExpiredOn">Expiration</label>
-                                                        <input asp-for="ExpiredOn" class="form-control"
-                                                               autocomplete="off" placeholder="Expiration" type="date">
+                                                        <input asp-for="ExpiredOn" class="form-control" autocomplete="off"
+                                                            placeholder="Expiration" type="date">
                                                         <div>
                                                             <span><small>Format Date DD-MM-YYYY</small></span>
-                                                            <span asp-validation-for="ExpiredOn"
-                                                                  class="text-danger"></span>
+                                                            <span asp-validation-for="ExpiredOn" class="text-danger"></span>
                                                         </div>
                                                     }
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 pr-1">
+                                            <div class="col-md-3 pr-1">
                                                 <div class="form-group">
                                                     <label asp-for="IsAvailable">IsAvailable</label>
                                                     <select asp-for="IsAvailable" class="form-control"
@@ -139,6 +137,17 @@
                                                     </select>
                                                 </div>
                                                 <div><span asp-validation-for="IsAvailable" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 pr-1">
+                                                <div class="form-group">
+                                                    <label asp-for="IsAssigned">IsAssigned</label>
+                                                    <select asp-for="IsAssigned" class="form-control"
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.AvailabilityModel>()"
+                                                        required>
+                                                    </select>
+                                                </div>
+                                                <div><span asp-validation-for="IsAssigned" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         </div>
