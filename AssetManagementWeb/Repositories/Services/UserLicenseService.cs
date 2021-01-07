@@ -142,7 +142,7 @@ namespace AssetManagementWeb.Repositories.Services
                     };
                 }
 
-                var successResponse = await result.Content.ReadAsJsonAsync<List<UserAssets>>();
+                var successResponse = await result.Content.ReadAsJsonAsync<List<UserLicense>>();
 
                 return successResponse;
 

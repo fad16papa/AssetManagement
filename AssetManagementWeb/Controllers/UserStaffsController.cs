@@ -1,10 +1,13 @@
 using AssetManagementWeb.Models;
 using AssetManagementWeb.Models.DTO;
+using AssetManagementWeb.Models.ViewModel;
 using AssetManagementWeb.Repositories.Interfaces;
+using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AssetManagementWeb.Controllers
@@ -13,9 +16,16 @@ namespace AssetManagementWeb.Controllers
     {
         private readonly ILogger<UserStaffsController> _logger;
         private readonly IUserStaffInterface _userStaffInterface;
+        private readonly IUserAssetsInterface _userAssetsInterface;
+        private readonly IUserLicenseInterface _userLicenseInterface;
+        private readonly IMapper _mapper;
 
-        public UserStaffsController(ILogger<UserStaffsController> logger, IUserStaffInterface userStaffInterface)
+        public UserStaffsController(ILogger<UserStaffsController> logger, IUserStaffInterface userStaffInterface, IUserAssetsInterface userAssetsInterface,
+        IUserLicenseInterface userLicenseInterface, IMapper mapper)
         {
+            _mapper = mapper;
+            _userLicenseInterface = userLicenseInterface;
+            _userAssetsInterface = userAssetsInterface;
             _logger = logger;
             _userStaffInterface = userStaffInterface;
         }
@@ -48,7 +58,39 @@ namespace AssetManagementWeb.Controllers
 
                 var result = await _userStaffInterface.GetUserStaff(UserStaffId, Request.Cookies["AssetReference"].ToString());
 
-                return View(result);
+                if (result == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                var userLicense = await _userLicenseInterface.GetUserOfLicense(UserStaffId, Request.Cookies["AssetReference"].ToString());
+
+                if (userLicense == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                var userAssets = await _userAssetsInterface.GetUserOfAssets(UserStaffId, Request.Cookies["AssetReference"].ToString());
+
+                if (userAssets == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                //Map the objects results to corresponding DTO's
+                UserStaffDTO userStaffDTO = _mapper.Map<UserStaffDTO>(result);
+                List<UserAssets> listUserAssets = _mapper.Map<List<UserAssets>>(userAssets);
+                List<UserLicense> listUserLicenses = _mapper.Map<List<UserLicense>>(userLicense);
+
+                //Instantiate UserAssetsLicenseViewModel 
+                var userAssetsLicenseViewModel = new UserAssetsLicenseViewModel()
+                {
+                    UserStaffDTO = userStaffDTO,
+                    UserLicense = listUserLicenses,
+                    UserAssets = listUserAssets
+                };
+
+                return View(userAssetsLicenseViewModel);
             }
             catch (Exception ex)
             {

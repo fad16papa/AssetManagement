@@ -1,5 +1,6 @@
 ﻿using AssetManagementWeb.Models.DTO;
 using AutoMapper;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace AssetManagementWeb.Helper
         {
             //CreateMap<object, AssetsDTO>();
             CreateMap<List<object>, UserAssetsDTO>();
+            CreateMap<List<object>, UserLicense>();
+            CreateMap<List<object>, UserAssets>();
         }
     }
 }

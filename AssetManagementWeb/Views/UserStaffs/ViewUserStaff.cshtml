@@ -1,11 +1,11 @@
-﻿@model AssetManagementWeb.Models.DTO.UserStaffDTO
+﻿@model AssetManagementWeb.Models.ViewModel.UserAssetsLicenseViewModel
 
 @{
     Layout = null;
 }
 
 <div class="modal fade" id="ViewUserStaff" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog modal-primary modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -25,30 +25,88 @@
                                 </div>
                                 <div class="card-body">
                                     <input name="IsValid" type="hidden"
-                                            value="@ViewData.ModelState.IsValid.ToString()" />
+                                        value="@ViewData.ModelState.IsValid.ToString()" />
                                     <div class="row">
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="DisplayName">DisplayName</label>
-                                                <input asp-for="DisplayName" class="form-control" autocomplete="off" disabled>
+                                                <label asp-for="UserStaffDTO.DisplayName">DisplayName</label>
+                                                <input asp-for="UserStaffDTO.DisplayName" class="form-control"
+                                                    autocomplete="off" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="Department">Department</label>
-                                                <input asp-for="Department" class="form-control" autocomplete="off" disabled>
+                                                <label asp-for="UserStaffDTO.Department">Department</label>
+                                                <input asp-for="UserStaffDTO.Department" class="form-control"
+                                                    autocomplete="off" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="Location">Location</label>
-                                                <input asp-for="Location" class="form-control" autocomplete="off" disabled>
+                                                <label asp-for="UserStaffDTO.Location">Location</label>
+                                                <input asp-for="UserStaffDTO.Location" class="form-control"
+                                                    autocomplete="off" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label asp-for="IsActive">IsActive</label>
-                                                <input asp-for="IsActive" class="form-control" autocomplete="off" disabled>
+                                                <label asp-for="UserStaffDTO.IsActive">IsActive</label>
+                                                <input asp-for="UserStaffDTO.IsActive" class="form-control"
+                                                    autocomplete="off" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="card-title mt-3" asp-for="UserAssets">
+                                                    <h6>User Assets</h6>
+                                                </label>
+                                                <div class="table-responsive table-wrapper">
+                                                    @{
+                                                        var counterUser = 1;
+                                                    }
+                                                    <table class="table">
+                                                        <thead class=" text-primary">
+                                                            <tr>
+                                                                <th>
+                                                                    S/N
+                                                                </th>
+                                                                <th>
+                                                                    Brand
+                                                                </th>
+                                                                <th>
+                                                                    Model
+                                                                </th>
+                                                                <th>
+                                                                    Serial No
+                                                                </th>
+                                                                <th>
+                                                                    Asset No
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in Model.UserAssets)
+                                                            {
+                                                                <tr>
+                                                                    <td>
+                                                                        @counterUser
+                                                                    </td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.Asset.Brand)</td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.Asset.Model)</td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.Asset.SerialNo)</td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.Asset.AssetNo)</td>
+                                                                </tr>
+                                                                counterUser++;
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -57,7 +115,7 @@
                                     <div class="row">
                                         <div class="update ml-auto mr-auto p-2">
                                             <button type="button" class="btn btn-danger btn-fill btn-wd"
-                                                    data-dismiss="modal">
+                                                data-dismiss="modal">
                                                 Close
                                             </button>
                                         </div>
