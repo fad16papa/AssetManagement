@@ -64,7 +64,7 @@
                                                 </label>
                                                 <div class="table-responsive table-wrapper">
                                                     @{
-                                                        var counterUser = 1;
+                                                        var counterAssets = 1;
                                                     }
                                                     <table class="table">
                                                         <thead class=" text-primary">
@@ -91,7 +91,7 @@
                                                             {
                                                                 <tr>
                                                                     <td>
-                                                                        @counterUser
+                                                                        @counterAssets
                                                                     </td>
                                                                     <td>@Html.DisplayFor(modelItem =>
                                                                     item.Asset.Brand)</td>
@@ -102,7 +102,61 @@
                                                                     <td>@Html.DisplayFor(modelItem =>
                                                                     item.Asset.AssetNo)</td>
                                                                 </tr>
-                                                                counterUser++;
+                                                                counterAssets++;
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="card-title mt-3" asp-for="UserAssets">
+                                                    <h6>User License</h6>
+                                                </label>
+                                                <div class="table-responsive table-wrapper">
+                                                    @{
+                                                        var counterLicense = 1;
+                                                    }
+                                                    <table class="table">
+                                                        <thead class=" text-primary">
+                                                            <tr>
+                                                                <th>
+                                                                    S/N
+                                                                </th>
+                                                                <th>
+                                                                    ProductName
+                                                                </th>
+                                                                <th>
+                                                                    ProductVersion
+                                                                </th>
+                                                                <th>
+                                                                    LicenseKey
+                                                                </th>
+                                                                <th>
+                                                                    Expiration
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in Model.UserLicense)
+                                                            {
+                                                                <tr>
+                                                                    <td>
+                                                                        @counterLicense
+                                                                    </td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.License.ProductName)</td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.License.ProductVersion)</td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.License.LicenseKey)</td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.License.Expiration)</td>
+                                                                </tr>
+                                                                counterLicense++;
                                                             }
                                                         </tbody>
                                                     </table>
