@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.AssetLicense;
 using Application.Assets;
 using Application.Interfaces;
 using Application.Licenses;
@@ -74,6 +75,8 @@ namespace AssetAPI
             services.AddAutoMapper(typeof(ListUserAssets.Handler));
             services.AddMediatR(typeof(ListUserLicense).Assembly);
             services.AddAutoMapper(typeof(ListUserLicense.Handler));
+            services.AddMediatR(typeof(ListAsssetsLicenses).Assembly);
+            services.AddAutoMapper(typeof(ListAsssetsLicenses.Handler));
             services.AddSignalR();
             services.AddControllers(opt =>
             {
@@ -87,6 +90,7 @@ namespace AssetAPI
                 cfg.RegisterValidatorsFromAssemblyContaining<CreateLicense>();
                 cfg.RegisterValidatorsFromAssemblyContaining<CreateUserAssets>();
                 cfg.RegisterValidatorsFromAssemblyContaining<CreateUserLicense>();
+                cfg.RegisterValidatorsFromAssemblyContaining<CreateAssetLicense>();
             });
 
             services.AddControllersWithViews()
