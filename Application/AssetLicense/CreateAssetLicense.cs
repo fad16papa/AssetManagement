@@ -1,23 +1,21 @@
 using System;
 using System.Linq;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Errors;
 using Domain;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.UserAsset
+namespace Application.AssetLicense
 {
-    public class CreateUserAssets
+    public class CreateAssetLicense
     {
         public class Command : IRequest
         {
             public Guid AssetsId { get; set; }
-            public Guid UserStaffId { get; set; }
+            public Guid LicenseId { get; set; }
             public DateTime IssuedOn { get; set; }
             public DateTime ReturnedOn { get; set; }
             public string IsActive { get; set; }
@@ -28,9 +26,10 @@ namespace Application.UserAsset
             public CommandValidator()
             {
                 RuleFor(x => x.AssetsId).NotEmpty();
-                RuleFor(x => x.UserStaffId).NotEmpty();
+                RuleFor(x => x.LicenseId).NotEmpty();
             }
         }
+
 
         public class Handler : IRequestHandler<Command>
         {
@@ -44,25 +43,24 @@ namespace Application.UserAsset
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 //logic goes here
-                var userAssets = await _context.UserAssets.Where(x => x.AssetsId == request.AssetsId).AsNoTracking().ToListAsync();
+                var assetsLicenses = await _context.AssetsLicenses.Where(x => x.LicenseId == request.LicenseId).AsNoTracking().ToListAsync();
 
-                foreach (var item in userAssets)
+                foreach (var item in assetsLicenses)
                 {
                     item.IsActive = "No";
                 }
 
-
-                var userAsset = new UserAssets()
+                var assetsLicense = new AssetsLicense()
                 {
                     Id = Guid.NewGuid(),
                     AssetsId = request.AssetsId,
-                    UserStaffId = request.UserStaffId,
+                    LicenseId = request.LicenseId,
                     IssuedOn = request.IssuedOn,
                     ReturnedOn = request.ReturnedOn,
                     IsActive = request.IsActive
                 };
 
-                _context.UserAssets.Add(userAsset);
+                _context.AssetsLicenses.Add(assetsLicense);
 
                 var success = await _context.SaveChangesAsync() > 0;
 

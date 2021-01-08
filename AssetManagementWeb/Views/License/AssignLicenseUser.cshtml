@@ -73,14 +73,6 @@
                                         <div class="row">
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
-                                                    <label asp-for="LicenseDTO.Remarks">Type</label>
-                                                    <input asp-for="LicenseDTO.Remarks" class="form-control" disabled>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4 pr-1">
-                                                <div class="form-group">
                                                     <label asp-for="UserStaffId">Select UserStaff</label>
                                                     <select asp-for="UserStaffId" class="form-control"
                                                         asp-items="@(new SelectList(Model.UserStaffDTOs, "Id", "DisplayName"))"

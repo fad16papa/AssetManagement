@@ -15,6 +15,7 @@ namespace Persistence
         public DbSet<UserAssets> UserAssets { get; set; }
         public DbSet<UserStaff> UserStaffs { get; set; }
         public DbSet<UserLicense> UserLicenses { get; set; }
+        public DbSet<AssetsLicense> AssetsLicenses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
