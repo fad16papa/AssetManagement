@@ -17,7 +17,7 @@ namespace AssetAPI.Controllers
         }
 
         [HttpGet, Route("License/{Id}")]
-        public async Task<ActionResult<List<AssetsLicense>>> DetailsUser(Guid Id)
+        public async Task<ActionResult<List<AssetsLicense>>> DetailsLicense(Guid Id)
         {
             return await Mediator.Send(new DetailsLicense.Query { LicenseId = Id });
         }

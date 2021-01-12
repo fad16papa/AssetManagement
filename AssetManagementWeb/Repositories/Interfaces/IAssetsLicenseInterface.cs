@@ -8,8 +8,8 @@ namespace AssetManagementWeb.Repositories.Interfaces
     {
 
         Task<object> GetAssetsLicense(string token);
-        Task<object> GetAssetsOfLicense(string UserId, string token);
+        Task<object> GetAssetsOfLicense(string AssetId, string token);
         Task<object> GetLicenseOfAssets(string LicenseId, string token);
-        Task<ResponseModel> CreateUserLicense(AssetsLicense assetsLicense, string token);
+        Task<ResponseModel> CreateAssetsLicense(AssetsLicense assetsLicense, string token);
     }
 }
