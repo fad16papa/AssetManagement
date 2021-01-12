@@ -10,8 +10,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201217092127_Updating UserAssets")]
-    partial class UpdatingUserAssets
+    [Migration("20210112091951_Initial Migration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -101,6 +101,9 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("AssetNo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Brand")
                         .HasColumnType("nvarchar(max)");
 
@@ -108,6 +111,9 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HostName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IsAssinged")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IsAvailable")
@@ -142,6 +148,39 @@ namespace Persistence.Migrations
                     b.ToTable("Assets");
                 });
 
+            modelBuilder.Entity("Domain.AssetsLicense", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AssetId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AssetsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IsActive")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("IssuedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("LicenseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ReturnedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssetId");
+
+                    b.HasIndex("LicenseId");
+
+                    b.ToTable("AssetsLicenses");
+                });
+
             modelBuilder.Entity("Domain.License", b =>
                 {
                     b.Property<Guid>("Id")
@@ -153,6 +192,12 @@ namespace Persistence.Migrations
 
                     b.Property<DateTime>("ExpiredOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("IsAssigned")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IsAvailable")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LicenseKey")
                         .HasColumnType("nvarchar(max)");
@@ -179,6 +224,13 @@ namespace Persistence.Migrations
                     b.Property<Guid>("UserStaffId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IsActive")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("IssuedOn")
                         .HasColumnType("datetime2");
 
@@ -187,9 +239,41 @@ namespace Persistence.Migrations
 
                     b.HasKey("AssetsId", "UserStaffId");
 
+                    b.HasAlternateKey("Id");
+
                     b.HasIndex("UserStaffId");
 
                     b.ToTable("UserAssets");
+                });
+
+            modelBuilder.Entity("Domain.UserLicense", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IsActive")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("IssuedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("LicenseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ReturnedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserStaffId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LicenseId");
+
+                    b.HasIndex("UserStaffId");
+
+                    b.ToTable("UserLicenses");
                 });
 
             modelBuilder.Entity("Domain.UserStaff", b =>
@@ -349,6 +433,19 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Domain.AssetsLicense", b =>
+                {
+                    b.HasOne("Domain.Asset", "Asset")
+                        .WithMany()
+                        .HasForeignKey("AssetId");
+
+                    b.HasOne("Domain.License", "License")
+                        .WithMany()
+                        .HasForeignKey("LicenseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Domain.UserAssets", b =>
                 {
                     b.HasOne("Domain.Asset", "Asset")
@@ -359,6 +456,21 @@ namespace Persistence.Migrations
 
                     b.HasOne("Domain.UserStaff", "UserStaff")
                         .WithMany("UserAssets")
+                        .HasForeignKey("UserStaffId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.UserLicense", b =>
+                {
+                    b.HasOne("Domain.License", "License")
+                        .WithMany()
+                        .HasForeignKey("LicenseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.UserStaff", "UserStaff")
+                        .WithMany()
                         .HasForeignKey("UserStaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

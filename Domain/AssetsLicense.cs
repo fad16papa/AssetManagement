@@ -9,7 +9,7 @@ namespace Domain
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        public Guid AssetsId { get; set; }
+        public Guid AssetId { get; set; }
         public virtual Asset Asset { get; set; }
         public Guid LicenseId { get; set; }
         public virtual License License { get; set; }

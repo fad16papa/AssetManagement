@@ -88,12 +88,12 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="card-title mt-3" asp-for="UserLicenses">
-                                                    <h6>User License</h6>
+                                                <label class="card-title mt-3">
+                                                    <h6>User Staff</h6>
                                                 </label>
-                                                <div class="table-responsive">
+                                                <div class="table-responsive table-wrapper">
                                                     @{
-                                                        var counterUser = 1;
+                                                        var counterAssets = 1;
                                                     }
                                                     <table class="table">
                                                         <thead class=" text-primary">
@@ -102,16 +102,13 @@
                                                                     S/N
                                                                 </th>
                                                                 <th>
-                                                                    Display Name
+                                                                    DisplayName
                                                                 </th>
                                                                 <th>
                                                                     Department
                                                                 </th>
                                                                 <th>
-                                                                    Issued On
-                                                                </th>
-                                                                <th>
-                                                                    Returned On
+                                                                    Location
                                                                 </th>
                                                                 <th>
                                                                     Is Active
@@ -123,24 +120,18 @@
                                                             {
                                                                 <tr>
                                                                     <td>
-                                                                        @counterUser
+                                                                        @counterAssets
                                                                     </td>
                                                                     <td>@Html.DisplayFor(modelItem =>
                                                                     item.UserStaff.DisplayName)</td>
                                                                     <td>@Html.DisplayFor(modelItem =>
                                                                     item.UserStaff.Department)</td>
-                                                                    <td>@Html.DisplayFor(modelItem => item.IssuedOn)</td>
-                                                                    @if (item.ReturnedOn == DateTime.MinValue)
-                                                                    {
-                                                                        <td>NIL</td>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <td>@Html.DisplayFor(modelItem => item.ReturnedOn)</td>
-                                                                    }
-                                                                    <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.UserStaff.Location)</td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.IsActive)</td>
                                                                 </tr>
-                                                                counterUser++;
+                                                                counterAssets++;
                                                             }
                                                         </tbody>
                                                     </table>
@@ -151,12 +142,12 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="card-title mt-3" asp-for="AssetsLicenses">
-                                                    <h6>Asset License</h6>
+                                                <label class="card-title mt-3">
+                                                    <h6>Assets </h6>
                                                 </label>
-                                                <div class="table-responsive">
+                                                <div class="table-responsive table-wrapper">
                                                     @{
-                                                        var counterAsset = 1;
+                                                        var counterLicense = 1;
                                                     }
                                                     <table class="table">
                                                         <thead class=" text-primary">
@@ -168,16 +159,13 @@
                                                                     Asset No
                                                                 </th>
                                                                 <th>
+                                                                    Serial No
+                                                                </th>
+                                                                <th>
                                                                     Type
                                                                 </th>
                                                                 <th>
-                                                                    Issued On
-                                                                </th>
-                                                                <th>
-                                                                    Returned On
-                                                                </th>
-                                                                <th>
-                                                                    Is Active
+                                                                    Brand
                                                                 </th>
                                                             </tr>
                                                         </thead>
@@ -186,24 +174,18 @@
                                                             {
                                                                 <tr>
                                                                     <td>
-                                                                        @counterAsset
+                                                                        @counterLicense
                                                                     </td>
                                                                     <td>@Html.DisplayFor(modelItem =>
                                                                     item.Asset.AssetNo)</td>
                                                                     <td>@Html.DisplayFor(modelItem =>
+                                                                    item.Asset.SerialNo)</td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
                                                                     item.Asset.Type)</td>
-                                                                    <td>@Html.DisplayFor(modelItem => item.IssuedOn)</td>
-                                                                    @if (item.ReturnedOn == DateTime.MinValue)
-                                                                    {
-                                                                        <td>NIL</td>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <td>@Html.DisplayFor(modelItem => item.ReturnedOn)</td>
-                                                                    }
-                                                                    <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.Asset.Brand)</td>
                                                                 </tr>
-                                                                counterUser++;
+                                                                counterLicense++;
                                                             }
                                                         </tbody>
                                                     </table>

@@ -16,6 +16,7 @@ namespace AssetManagementWeb.Helper
             CreateMap<List<object>, UserAssetsDTO>();
             CreateMap<List<object>, UserLicense>();
             CreateMap<List<object>, UserAssets>();
+            CreateMap<List<object>, AssetsLicense>();
         }
     }
 }

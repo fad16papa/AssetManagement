@@ -7,7 +7,7 @@ namespace AssetManagementWeb.Models.ViewModel
 {
     public class LicenseAssetsViewModel
     {
-        public Guid AssetsId { get; set; }
+        public Guid AssetId { get; set; }
         public List<AssetsDTO> AssetsDTOs { get; set; }
         public Guid LicenseId { get; set; }
         public LicenseDTO LicenseDTO { get; set; }

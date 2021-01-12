@@ -31,7 +31,7 @@ namespace Application.AssetLicense
             public async Task<List<AssetsLicense>> Handle(Query request, CancellationToken cancellationToken)
             {
                 //handler logic goes here
-                var assets = await _context.AssetsLicenses.Where(x => x.AssetsId == request.AssetId).OrderByDescending(x => x.IssuedOn).ToListAsync();
+                var assets = await _context.AssetsLicenses.Where(x => x.AssetId == request.AssetId).OrderByDescending(x => x.IssuedOn).ToListAsync();
 
                 if (assets == null)
                     throw new RestException(HttpStatusCode.NotFound, "Not found");

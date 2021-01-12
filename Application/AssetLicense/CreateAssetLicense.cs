@@ -53,7 +53,7 @@ namespace Application.AssetLicense
                 var assetsLicense = new AssetsLicense()
                 {
                     Id = Guid.NewGuid(),
-                    AssetsId = request.AssetsId,
+                    AssetId = request.AssetsId,
                     LicenseId = request.LicenseId,
                     IssuedOn = request.IssuedOn,
                     ReturnedOn = request.ReturnedOn,

@@ -88,14 +88,14 @@ namespace AssetManagementWeb.Controllers
 
                 //Map the objects results to corresponding DTO's
                 LicenseDTO licenseDTO = _mapper.Map<LicenseDTO>(license);
-                List<UserLicense> userLicensesDTOs = _mapper.Map<List<UserLicense>>(userLicense);
+                List<UserLicense> userLicenses = _mapper.Map<List<UserLicense>>(userLicense);
                 List<AssetsLicense> assetsLicenses = _mapper.Map<List<AssetsLicense>>(assetsLicense);
 
                 //Instantiate AssetsUserVIewModel 
                 var viewLicenseUserViewModel = new ViewLicenseUserViewModel()
                 {
                     LicenseDTO = licenseDTO,
-                    UserLicenses = userLicensesDTOs,
+                    UserLicenses = userLicenses,
                     AssetsLicenses = assetsLicenses
                 };
 
@@ -403,12 +403,12 @@ namespace AssetManagementWeb.Controllers
                 }
 
                 //Check if the asset is already assigned in target asset 
-                var checkUser = await _assetsLicenseInterface.GetAssetsOfLicense(licenseAssetsViewModel.AssetsId.ToString(), Request.Cookies["AssetReference"].ToString());
+                var checkUser = await _assetsLicenseInterface.GetAssetsOfLicense(licenseAssetsViewModel.AssetId.ToString(), Request.Cookies["AssetReference"].ToString());
 
                 var assetsLicense = new AssetsLicense()
                 {
                     LicenseId = licenseAssetsViewModel.LicenseId,
-                    AssetsId = licenseAssetsViewModel.AssetsId,
+                    AssetId = licenseAssetsViewModel.AssetId,
                     IssuedOn = licenseAssetsViewModel.IssuedOn,
                     ReturnedOn = licenseAssetsViewModel.ReturnedOn,
                     IsActive = "Yes"
