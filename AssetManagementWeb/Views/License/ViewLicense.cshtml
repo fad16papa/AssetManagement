@@ -88,6 +88,9 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
+                                                <label class="card-title mt-3" asp-for="UserLicenses">
+                                                    <h6>User License</h6>
+                                                </label>
                                                 <div class="table-responsive">
                                                     @{
                                                         var counterUser = 1;
@@ -126,6 +129,69 @@
                                                                     item.UserStaff.DisplayName)</td>
                                                                     <td>@Html.DisplayFor(modelItem =>
                                                                     item.UserStaff.Department)</td>
+                                                                    <td>@Html.DisplayFor(modelItem => item.IssuedOn)</td>
+                                                                    @if (item.ReturnedOn == DateTime.MinValue)
+                                                                    {
+                                                                        <td>NIL</td>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <td>@Html.DisplayFor(modelItem => item.ReturnedOn)</td>
+                                                                    }
+                                                                    <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
+                                                                </tr>
+                                                                counterUser++;
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="card-title mt-3" asp-for="AssetsLicenses">
+                                                    <h6>Asset License</h6>
+                                                </label>
+                                                <div class="table-responsive">
+                                                    @{
+                                                        var counterAsset = 1;
+                                                    }
+                                                    <table class="table">
+                                                        <thead class=" text-primary">
+                                                            <tr>
+                                                                <th>
+                                                                    S/N
+                                                                </th>
+                                                                <th>
+                                                                    Asset No
+                                                                </th>
+                                                                <th>
+                                                                    Type
+                                                                </th>
+                                                                <th>
+                                                                    Issued On
+                                                                </th>
+                                                                <th>
+                                                                    Returned On
+                                                                </th>
+                                                                <th>
+                                                                    Is Active
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in Model.AssetsLicenses)
+                                                            {
+                                                                <tr>
+                                                                    <td>
+                                                                        @counterAsset
+                                                                    </td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.Asset.AssetNo)</td>
+                                                                    <td>@Html.DisplayFor(modelItem =>
+                                                                    item.Asset.Type)</td>
                                                                     <td>@Html.DisplayFor(modelItem => item.IssuedOn)</td>
                                                                     @if (item.ReturnedOn == DateTime.MinValue)
                                                                     {

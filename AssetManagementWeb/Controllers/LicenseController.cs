@@ -79,15 +79,24 @@ namespace AssetManagementWeb.Controllers
                     return RedirectToAction("Index", "Error");
                 }
 
+                var assetsLicense = await _assetsLicenseInterface.GetLicenseOfAssets(LicenseId, Request.Cookies["AssetReference"].ToString());
+
+                if (assetsLicense == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
                 //Map the objects results to corresponding DTO's
                 LicenseDTO licenseDTO = _mapper.Map<LicenseDTO>(license);
                 List<UserLicense> userLicensesDTOs = _mapper.Map<List<UserLicense>>(userLicense);
+                List<AssetsLicense> assetsLicenses = _mapper.Map<List<AssetsLicense>>(assetsLicense);
 
                 //Instantiate AssetsUserVIewModel 
                 var viewLicenseUserViewModel = new ViewLicenseUserViewModel()
                 {
                     LicenseDTO = licenseDTO,
-                    UserLicenses = userLicensesDTOs
+                    UserLicenses = userLicensesDTOs,
+                    AssetsLicenses = assetsLicenses
                 };
 
                 return View(viewLicenseUserViewModel);

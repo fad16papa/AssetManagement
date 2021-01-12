@@ -45,13 +45,6 @@ namespace Application.UserLicenses
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 //logic goes here
-                //Check the userId and AssetsId is already been created and if its IsActive to Yes
-                var result = await _context.UserLicenses.Where(x => x.UserStaffId == request.UserStaffId && x.LicenseId == request.LicenseId
-                && x.IsActive == request.IsActive).FirstOrDefaultAsync();
-
-                if (result != null)
-                    throw new RestException(HttpStatusCode.Conflict, "The user is already been assigned to this asset and its active");
-
                 var userLicenses = await _context.UserLicenses.Where(x => x.LicenseId == request.LicenseId).ToListAsync();
 
                 foreach (var item in userLicenses)

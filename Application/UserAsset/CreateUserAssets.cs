@@ -51,7 +51,6 @@ namespace Application.UserAsset
                     item.IsActive = "No";
                 }
 
-
                 var userAsset = new UserAssets()
                 {
                     Id = Guid.NewGuid(),

@@ -1,0 +1,16 @@
+D:\AssetManagement\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.deps.json
+D:\AssetManagement\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.dll
+D:\AssetManagement\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.pdb
+D:\AssetManagement\Infrastructure\bin\Debug\netcoreapp3.1\Application.dll
+D:\AssetManagement\Infrastructure\bin\Debug\netcoreapp3.1\Domain.dll
+D:\AssetManagement\Infrastructure\bin\Debug\netcoreapp3.1\Persistence.dll
+D:\AssetManagement\Infrastructure\bin\Debug\netcoreapp3.1\Application.pdb
+D:\AssetManagement\Infrastructure\bin\Debug\netcoreapp3.1\Domain.pdb
+D:\AssetManagement\Infrastructure\bin\Debug\netcoreapp3.1\Persistence.pdb
+D:\AssetManagement\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csprojAssemblyReference.cache
+D:\AssetManagement\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfoInputs.cache
+D:\AssetManagement\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfo.cs
+D:\AssetManagement\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CoreCompileInputs.cache
+D:\AssetManagement\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CopyComplete
+D:\AssetManagement\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
+D:\AssetManagement\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb

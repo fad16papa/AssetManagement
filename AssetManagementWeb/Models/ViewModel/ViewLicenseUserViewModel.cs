@@ -8,5 +8,6 @@ namespace AssetManagementWeb.Models.ViewModel
     {
         public LicenseDTO LicenseDTO { get; set; }
         public List<UserLicense> UserLicenses { get; set; }
+        public List<AssetsLicense> AssetsLicenses { get; set; }
     }
 }
