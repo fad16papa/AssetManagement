@@ -36,6 +36,7 @@ namespace AssetManagementWeb
             services.AddScoped<ILicenseInterface, LicenseService>();
             services.AddScoped<IUserAssetsInterface, UserAssetsService>();
             services.AddScoped<IUserLicenseInterface, UserLicenseService>();
+            services.AddScoped<IAssetsLicenseInterface, AssetsLicenseService>();
             #endregion
 
             services.AddHttpClient("AssetAPI", options =>

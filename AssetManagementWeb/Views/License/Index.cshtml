@@ -71,6 +71,11 @@
                                                         <a class="dropdown-item" href="#" data-target="#AssignLicenseUser"
                                                             onclick="viewAssignLicenseUser('@item.Id')">Assign User</a>
                                                     }
+                                                    @if (item.IsAvailable.Equals("Yes") && item.IsAssigned.Equals("No"))
+                                                    {
+                                                        <a class="dropdown-item" href="#" data-target="#AssignLicenseUser"
+                                                            onclick="viewAssignLicenseAsset('@item.Id')">Assign Assets</a>
+                                                    }
                                                 </div>
                                             </div>
                                         </td>

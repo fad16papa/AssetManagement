@@ -20,9 +20,14 @@ namespace AssetManagementWeb.Controllers
         private readonly IMapper _mapper;
         private readonly IUserLicenseInterface _userLicenseInterface;
         private readonly IUserStaffInterface _userStaffInterface;
-        public LicenseController(ILogger<LicenseController> logger, ILicenseInterface licenseInterface, IMapper mapper, IUserLicenseInterface userLicenseInterface, IUserStaffInterface userStaffInterface)
+        private readonly IAssetsLicenseInterface _assetsLicenseInterface;
+        private readonly IAssetInterface _assetInterface;
+        public LicenseController(ILogger<LicenseController> logger, ILicenseInterface licenseInterface, IMapper mapper, IUserLicenseInterface userLicenseInterface,
+        IUserStaffInterface userStaffInterface, IAssetsLicenseInterface assetsLicenseInterface, IAssetInterface assetInterface)
         {
             _userStaffInterface = userStaffInterface;
+            _assetInterface = assetInterface;
+            _assetsLicenseInterface = assetsLicenseInterface;
             _userLicenseInterface = userLicenseInterface;
             _mapper = mapper;
             _licenseInterface = licenseInterface;
@@ -329,6 +334,121 @@ namespace AssetManagementWeb.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"Error encountered in LicenseController||AssignLicenseUser ErrorMessage: {ex.Message}");
+                return RedirectToAction("Index", "Error");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AssignLicenseAsset(string licenseId)
+        {
+            try
+            {
+                var license = await _licenseInterface.GetLicense(licenseId, Request.Cookies["AssetReference"].ToString());
+
+                if (license == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                var assets = await _assetInterface.GetAssets(Request.Cookies["AssetReference"].ToString());
+
+                if (assets == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                //Map the objects results to corresponding DTO's
+                LicenseDTO licenseDTO = _mapper.Map<LicenseDTO>(license);
+                List<AssetsDTO> assetsDTOs = _mapper.Map<List<AssetsDTO>>(assets);
+
+                //Instantiate LicenseAssetsViewModel
+                var licenseAssetsViewModel = new LicenseAssetsViewModel()
+                {
+                    LicenseDTO = licenseDTO,
+                    AssetsDTOs = assetsDTOs
+                };
+
+                //Set the Date to its initial value
+                var date = DateTime.Now;
+                ViewBag.Date = date.ToString("yyyy-MM-dd");
+
+                ViewBag.LicenseId = licenseAssetsViewModel.LicenseDTO.Id;
+
+                return View(licenseAssetsViewModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in LicenseController||AssignLicenseAsset ErrorMessage: {ex.Message}");
+                return RedirectToAction("Index", "Error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AssignLicenseAsset(LicenseAssetsViewModel licenseAssetsViewModel)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(licenseAssetsViewModel);
+                }
+
+                //Check if the asset is already assigned in target asset 
+                var checkUser = await _assetsLicenseInterface.GetAssetsOfLicense(licenseAssetsViewModel.AssetsId.ToString(), Request.Cookies["AssetReference"].ToString());
+
+                var assetsLicense = new AssetsLicense()
+                {
+                    LicenseId = licenseAssetsViewModel.LicenseId,
+                    AssetsId = licenseAssetsViewModel.AssetsId,
+                    IssuedOn = licenseAssetsViewModel.IssuedOn,
+                    ReturnedOn = licenseAssetsViewModel.ReturnedOn,
+                    IsActive = "Yes"
+                };
+
+                var result = await _assetsLicenseInterface.CreateAssetsLicense(assetsLicense, Request.Cookies["AssetReference"].ToString());
+
+                if (result.ResponseCode != HttpStatusCode.OK.ToString())
+                {
+                    ViewBag.ErrorResponse = result.ResponseMessage;
+                    return View();
+                }
+
+                var license = new License()
+                {
+                    Id = licenseAssetsViewModel.LicenseId,
+                    IsAssigned = "Yes"
+                };
+
+                var response = await _licenseInterface.EditLicense(license, Request.Cookies["AssetReference"].ToString());
+
+                if (response.ResponseCode != HttpStatusCode.OK.ToString())
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                var assets = await _assetInterface.GetAssets(Request.Cookies["AssetReference"].ToString());
+
+                if (assets == null)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
+                //Map the objects results to corresponding DTO's
+                List<AssetsDTO> assetsDTOs = _mapper.Map<List<AssetsDTO>>(assets);
+
+                //Instantiate AssetsUserVIewModel
+                LicenseAssetsViewModel model = new LicenseAssetsViewModel()
+                {
+                    AssetsDTOs = assetsDTOs
+                };
+
+                ViewBag.LicenseId = assetsLicense.LicenseId;
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in LicenseController||AssignLicenseAsset ErrorMessage: {ex.Message}");
                 return RedirectToAction("Index", "Error");
             }
         }
