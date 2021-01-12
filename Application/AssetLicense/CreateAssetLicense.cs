@@ -14,7 +14,7 @@ namespace Application.AssetLicense
     {
         public class Command : IRequest
         {
-            public Guid AssetsId { get; set; }
+            public Guid AssetId { get; set; }
             public Guid LicenseId { get; set; }
             public DateTime IssuedOn { get; set; }
             public DateTime ReturnedOn { get; set; }
@@ -25,7 +25,7 @@ namespace Application.AssetLicense
         {
             public CommandValidator()
             {
-                RuleFor(x => x.AssetsId).NotEmpty();
+                RuleFor(x => x.AssetId).NotEmpty();
                 RuleFor(x => x.LicenseId).NotEmpty();
             }
         }
@@ -53,7 +53,7 @@ namespace Application.AssetLicense
                 var assetsLicense = new AssetsLicense()
                 {
                     Id = Guid.NewGuid(),
-                    AssetId = request.AssetsId,
+                    AssetId = request.AssetId,
                     LicenseId = request.LicenseId,
                     IssuedOn = request.IssuedOn,
                     ReturnedOn = request.ReturnedOn,
