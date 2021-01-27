@@ -99,8 +99,9 @@
                                 <div class="modal-footer">
                                     <div class="row">
                                         <div class="update ml-auto mr-auto p-2">
-                                            <button type="button" class="btn btn-info btn-fill btn-wd"
-                                                onclick="AssignLicenseUser()">
+                                            <button id="btnAssignedLicenseUser" type="button"
+                                                class="btn btn-info btn-fill btn-wd" onclick="AssignLicenseUser()"
+                                                value="Assign">
                                                 Assign
                                             </button>
                                         </div>
@@ -120,3 +121,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        // This will run the spinner when the user click the register button in RegisterPage
+        $("#btnAssignedLicenseUser").click(function () {
+            // add spinner to button
+            $(this).html(
+                `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
+            );
+        });
+    });
+</script>

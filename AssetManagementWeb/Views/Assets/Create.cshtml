@@ -150,10 +150,11 @@
                                 <div class="modal-footer">
                                     <div class="row">
                                         <div class="update ml-auto mr-auto p-2">
-                                            <button type="submit" class="btn btn-info btn-fill btn-wd"
-                                                onclick="CreateAsset()">Create</button>
+                                            <button id="btnCreateAsset" type="submit"
+                                                class="btn btn-info btn-fill btn-wd" onclick="CreateAsset()"
+                                                value="Create">Create</button>
                                             <button type="button" class="btn btn-danger btn-fill btn-wd"
-                                                data-dismiss="modal">Close</button>
+                                                data-dismiss="modal" value="Close">Close</button>
                                         </div>
                                     </div>
                                 </div>
@@ -165,3 +166,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        // This will run the spinner when the user click the register button in RegisterPage
+        $("#btnCreateAsset").click(function () {
+            // add spinner to button
+            $(this).html(
+                `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
+            );
+        });
+    });
+</script>

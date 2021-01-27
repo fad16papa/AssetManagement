@@ -165,8 +165,8 @@
                                 <div class="modal-footer">
                                     <div class="row">
                                         <div class="update ml-auto mr-auto p-2">
-                                            <button type="submit" class="btn btn-info btn-fill btn-wd"
-                                                onclick="UpdateLicense()">Update</button>
+                                            <button id="btnUpdateLicense" type="submit" class="btn btn-info btn-fill btn-wd"
+                                                onclick="UpdateLicense()" value="Update">Update</button>
                                             <button type="button" class="btn btn-danger btn-fill btn-wd"
                                                 data-dismiss="modal">Close</button>
                                         </div>
@@ -180,3 +180,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        // This will run the spinner when the user click the register button in RegisterPage
+        $("#btnUpdateLicense").click(function () {
+            // add spinner to button
+            $(this).html(
+                `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
+            );
+        });
+    });
+</script>

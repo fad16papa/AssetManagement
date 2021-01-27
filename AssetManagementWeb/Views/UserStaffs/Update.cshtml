@@ -37,10 +37,10 @@
                                                 <div class="form-group">
                                                     <label asp-for="DisplayName">DisplayName</label>
                                                     <input asp-for="DisplayName" class="form-control" autocomplete="off"
-                                                           placeholder="DisplayName">
+                                                        placeholder="DisplayName">
                                                     <div>
                                                         <span asp-validation-for="DisplayName"
-                                                              class="text-danger"></span>
+                                                            class="text-danger"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -48,10 +48,10 @@
                                                 <div class="form-group">
                                                     <label asp-for="Department">Department</label>
                                                     <input asp-for="Department" class="form-control" autocomplete="off"
-                                                           placeholder="Department">
+                                                        placeholder="Department">
                                                     <div>
                                                         <span asp-validation-for="Department"
-                                                              class="text-danger"></span>
+                                                            class="text-danger"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -59,12 +59,11 @@
                                                 <div class="form-group">
                                                     <label asp-for="Location">Location</label>
                                                     <select asp-for="Location" class="form-control"
-                                                            asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.LocationModel>()"
-                                                            required>
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.LocationModel>()"
+                                                        required>
                                                     </select>
                                                     <div>
-                                                        <span asp-validation-for="Location"
-                                                              class="text-danger"></span>
+                                                        <span asp-validation-for="Location" class="text-danger"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -72,12 +71,11 @@
                                                 <div class="form-group">
                                                     <label asp-for="IsActive">IsActive</label>
                                                     <select asp-for="IsActive" class="form-control"
-                                                            asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.AvailabilityModel>()"
-                                                            required>
+                                                        asp-items="Html.GetEnumSelectList<AssetManagementWeb.Models.AvailabilityModel>()"
+                                                        required>
                                                     </select>
                                                     <div>
-                                                        <span asp-validation-for="IsActive"
-                                                              class="text-danger"></span>
+                                                        <span asp-validation-for="IsActive" class="text-danger"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -87,8 +85,9 @@
                                 <div class="modal-footer">
                                     <div class="row">
                                         <div class="update ml-auto mr-auto p-2">
-                                            <button type="submit" class="btn btn-info btn-fill btn-wd"
-                                                onclick="UpdateUserStaff()">Update</button>
+                                            <button id="btnUpdateUser" type="submit"
+                                                class="btn btn-info btn-fill btn-wd" onclick="UpdateUserStaff()"
+                                                value="Update">Update</button>
                                             <button type="button" class="btn btn-danger btn-fill btn-wd"
                                                 data-dismiss="modal">Close</button>
                                         </div>
@@ -102,3 +101,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        // This will run the spinner when the user click the register button in RegisterPage
+        $("#btnUpdateUser").click(function () {
+            // add spinner to button
+            $(this).html(
+                `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
+            );
+        });
+    });
+</script>
