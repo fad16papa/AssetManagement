@@ -10,5 +10,6 @@ namespace AssetManagementWeb.Repositories.Interfaces
         Task<object> GetUserOfLicense(string UserId, string token);
         Task<object> GetLicensesOfUser(string LicenseId, string token);
         Task<ResponseModel> CreateUserLicense(UserLicense userLicense, string token);
+        Task<ResponseModel> EditUserLicense(UserLicense userLicense, string token);
     }
 }

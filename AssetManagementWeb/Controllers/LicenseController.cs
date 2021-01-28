@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using AssetManagementWeb.Models;
@@ -401,6 +402,15 @@ namespace AssetManagementWeb.Controllers
                 {
                     return View(licenseAssetsViewModel);
                 }
+
+                var userLicense = new UserLicense()
+                {
+                    LicenseId = licenseAssetsViewModel.LicenseId,
+                    IsActive = "No"
+                };
+
+                //Update all existing user of specific license to IsActive = No 
+
 
                 //Check if the asset is already assigned in target asset 
                 var checkUser = await _assetsLicenseInterface.GetAssetsOfLicense(licenseAssetsViewModel.AssetId.ToString(), Request.Cookies["AssetReference"].ToString());

@@ -4,32 +4,22 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Errors;
-using Domain;
-using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.UserAsset
+namespace Application.UserLicenses
 {
-    public class CreateUserAssets
+    public class EditUserLicense
     {
         public class Command : IRequest
         {
-            public Guid AssetsId { get; set; }
+            public Guid Id { get; set; }
+            public Guid LicenseId { get; set; }
             public Guid UserStaffId { get; set; }
             public DateTime IssuedOn { get; set; }
             public DateTime ReturnedOn { get; set; }
             public string IsActive { get; set; }
-        }
-
-        public class CommandValidator : AbstractValidator<Command>
-        {
-            public CommandValidator()
-            {
-                RuleFor(x => x.AssetsId).NotEmpty();
-                RuleFor(x => x.UserStaffId).NotEmpty();
-            }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -44,19 +34,21 @@ namespace Application.UserAsset
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 //logic goes here
-                var userAssets = await _context.UserAssets.Where(x => x.AssetsId == request.AssetsId).AsNoTracking().ToListAsync();
+                var userAssets = await _context.UserLicenses.Where(x => x.LicenseId == request.LicenseId).OrderByDescending(x => x.IssuedOn).ToListAsync();
 
-                var userAsset = new UserAssets()
+                if (userAssets == null)
                 {
-                    Id = Guid.NewGuid(),
-                    AssetsId = request.AssetsId,
-                    UserStaffId = request.UserStaffId,
-                    IssuedOn = request.IssuedOn,
-                    ReturnedOn = request.ReturnedOn,
-                    IsActive = request.IsActive
-                };
+                    throw new RestException(HttpStatusCode.NotFound, "Not found");
+                }
+                if (userAssets.Count() == 0)
+                {
+                    return Unit.Value;
+                }
 
-                _context.UserAssets.Add(userAsset);
+                foreach (var item in userAssets)
+                {
+                    item.IsActive = "No";
+                }
 
                 var success = await _context.SaveChangesAsync() > 0;
 

@@ -58,6 +58,38 @@ namespace AssetManagementWeb.Repositories.Services
             }
         }
 
+        public async Task<ResponseModel> EditUserLicense(UserLicense userLicense, string token)
+        {
+            try
+            {
+                var responseClient = _httpClientFactory.CreateClient("AssetAPI");
+
+                responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var result = await responseClient.PutAsJsonAsync<UserLicense>("api/UserLicense/" + userLicense.LicenseId, userLicense);
+
+                if (result.StatusCode != HttpStatusCode.OK)
+                {
+                    var faliedResponse = await result.Content.ReadAsJsonAsync<RestException>();
+                    return new ResponseModel()
+                    {
+                        ResponseMessage = faliedResponse.Errors.ToString(),
+                        ResponseCode = result.StatusCode.ToString()
+                    };
+                }
+
+                return new ResponseModel()
+                {
+                    ResponseCode = result.StatusCode.ToString()
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in UserLicenseService||EditUserLicense ErrorMessage: {ex.Message}");
+                throw ex;
+            }
+        }
+
         public async Task<object> GetLicensesOfUser(string LicenseId, string token)
         {
             try
