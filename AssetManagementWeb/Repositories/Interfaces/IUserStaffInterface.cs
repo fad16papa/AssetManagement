@@ -10,7 +10,7 @@ namespace AssetManagementWeb.Repositories.Interfaces
 {
     public interface IUserStaffInterface
     {
-        Task<object> GetUserStaffs(string token);
+        Task<List<UserStaffDTO>> GetUserStaffs(string token);
         Task<object> GetUserStaff(string id, string token);
         Task<ResponseModel> CreateUserStaff(UserStaff userStaff, string token);
         Task<ResponseModel> EditUserStaff(UserStaff userStaff, string token);

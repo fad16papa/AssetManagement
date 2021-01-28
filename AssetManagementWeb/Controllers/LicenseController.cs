@@ -43,8 +43,8 @@ namespace AssetManagementWeb.Controllers
             try
             {
                 ViewData["CurrentSort"] = sortOrder;
-                ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "HostName" : "";
-                ViewData["DateSortParm"] = sortOrder == "AssetNo" ? "ExpressCode" : "AssetNo";
+                ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ProductName" : "";
+                ViewData["DateSortParm"] = sortOrder == "ProductVersion" ? "LicenseKey" : "ProductVersion";
 
                 if (searchString != null)
                 {
@@ -73,13 +73,13 @@ namespace AssetManagementWeb.Controllers
 
                 switch (sortOrder)
                 {
-                    case "HostName":
+                    case "ProductName":
                         model = model.OrderByDescending(s => s.ProductName);
                         break;
-                    case "AssetNo":
+                    case "ProductVersion":
                         model = model.OrderByDescending(s => s.ProductVersion);
                         break;
-                    case "SerialNo":
+                    case "LicenseKey":
                         model = model.OrderByDescending(s => s.LicenseKey);
                         break;
                     default:

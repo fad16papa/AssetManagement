@@ -1,3 +1,4 @@
+using AssetManagementWeb.Helper;
 using AssetManagementWeb.Models;
 using AssetManagementWeb.Models.DTO;
 using AssetManagementWeb.Models.ViewModel;
@@ -5,9 +6,11 @@ using AssetManagementWeb.Repositories.Interfaces;
 using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AssetManagementWeb.Controllers
@@ -31,13 +34,52 @@ namespace AssetManagementWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string paramStatus, string token, string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
             try
             {
-                var result = await _userStaffInterface.GetUserStaffs(Request.Cookies["AssetReference"].ToString());
+                ViewData["CurrentSort"] = sortOrder;
+                ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "HostName" : "";
+                ViewData["DateSortParm"] = sortOrder == "AssetNo" ? "ExpressCode" : "AssetNo";
 
-                return View(result);
+                if (searchString != null)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
+                var listUserStaff = new List<UserStaffDTO>();
+
+                listUserStaff = await _userStaffInterface.GetUserStaffs(Request.Cookies["AssetReference"].ToString());
+
+                var model = listUserStaff.AsQueryable();
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    model = listUserStaff.AsQueryable().Where(x => x.DisplayName.Contains(searchString) || x.Department.Equals(searchString) || x.Location.Equals(searchString));
+                }
+
+                switch (sortOrder)
+                {
+                    case "DisplayName":
+                        model = model.OrderByDescending(s => s.DisplayName);
+                        break;
+                    case "Department":
+                        model = model.OrderByDescending(s => s.Department);
+                        break;
+                    case "Location":
+                        model = model.OrderByDescending(s => s.Location);
+                        break;
+                    default:
+                        model = model.OrderBy(s => s.DisplayName);
+                        break;
+                }
+
+                int pageSize = 10;
+                return View(await PaginatedList<UserStaffDTO>.CreateAsync(model.AsNoTracking(), pageNumber ?? 1, pageSize));
             }
             catch (Exception ex)
             {
