@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AssetManagementWeb.Helper;
 using AssetManagementWeb.Models;
 using AssetManagementWeb.Models.DTO;
 using AssetManagementWeb.Models.ViewModel;
@@ -10,6 +11,7 @@ using AssetManagementWeb.Repositories.Interfaces;
 using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace AssetManagementWeb.Controllers
@@ -36,18 +38,57 @@ namespace AssetManagementWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string paramStatus, string token, string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
             try
             {
+                ViewData["CurrentSort"] = sortOrder;
+                ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "HostName" : "";
+                ViewData["DateSortParm"] = sortOrder == "AssetNo" ? "ExpressCode" : "AssetNo";
+
+                if (searchString != null)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
                 if (Request.Cookies["AssetReference"] == null)
                 {
                     return RedirectToAction("Index", "Error");
                 }
 
-                var result = await _licenseInterface.GetLicenses(Request.Cookies["AssetReference"].ToString());
+                var listLicense = new List<LicenseDTO>();
 
-                return View(result);
+                listLicense = await _licenseInterface.GetLicenses(Request.Cookies["AssetReference"].ToString());
+
+                var model = listLicense.AsQueryable();
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    model = listLicense.AsQueryable().Where(x => x.ProductName.Contains(searchString) || x.ProductVersion.Equals(searchString) || x.LicenseKey.Equals(searchString));
+                }
+
+                switch (sortOrder)
+                {
+                    case "HostName":
+                        model = model.OrderByDescending(s => s.ProductName);
+                        break;
+                    case "AssetNo":
+                        model = model.OrderByDescending(s => s.ProductVersion);
+                        break;
+                    case "SerialNo":
+                        model = model.OrderByDescending(s => s.LicenseKey);
+                        break;
+                    default:
+                        model = model.OrderBy(s => s.ProductName);
+                        break;
+                }
+
+                int pageSize = 10;
+                return View(await PaginatedList<LicenseDTO>.CreateAsync(model.AsNoTracking(), pageNumber ?? 1, pageSize));
             }
             catch (Exception ex)
             {
