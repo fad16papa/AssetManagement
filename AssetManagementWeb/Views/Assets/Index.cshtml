@@ -100,7 +100,7 @@
         <a asp-controller="Assets" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
             asp-route-pageNumber="@(Model.PageIndex - 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]"
             class="btn btn-default @prevDisabled">
-            Previous
+            <i class="nc-icon nc-minimal-left"></i>
         </a>
 
         <span>
@@ -110,7 +110,7 @@
         <a asp-controller="Assets" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
             asp-route-pageNumber="@(Model.PageIndex + 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]"
             class="btn btn-default @nextDisabled">
-            Next
+            <i class="nc-icon nc-minimal-right"></i>
         </a>
     </div>
 
