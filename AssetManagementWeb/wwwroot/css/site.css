@@ -149,3 +149,13 @@ body {
   width: 1rem;
   height: 1rem;
 }
+
+.th-color {
+  color: inherit;
+}
+
+.btn-position {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}

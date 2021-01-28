@@ -10,6 +10,10 @@ using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Linq;
+using AssetManagementWeb.Models.ApiResponse;
+using AssetManagementWeb.Helper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AssetManagementWeb.Controllers
 {
@@ -34,18 +38,58 @@ namespace AssetManagementWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string paramStatus, string token, string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
             try
             {
+                ViewData["CurrentSort"] = sortOrder;
+                ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "HostName" : "";
+                ViewData["DateSortParm"] = sortOrder == "AssetNo" ? "ExpressCode" : "AssetNo";
+
+                if (searchString != null)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
                 if (Request.Cookies["AssetReference"] == null)
                 {
                     return RedirectToAction("Index", "Error");
                 }
 
-                var result = await _assetInterface.GetAssets(Request.Cookies["AssetReference"].ToString());
+                var listAssets = new List<AssetsDTO>();
 
-                return View(result);
+                listAssets = await _assetInterface.GetAssets(Request.Cookies["AssetReference"].ToString());
+
+                var model = listAssets.AsQueryable();
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    model = listAssets.AsQueryable().Where(x => x.AssetNo.Contains(searchString) || x.HostName.Equals(searchString) || x.ExpressCode.Equals(searchString)
+                    || x.Brand.Equals(searchString) || x.Model.Equals(searchString));
+                }
+
+                switch (sortOrder)
+                {
+                    case "HostName":
+                        model = model.OrderByDescending(s => s.HostName);
+                        break;
+                    case "AssetNo":
+                        model = model.OrderByDescending(s => s.AssetNo);
+                        break;
+                    case "SerialNo":
+                        model = model.OrderByDescending(s => s.SerialNo);
+                        break;
+                    default:
+                        model = model.OrderBy(s => s.SerialNo);
+                        break;
+                }
+
+                int pageSize = 10;
+                return View(await PaginatedList<AssetsDTO>.CreateAsync(model.AsNoTracking(), pageNumber ?? 1, pageSize));
             }
             catch (Exception ex)
             {

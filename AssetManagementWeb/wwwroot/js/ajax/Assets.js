@@ -117,10 +117,16 @@ function UpdateAsset() {
     });
 }
 
-function viewAssets() {
+function viewAssets(paramsortOrder, paramcurrentFilter, paramsearchString, parampageNumber) {
     $.ajax({
         method: 'GET',
         url: "/Assets/Index",
+        data: ({
+            sortOrder: paramsortOrder,
+            currentFilter: paramcurrentFilter,
+            searchString: paramsearchString,
+            pageNumber: parampageNumber
+        })
     }).done(function (data, statusText, xhdr) {
 
     }).fail(function (xhdr, statusText, errorText) {
@@ -221,4 +227,10 @@ function AssignAssetsUser() {
 
 function realoadAssetPage() {
     window.location.reload();
+}
+
+function searchAsset(paramsearchString) {
+    debugger
+    // var search = paramsearchString.value;
+    viewAssets(null, null, paramsearchString.value, null);
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -127,7 +128,7 @@ namespace AssetManagementWeb.Repositories.Services
             }
         }
 
-        public async Task<object> GetAssets(string token)
+        public async Task<List<AssetsDTO>> GetAssets(string token)
         {
             try
             {
@@ -139,12 +140,7 @@ namespace AssetManagementWeb.Repositories.Services
 
                 if (result.StatusCode != HttpStatusCode.OK)
                 {
-                    var faliedResponse = await result.Content.ReadAsJsonAsync<RestException>();
-                    return new ResponseModel()
-                    {
-                        ResponseMessage = faliedResponse.Errors.ToString(),
-                        ResponseCode = result.StatusCode.ToString()
-                    };
+                    throw new Exception(result.StatusCode.ToString());
                 }
 
                 var successResponse = await result.Content.ReadAsJsonAsync<List<AssetsDTO>>();
