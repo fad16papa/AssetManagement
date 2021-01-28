@@ -40,6 +40,10 @@ namespace Application.UserAsset
                 {
                     throw new RestException(HttpStatusCode.NotFound, "Not found");
                 }
+                if (userAssets.Count() == 0)
+                {
+                    return Unit.Value;
+                }
 
                 foreach (var item in userAssets)
                 {

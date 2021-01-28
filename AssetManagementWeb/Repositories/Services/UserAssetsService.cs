@@ -58,6 +58,38 @@ namespace AssetManagementWeb.Repositories.Services
             }
         }
 
+        public async Task<ResponseModel> EditUserAssets(UserAssets userAssets, string token)
+        {
+            try
+            {
+                var responseClient = _httpClientFactory.CreateClient("AssetAPI");
+
+                responseClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var result = await responseClient.PutAsJsonAsync<UserAssets>("api/UserAssets/" + userAssets.AssetsId, userAssets);
+
+                if (result.StatusCode != HttpStatusCode.OK)
+                {
+                    var faliedResponse = await result.Content.ReadAsJsonAsync<RestException>();
+                    return new ResponseModel()
+                    {
+                        ResponseMessage = faliedResponse.Errors.ToString(),
+                        ResponseCode = result.StatusCode.ToString()
+                    };
+                }
+
+                return new ResponseModel()
+                {
+                    ResponseCode = result.StatusCode.ToString()
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encountered in UserAssetsService||EditUserAssets ErrorMessage: {ex.Message}");
+                throw ex;
+            }
+        }
+
         public async Task<object> GetAssetsOfUser(string AssetId, string token)
         {
             try

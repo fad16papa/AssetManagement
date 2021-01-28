@@ -237,19 +237,34 @@ namespace AssetManagementWeb.Controllers
                     return View(assetsUserVIewModel);
                 }
 
+                var userAssetsUpdate = new UserAssets()
+                {
+                    AssetsId = assetsUserVIewModel.AssetId,
+                    IsActive = "No"
+                };
+
+                //Update all existing user of specific assets to IsActive = No 
+                var userAssets = await _userAssetsInterface.EditUserAssets(userAssetsUpdate, Request.Cookies["AssetReference"].ToString());
+
+                if (userAssets.ResponseCode != HttpStatusCode.OK.ToString())
+                {
+                    ViewBag.ErrorResponse = userAssets.ResponseMessage;
+                    return View();
+                }
+
                 //Check if the user is already assigned in target asset 
                 var checkUser = await _userAssetsInterface.GetUserOfAssets(assetsUserVIewModel.UserStaffId.ToString(), Request.Cookies["AssetReference"].ToString());
 
-                var userAssets = new UserAssets()
+                var userAsset = new UserAssets()
                 {
                     AssetsId = assetsUserVIewModel.AssetId,
                     UserStaffId = assetsUserVIewModel.UserStaffId,
-                    IssuedOn = assetsUserVIewModel.IssuedOn,
+                    IssuedOn = DateTime.Now,
                     ReturnedOn = assetsUserVIewModel.ReturedOn,
                     IsActive = "Yes",
                 };
 
-                var result = await _userAssetsInterface.CreateUserAssets(userAssets, Request.Cookies["AssetReference"].ToString());
+                var result = await _userAssetsInterface.CreateUserAssets(userAsset, Request.Cookies["AssetReference"].ToString());
 
                 if (result.ResponseCode != HttpStatusCode.OK.ToString())
                 {
@@ -286,7 +301,7 @@ namespace AssetManagementWeb.Controllers
                     UserStaffDTOs = userStaffDTO
                 };
 
-                ViewBag.AssetId = userAssets.AssetsId;
+                ViewBag.AssetId = userAsset.AssetsId;
 
                 return View(model);
             }
