@@ -88,7 +88,7 @@
             var lastPage = Model.TotalPages;
         }
 
-        <a asp-controller="Assets" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+        <a asp-controller="UserStaffs" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
             asp-route-pageNumber="@(Model.PageIndex - 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]"
             class="btn btn-default @prevDisabled">
             <i class="nc-icon nc-minimal-left"></i>
@@ -98,7 +98,7 @@
             <label>Page @counterPage of @lastPage</label>
         </span>
 
-        <a asp-controller="Assets" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+        <a asp-controller="UserStaffs" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
             asp-route-pageNumber="@(Model.PageIndex + 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]"
             class="btn btn-default @nextDisabled">
             <i class="nc-icon nc-minimal-right"></i>

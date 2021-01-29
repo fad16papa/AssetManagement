@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AssetManagementWeb.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace AssetManagementWeb.Helper

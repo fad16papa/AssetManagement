@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "l+yaLkDSLfaOnc1JXEIgoDSrVpruEQy9Wz13mUn4l5xnA2x4Aqkss1f6QLxIYmrjXfzzdeqUU6IChSUdz4ErrQ==",
+  "dgSpecHash": "AVV928zoruKYNcf4GoolxIWeu8azYOKzll9fQqkhelZkEbSld0f9pCQqg74dcmMePatUwA1sUpmHsYn+VS2zsQ==",
   "success": true,
   "projectFilePath": "D:\\AssetManagement\\AssetManagementWeb\\AssetManagementWeb.csproj",
   "expectedPackageFiles": [
@@ -69,9 +69,12 @@
     "C:\\Users\\Francis.Decena\\.nuget\\packages\\microsoft.visualstudio.web.codegenerators.mvc\\3.0.0\\microsoft.visualstudio.web.codegenerators.mvc.3.0.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
+    "C:\\Users\\Francis.Decena\\.nuget\\packages\\mysqlconnector\\0.61.0\\mysqlconnector.0.61.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\nuget.frameworks\\4.7.0\\nuget.frameworks.4.7.0.nupkg.sha512",
+    "C:\\Users\\Francis.Decena\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\3.0.0-rc3.final\\pomelo.entityframeworkcore.mysql.3.0.0-rc3.final.nupkg.sha512",
+    "C:\\Users\\Francis.Decena\\.nuget\\packages\\pomelo.jsonobject\\2.2.0\\pomelo.jsonobject.2.2.0.nupkg.sha512",
     "C:\\Users\\Francis.Decena\\.nuget\\packages\\runtime.any.system.collections\\4.3.0\\runtime.any.system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\Francis.Decena\\.nuget\\packages\\runtime.any.system.diagnostics.tools\\4.3.0\\runtime.any.system.diagnostics.tools.4.3.0.nupkg.sha512",
     "C:\\Users\\Francis.Decena\\.nuget\\packages\\runtime.any.system.diagnostics.tracing\\4.3.0\\runtime.any.system.diagnostics.tracing.4.3.0.nupkg.sha512",

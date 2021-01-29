@@ -26,6 +26,9 @@ namespace AssetManagementWeb.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            Response.Cookies.Delete("Token");
+            Response.Cookies.Delete("UserName");
+
             return View();
         }
 

@@ -355,7 +355,7 @@ namespace AssetManagementWeb.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(AssetsDTO assetsDTO)
+        public async Task<IActionResult> UpdateAsset(AssetsDTO assetsDTO)
         {
             try
             {
