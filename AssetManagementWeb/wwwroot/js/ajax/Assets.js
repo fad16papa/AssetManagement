@@ -84,7 +84,7 @@ function UpdateAsset() {
 
     $.ajax({
         method: 'PUT',
-        url: "/Assets/UpdateAsset",
+        url: "/Assets/Update",
         data: $("#formUpdateAsset").serialize(),
     }).done(function (data) {
 
