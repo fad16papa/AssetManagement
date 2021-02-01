@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210201061833_Updating UserAssets")]
+    partial class UpdatingUserAssets
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,14 +215,14 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.UserAssets", b =>
                 {
-                    b.Property<Guid>("AssetsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserStaffId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AssetId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AssetsId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IsActive")
@@ -232,9 +234,12 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("ReturnedOn")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("AssetsId", "UserStaffId");
+                    b.Property<Guid>("UserStaffId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasAlternateKey("Id");
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssetId");
 
                     b.HasIndex("UserStaffId");
 
@@ -447,9 +452,7 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.Asset", "Asset")
                         .WithMany("UserAssets")
-                        .HasForeignKey("AssetsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AssetId");
 
                     b.HasOne("Domain.UserStaff", "UserStaff")
                         .WithMany("UserAssets")

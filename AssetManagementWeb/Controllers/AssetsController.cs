@@ -243,6 +243,14 @@ namespace AssetManagementWeb.Controllers
                     IsActive = "No"
                 };
 
+                //Check if the user is already assigned in target asset 
+                var checkUser = await _userAssetsInterface.GetUserOfAssets(assetsUserVIewModel.UserStaffId.ToString(), Request.Cookies["AssetReference"].ToString());
+
+                if (checkUser != null)
+                {
+
+                }
+
                 //Update all existing user of specific assets to IsActive = No 
                 var userAssets = await _userAssetsInterface.EditUserAssets(userAssetsUpdate, Request.Cookies["AssetReference"].ToString());
 
@@ -251,9 +259,6 @@ namespace AssetManagementWeb.Controllers
                     ViewBag.ErrorResponse = userAssets.ResponseMessage;
                     return View();
                 }
-
-                //Check if the user is already assigned in target asset 
-                var checkUser = await _userAssetsInterface.GetUserOfAssets(assetsUserVIewModel.UserStaffId.ToString(), Request.Cookies["AssetReference"].ToString());
 
                 var userAsset = new UserAssets()
                 {
