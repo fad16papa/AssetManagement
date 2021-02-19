@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class RevertUserAssets : Migration
+    public partial class UpdateExistingMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

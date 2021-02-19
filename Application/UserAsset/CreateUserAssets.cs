@@ -46,6 +46,11 @@ namespace Application.UserAsset
                 //logic goes here
                 var userAssets = await _context.UserAssets.Where(x => x.AssetsId == request.AssetsId).AsNoTracking().ToListAsync();
 
+                foreach (var item in userAssets)
+                {
+                    item.IsActive = "No";
+                }
+
                 var userAsset = new UserAssets()
                 {
                     Id = Guid.NewGuid(),

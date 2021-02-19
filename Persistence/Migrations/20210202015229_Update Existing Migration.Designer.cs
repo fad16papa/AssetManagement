@@ -10,8 +10,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210112091951_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20210202015229_Update Existing Migration")]
+    partial class UpdateExistingMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -154,10 +154,7 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AssetId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AssetsId")
+                    b.Property<Guid>("AssetId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IsActive")
@@ -437,7 +434,9 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.Asset", "Asset")
                         .WithMany()
-                        .HasForeignKey("AssetId");
+                        .HasForeignKey("AssetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.License", "License")
                         .WithMany()
