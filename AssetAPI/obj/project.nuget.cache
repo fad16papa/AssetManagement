@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VjpFGm2OxN9Hv/2M5Al09kY7Aens2CunnGUwRotB1xXgpM8YC+lVBkUJor3yNS/TcdPjqZ7TcR9kSFgyKTRgAQ==",
+  "dgSpecHash": "m6Mt3kzvjOV8UAqjIg4Zg5CYXxrqyud1QZvXfV2z6qkcjKC1v35RWXc0oo61Ns8CXc7eUMRW1xWngC+ua1uveQ==",
   "success": true,
   "projectFilePath": "D:\\AssetManagement\\AssetAPI\\AssetAPI.csproj",
   "expectedPackageFiles": [
@@ -157,7 +157,8 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\Francis.Decena\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.12\\microsoft.netcore.app.host.win-x64.3.1.12.nupkg.sha512"
   ],
   "logs": []
 }
