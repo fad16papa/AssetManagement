@@ -1,19 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AssetManagementWeb.Helper;
 using AssetManagementWeb.Models;
+using AssetManagementWeb.Models.ApiResponse;
 using AssetManagementWeb.Models.DTO;
 using AssetManagementWeb.Models.ViewModel;
 using AssetManagementWeb.Repositories.Interfaces;
 using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Linq;
-using AssetManagementWeb.Models.ApiResponse;
-using AssetManagementWeb.Helper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace AssetManagementWeb.Controllers
 {
@@ -301,7 +301,7 @@ namespace AssetManagementWeb.Controllers
                 List<UserStaffDTO> userStaffDTO = _mapper.Map<List<UserStaffDTO>>(user);
 
                 //Instantiate AssetsUserVIewModel
-                AssetsUserVIewModel model = new AssetsUserVIewModel()
+                var model = new AssetsUserVIewModel()
                 {
                     UserStaffDTOs = userStaffDTO
                 };
@@ -332,7 +332,7 @@ namespace AssetManagementWeb.Controllers
                 TypeModel typeModel = (TypeModel)Enum.Parse(typeof(TypeModel), assetsDTO.Type);
                 AvailabilityModel availabilityModel = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), assetsDTO.IsAvailable);
 
-                Asset asset = new Asset()
+                var asset = new Asset()
                 {
                     Brand = assetsDTO.Brand,
                     AssetNo = assetsDTO.AssetNo,

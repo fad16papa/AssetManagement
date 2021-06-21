@@ -143,9 +143,9 @@ D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.MvcApplicationParts
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.MvcApplicationPartsAssemblyInfo.cache
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\staticwebassets\AssetAPI.StaticWebAssets.Manifest.cache
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\staticwebassets\AssetAPI.StaticWebAssets.xml
-D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\scopedcss\bundle\AssetAPI.styles.css
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.RazorTargetAssemblyInfo.cache
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.csproj.CopyComplete
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.dll
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.pdb
 D:\AssetManagement\AssetAPI\obj\Debug\netcoreapp3.1\AssetAPI.genruntimeconfig.cache
+D:\AssetManagement\AssetAPI\bin\Debug\netcoreapp3.1\Properties\launchSettings.json

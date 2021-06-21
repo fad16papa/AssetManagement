@@ -373,7 +373,7 @@ namespace AssetManagementWeb.Controllers
                 List<UserStaffDTO> userStaffDTO = _mapper.Map<List<UserStaffDTO>>(user);
 
                 //Instantiate AssetsUserVIewModel
-                LicenseUserViewModel model = new LicenseUserViewModel()
+                var model = new LicenseUserViewModel()
                 {
                     UserStaffDTOs = userStaffDTO
                 };
@@ -497,7 +497,7 @@ namespace AssetManagementWeb.Controllers
                 List<AssetsDTO> assetsDTOs = _mapper.Map<List<AssetsDTO>>(assets);
 
                 //Instantiate AssetsUserVIewModel
-                LicenseAssetsViewModel model = new LicenseAssetsViewModel()
+                var model = new LicenseAssetsViewModel()
                 {
                     AssetsDTOs = assetsDTOs
                 };
