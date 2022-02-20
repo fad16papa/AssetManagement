@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bC5TpFmKqtJ0W+y9/3DWahEa0LpXikmxMmsC6iqa2e0I2cUWQ7rXL76CTZboG7iRNO4NEhdSRaQk0Umfc1DsDQ==",
+  "dgSpecHash": "9dntWsmV74ZOXoFtedMI9oAe3QsugeLLMTWR3DTnAFYr1XfzJsFLmXDKMFb5+1dZij94DAKuVN6hOPsdU9qteg==",
   "success": true,
   "projectFilePath": "/Users/francisdecena/project/AssetManagement/AssetManagementWeb/AssetManagementWeb.csproj",
   "expectedPackageFiles": [
@@ -182,7 +182,8 @@
     "/Users/francisdecena/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "/Users/francisdecena/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "/Users/francisdecena/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "/Users/francisdecena/.nuget/packages/microsoft.netcore.app.host.osx-x64/3.1.22/microsoft.netcore.app.host.osx-x64.3.1.22.nupkg.sha512"
   ],
   "logs": []
 }

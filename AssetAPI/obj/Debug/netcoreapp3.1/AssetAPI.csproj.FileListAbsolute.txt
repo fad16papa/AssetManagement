@@ -74,6 +74,7 @@ D:/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/AssetAPI.genruntimeconfig.ca
 /Users/francisdecena/project/AssetManagement/AssetAPI/bin/Debug/netcoreapp3.1/appsettings.Development.json
 /Users/francisdecena/project/AssetManagement/AssetAPI/bin/Debug/netcoreapp3.1/appsettings.json
 /Users/francisdecena/project/AssetManagement/AssetAPI/bin/Debug/netcoreapp3.1/AssetAPI.StaticWebAssets.xml
+/Users/francisdecena/project/AssetManagement/AssetAPI/bin/Debug/netcoreapp3.1/AssetAPI
 /Users/francisdecena/project/AssetManagement/AssetAPI/bin/Debug/netcoreapp3.1/AssetAPI.deps.json
 /Users/francisdecena/project/AssetManagement/AssetAPI/bin/Debug/netcoreapp3.1/AssetAPI.runtimeconfig.json
 /Users/francisdecena/project/AssetManagement/AssetAPI/bin/Debug/netcoreapp3.1/AssetAPI.runtimeconfig.dev.json
@@ -132,7 +133,8 @@ D:/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/AssetAPI.genruntimeconfig.ca
 /Users/francisdecena/project/AssetManagement/AssetAPI/bin/Debug/netcoreapp3.1/Infrastructure.pdb
 /Users/francisdecena/project/AssetManagement/AssetAPI/bin/Debug/netcoreapp3.1/Domain.pdb
 /Users/francisdecena/project/AssetManagement/AssetAPI/bin/Debug/netcoreapp3.1/Persistence.pdb
-/Users/francisdecena/project/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/AssetAPI.csprojAssemblyReference.cache
+/Users/francisdecena/project/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/AssetAPI.csproj.AssemblyReference.cache
+/Users/francisdecena/project/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/AssetAPI.GeneratedMSBuildEditorConfig.editorconfig
 /Users/francisdecena/project/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/AssetAPI.AssemblyInfoInputs.cache
 /Users/francisdecena/project/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/AssetAPI.AssemblyInfo.cs
 /Users/francisdecena/project/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/AssetAPI.csproj.CoreCompileInputs.cache
@@ -140,7 +142,6 @@ D:/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/AssetAPI.genruntimeconfig.ca
 /Users/francisdecena/project/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/AssetAPI.MvcApplicationPartsAssemblyInfo.cache
 /Users/francisdecena/project/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/staticwebassets/AssetAPI.StaticWebAssets.Manifest.cache
 /Users/francisdecena/project/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/staticwebassets/AssetAPI.StaticWebAssets.xml
-/Users/francisdecena/project/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/scopedcss/bundle/AssetAPI.styles.css
 /Users/francisdecena/project/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/AssetAPI.RazorTargetAssemblyInfo.cache
 /Users/francisdecena/project/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/AssetAPI.csproj.CopyComplete
 /Users/francisdecena/project/AssetManagement/AssetAPI/obj/Debug/netcoreapp3.1/AssetAPI.dll

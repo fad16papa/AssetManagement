@@ -15,7 +15,8 @@ D:/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.pdb
 /Users/francisdecena/project/AssetManagement/Persistence/bin/Debug/netcoreapp3.1/Persistence.pdb
 /Users/francisdecena/project/AssetManagement/Persistence/bin/Debug/netcoreapp3.1/Domain.dll
 /Users/francisdecena/project/AssetManagement/Persistence/bin/Debug/netcoreapp3.1/Domain.pdb
-/Users/francisdecena/project/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.csprojAssemblyReference.cache
+/Users/francisdecena/project/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.csproj.AssemblyReference.cache
+/Users/francisdecena/project/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.GeneratedMSBuildEditorConfig.editorconfig
 /Users/francisdecena/project/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.AssemblyInfoInputs.cache
 /Users/francisdecena/project/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.AssemblyInfo.cs
 /Users/francisdecena/project/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.csproj.CoreCompileInputs.cache
