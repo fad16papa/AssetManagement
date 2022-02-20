@@ -10,7 +10,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210112091951_Initial Migration")]
+    [Migration("20210202011703_Initial Migration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -154,10 +154,7 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AssetId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AssetsId")
+                    b.Property<Guid>("AssetId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IsActive")
@@ -218,14 +215,14 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.UserAssets", b =>
                 {
-                    b.Property<Guid>("AssetsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserStaffId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AssetId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AssetsId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IsActive")
@@ -237,9 +234,12 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("ReturnedOn")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("AssetsId", "UserStaffId");
+                    b.Property<Guid>("UserStaffId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasAlternateKey("Id");
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssetId");
 
                     b.HasIndex("UserStaffId");
 
@@ -437,7 +437,9 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.Asset", "Asset")
                         .WithMany()
-                        .HasForeignKey("AssetId");
+                        .HasForeignKey("AssetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.License", "License")
                         .WithMany()
@@ -449,13 +451,11 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.UserAssets", b =>
                 {
                     b.HasOne("Domain.Asset", "Asset")
-                        .WithMany("UserAssets")
-                        .HasForeignKey("AssetsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("AssetId");
 
                     b.HasOne("Domain.UserStaff", "UserStaff")
-                        .WithMany("UserAssets")
+                        .WithMany()
                         .HasForeignKey("UserStaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

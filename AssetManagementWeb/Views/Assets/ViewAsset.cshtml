@@ -72,22 +72,28 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4 pr-1">
+                                        <div class="col-md-3 pr-1">
                                             <div class="form-group">
                                                 <label asp-for="AssetsDTO.Status">Status</label>
                                                 <input asp-for="AssetsDTO.Status" class="form-control" disabled>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 pr-1">
+                                        <div class="col-md-3 pr-1">
                                             <div class="form-group">
                                                 <label asp-for="AssetsDTO.Location">Location</label>
                                                 <input asp-for="AssetsDTO.Location" class="form-control" disabled>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 pr-1">
+                                        <div class="col-md-3 pr-1">
                                             <div class="form-group">
                                                 <label asp-for="AssetsDTO.IsAvailable">IsAvailable</label>
                                                 <input asp-for="AssetsDTO.IsAvailable" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 pr-1">
+                                            <div class="form-group">
+                                                <label asp-for="AssetsDTO.IsAssinged">IsAssinged</label>
+                                                <input asp-for="AssetsDTO.IsAssinged" class="form-control" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -125,6 +131,9 @@
                                                                 <th>
                                                                     Returned On
                                                                 </th>
+                                                                <th>
+                                                                    Assigned
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -147,6 +156,7 @@
                                                                     {
                                                                         <td>@Html.DisplayFor(modelItem => item.ReturnedOn)</td>
                                                                     }
+                                                                    <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
                                                                 </tr>
                                                                 counterUser++;
                                                             }

@@ -10,7 +10,7 @@ namespace AssetManagementWeb.Repositories.Interfaces
 {
     public interface ILicenseInterface
     {
-        Task<object> GetLicenses(string token);
+        Task<List<LicenseDTO>> GetLicenses(string token);
         Task<object> GetLicense(string id, string token);
         Task<ResponseModel> CreateLicense(License license, string token);
         Task<ResponseModel> EditLicense(License license, string token);

@@ -14,6 +14,22 @@ D:/AssetManagement/Infrastructure/obj/Debug/netcoreapp3.1/Infrastructure.csproj.
 D:/AssetManagement/Infrastructure/obj/Debug/netcoreapp3.1/Infrastructure.csproj.CopyComplete
 D:/AssetManagement/Infrastructure/obj/Debug/netcoreapp3.1/Infrastructure.dll
 D:/AssetManagement/Infrastructure/obj/Debug/netcoreapp3.1/Infrastructure.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/bin/Debug/netcoreapp3.1/Infrastructure.deps.json
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/bin/Debug/netcoreapp3.1/Infrastructure.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/bin/Debug/netcoreapp3.1/Infrastructure.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/bin/Debug/netcoreapp3.1/Application.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/bin/Debug/netcoreapp3.1/Domain.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/bin/Debug/netcoreapp3.1/Persistence.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/bin/Debug/netcoreapp3.1/Application.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/bin/Debug/netcoreapp3.1/Domain.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/bin/Debug/netcoreapp3.1/Persistence.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/obj/Debug/netcoreapp3.1/Infrastructure.csproj.AssemblyReference.cache
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/obj/Debug/netcoreapp3.1/Infrastructure.AssemblyInfoInputs.cache
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/obj/Debug/netcoreapp3.1/Infrastructure.AssemblyInfo.cs
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/obj/Debug/netcoreapp3.1/Infrastructure.csproj.CoreCompileInputs.cache
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/obj/Debug/netcoreapp3.1/Infrastructure.csproj.CopyComplete
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/obj/Debug/netcoreapp3.1/Infrastructure.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Infrastructure/obj/Debug/netcoreapp3.1/Infrastructure.pdb
 /Users/francisdecena/project/AssetManagement/Infrastructure/bin/Debug/netcoreapp3.1/Infrastructure.deps.json
 /Users/francisdecena/project/AssetManagement/Infrastructure/bin/Debug/netcoreapp3.1/Infrastructure.dll
 /Users/francisdecena/project/AssetManagement/Infrastructure/bin/Debug/netcoreapp3.1/Infrastructure.pdb

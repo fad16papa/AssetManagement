@@ -1,4 +1,5 @@
-@model IEnumerable<AssetManagementWeb.Models.DTO.AssetsDTO>
+@* @model IEnumerable<AssetManagementWeb.Models.DTO.AssetsDTO> *@
+@model AssetManagementWeb.Helper.PaginatedList<AssetManagementWeb.Models.DTO.AssetsDTO>
 
 @{
     ViewData["Title"] = "Assets Page";
@@ -9,10 +10,23 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header form-inline">
-                    <a type="button" class="btn btn-secondary" href="#" onclick="CreateAssetModal()">
+                <div class="card-header mb-2">
+
+                    <input id="searchInput" type="text" value="" placeholder="search here" autocomplete="off" />
+
+                    <a type="button" class="btn btn-pill btn-success btn-sm"
+                        onclick="searchAsset(document.getElementById('searchInput'))">
+                        Search Asset
+                    </a>
+
+                    <a type="button" class="btn btn-pill btn-success btn-sm" onclick="">
+                        List Asset
+                    </a>
+
+                    <a type="button" class="btn btn-secondary float-right" href="#" onclick="CreateAssetModal()">
                         <i class="nc-icon nc-simple-add"></i>
                     </a>
+
                 </div>
                 <div class="card-body">
                     <div class="table table-responsive table-hover">
@@ -58,18 +72,18 @@
                                         <td>
                                             <div class="btn-group">
                                                 <button class="btn btn-secondary btn-sm dropdown-t" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     . . .
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item" href="#" data-target="#ViewAsset"
-                                                        onclick="viewAssetsDetails('@item.Id')">View</a>
+                                                    onclick="viewAssetsDetails('@item.Id')">View</a>
                                                     <a class="dropdown-item" href="#" data-target="#UpdateAsset"
-                                                        onclick="UpdateAssetModal('@item.Id')">Update</a>
+                                                    onclick="UpdateAssetModal('@item.Id')">Update</a>
                                                     @if (item.IsAvailable.Equals("Yes") && item.IsAssinged.Equals("No"))
                                                     {
                                                         <a class="dropdown-item" href="#" data-target="#AssignAssetsUser"
-                                                            onclick="viewAssignAssetsUser('@item.Id')">Assign User</a>
+                                                    onclick="viewAssignAssetsUser('@item.Id')">Assign User</a>
                                                     }
                                                 </div>
                                             </div>
@@ -79,12 +93,43 @@
                                 }
                             </tbody>
                         </table>
+
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div>
+        @{
+            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+            var counterPage = Model.PageIndex;
+            var lastPage = Model.TotalPages;
+        }
+
+        @* <a asp-controller="Assets" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+            asp-route-pageNumber="@(Model.PageIndex - 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]"
+            class="btn btn-default @prevDisabled">
+            <i class="nc-icon nc-minimal-left"></i>
+            </a>
+
+            <span>
+            <label>Page @counterPage of @lastPage</label>
+            </span>
+
+            <a asp-controller="Assets" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+            asp-route-pageNumber="@(Model.PageIndex + 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]"
+            class="btn btn-default @nextDisabled">
+            <i class="nc-icon nc-minimal-right"></i>
+            </a> *@
+    </div>
+
 </div>
+
+
 
 @* Placeholder for the Modal View *@
 <div id="ModalPlaceholder"></div>

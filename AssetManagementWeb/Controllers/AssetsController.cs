@@ -1,14 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AssetManagementWeb.Helper;
 using AssetManagementWeb.Models;
+using AssetManagementWeb.Models.ApiResponse;
 using AssetManagementWeb.Models.DTO;
 using AssetManagementWeb.Models.ViewModel;
 using AssetManagementWeb.Repositories.Interfaces;
 using AutoMapper;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace AssetManagementWeb.Controllers
@@ -34,18 +38,58 @@ namespace AssetManagementWeb.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string paramStatus, string token, string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
             try
             {
+                ViewData["CurrentSort"] = sortOrder;
+                ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "HostName" : "";
+                ViewData["DateSortParm"] = sortOrder == "AssetNo" ? "ExpressCode" : "AssetNo";
+
+                if (searchString != null)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
                 if (Request.Cookies["AssetReference"] == null)
                 {
                     return RedirectToAction("Index", "Error");
                 }
 
-                var result = await _assetInterface.GetAssets(Request.Cookies["AssetReference"].ToString());
+                var listAssets = new List<AssetsDTO>();
 
-                return View(result);
+                listAssets = await _assetInterface.GetAssets(Request.Cookies["AssetReference"].ToString());
+
+                var model = listAssets.AsQueryable();
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    model = listAssets.AsQueryable().Where(x => x.AssetNo.Contains(searchString) || x.HostName.Equals(searchString) || x.ExpressCode.Equals(searchString)
+                    || x.Brand.Equals(searchString) || x.Model.Equals(searchString));
+                }
+
+                switch (sortOrder)
+                {
+                    case "HostName":
+                        model = model.OrderByDescending(s => s.HostName);
+                        break;
+                    case "AssetNo":
+                        model = model.OrderByDescending(s => s.AssetNo);
+                        break;
+                    case "SerialNo":
+                        model = model.OrderByDescending(s => s.SerialNo);
+                        break;
+                    default:
+                        model = model.OrderBy(s => s.SerialNo);
+                        break;
+                }
+
+                int pageSize = 10;
+                return View(await PaginatedList<AssetsDTO>.CreateAsync(model.AsNoTracking(), pageNumber ?? 1, pageSize));
             }
             catch (Exception ex)
             {
@@ -193,19 +237,39 @@ namespace AssetManagementWeb.Controllers
                     return View(assetsUserVIewModel);
                 }
 
+                var userAssetsUpdate = new UserAssets()
+                {
+                    AssetsId = assetsUserVIewModel.AssetId,
+                    IsActive = "No"
+                };
+
                 //Check if the user is already assigned in target asset 
                 var checkUser = await _userAssetsInterface.GetUserOfAssets(assetsUserVIewModel.UserStaffId.ToString(), Request.Cookies["AssetReference"].ToString());
 
-                var userAssets = new UserAssets()
+                if (checkUser != null)
+                {
+
+                }
+
+                //Update all existing user of specific assets to IsActive = No 
+                var userAssets = await _userAssetsInterface.EditUserAssets(userAssetsUpdate, Request.Cookies["AssetReference"].ToString());
+
+                if (userAssets.ResponseCode != HttpStatusCode.OK.ToString())
+                {
+                    ViewBag.ErrorResponse = userAssets.ResponseMessage;
+                    return View();
+                }
+
+                var userAsset = new UserAssets()
                 {
                     AssetsId = assetsUserVIewModel.AssetId,
                     UserStaffId = assetsUserVIewModel.UserStaffId,
-                    IssuedOn = assetsUserVIewModel.IssuedOn,
+                    IssuedOn = DateTime.Now,
                     ReturnedOn = assetsUserVIewModel.ReturedOn,
                     IsActive = "Yes",
                 };
 
-                var result = await _userAssetsInterface.CreateUserAssets(userAssets, Request.Cookies["AssetReference"].ToString());
+                var result = await _userAssetsInterface.CreateUserAssets(userAsset, Request.Cookies["AssetReference"].ToString());
 
                 if (result.ResponseCode != HttpStatusCode.OK.ToString())
                 {
@@ -237,12 +301,12 @@ namespace AssetManagementWeb.Controllers
                 List<UserStaffDTO> userStaffDTO = _mapper.Map<List<UserStaffDTO>>(user);
 
                 //Instantiate AssetsUserVIewModel
-                AssetsUserVIewModel model = new AssetsUserVIewModel()
+                var model = new AssetsUserVIewModel()
                 {
                     UserStaffDTOs = userStaffDTO
                 };
 
-                ViewBag.AssetId = userAssets.AssetsId;
+                ViewBag.AssetId = userAsset.AssetsId;
 
                 return View(model);
             }
@@ -268,7 +332,7 @@ namespace AssetManagementWeb.Controllers
                 TypeModel typeModel = (TypeModel)Enum.Parse(typeof(TypeModel), assetsDTO.Type);
                 AvailabilityModel availabilityModel = (AvailabilityModel)Enum.Parse(typeof(AvailabilityModel), assetsDTO.IsAvailable);
 
-                Asset asset = new Asset()
+                var asset = new Asset()
                 {
                     Brand = assetsDTO.Brand,
                     AssetNo = assetsDTO.AssetNo,

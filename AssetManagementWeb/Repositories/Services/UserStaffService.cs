@@ -129,7 +129,7 @@ namespace AssetManagementWeb.Repositories.Services
             }
         }
 
-        public async Task<object> GetUserStaffs(string token)
+        public async Task<List<UserStaffDTO>> GetUserStaffs(string token)
         {
             try
             {
@@ -141,12 +141,7 @@ namespace AssetManagementWeb.Repositories.Services
 
                 if (result.StatusCode != HttpStatusCode.OK)
                 {
-                    var faliedResponse = await result.Content.ReadAsJsonAsync<RestException>();
-                    return new ResponseModel()
-                    {
-                        ResponseMessage = faliedResponse.Errors.ToString(),
-                        ResponseCode = result.StatusCode.ToString()
-                    };
+                    throw new Exception(result.StatusCode.ToString());
                 }
 
                 var successResponse = await result.Content.ReadAsJsonAsync<List<UserStaffDTO>>();

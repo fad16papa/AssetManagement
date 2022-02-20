@@ -220,7 +220,7 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    AssetId = table.Column<Guid>(nullable: true),
+                    AssetId = table.Column<Guid>(nullable: false),
                     LicenseId = table.Column<Guid>(nullable: false),
                     IssuedOn = table.Column<DateTime>(nullable: false),
                     ReturnedOn = table.Column<DateTime>(nullable: false),
@@ -234,7 +234,7 @@ namespace Persistence.Migrations
                         column: x => x.AssetId,
                         principalTable: "Assets",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AssetsLicenses_Licenses_LicenseId",
                         column: x => x.LicenseId,
@@ -247,23 +247,23 @@ namespace Persistence.Migrations
                 name: "UserAssets",
                 columns: table => new
                 {
-                    AssetsId = table.Column<Guid>(nullable: false),
-                    UserStaffId = table.Column<Guid>(nullable: false),
                     Id = table.Column<Guid>(nullable: false),
+                    AssetsId = table.Column<Guid>(nullable: false),
+                    AssetId = table.Column<Guid>(nullable: true),
+                    UserStaffId = table.Column<Guid>(nullable: false),
                     IssuedOn = table.Column<DateTime>(nullable: false),
                     ReturnedOn = table.Column<DateTime>(nullable: false),
                     IsActive = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserAssets", x => new { x.AssetsId, x.UserStaffId });
-                    table.UniqueConstraint("AK_UserAssets_Id", x => x.Id);
+                    table.PrimaryKey("PK_UserAssets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserAssets_Assets_AssetsId",
-                        column: x => x.AssetsId,
+                        name: "FK_UserAssets_Assets_AssetId",
+                        column: x => x.AssetId,
                         principalTable: "Assets",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_UserAssets_UserStaffs_UserStaffId",
                         column: x => x.UserStaffId,
@@ -348,6 +348,11 @@ namespace Persistence.Migrations
                 name: "IX_AssetsLicenses_LicenseId",
                 table: "AssetsLicenses",
                 column: "LicenseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserAssets_AssetId",
+                table: "UserAssets",
+                column: "AssetId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserAssets_UserStaffId",

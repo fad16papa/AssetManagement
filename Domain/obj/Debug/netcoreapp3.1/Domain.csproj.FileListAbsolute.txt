@@ -7,6 +7,15 @@ D:/AssetManagement/Domain/obj/Debug/netcoreapp3.1/Domain.AssemblyInfo.cs
 D:/AssetManagement/Domain/obj/Debug/netcoreapp3.1/Domain.csproj.CoreCompileInputs.cache
 D:/AssetManagement/Domain/obj/Debug/netcoreapp3.1/Domain.dll
 D:/AssetManagement/Domain/obj/Debug/netcoreapp3.1/Domain.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Domain/bin/Debug/netcoreapp3.1/Domain.deps.json
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Domain/bin/Debug/netcoreapp3.1/Domain.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Domain/bin/Debug/netcoreapp3.1/Domain.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Domain/obj/Debug/netcoreapp3.1/Domain.csproj.AssemblyReference.cache
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Domain/obj/Debug/netcoreapp3.1/Domain.AssemblyInfoInputs.cache
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Domain/obj/Debug/netcoreapp3.1/Domain.AssemblyInfo.cs
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Domain/obj/Debug/netcoreapp3.1/Domain.csproj.CoreCompileInputs.cache
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Domain/obj/Debug/netcoreapp3.1/Domain.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Domain/obj/Debug/netcoreapp3.1/Domain.pdb
 /Users/francisdecena/project/AssetManagement/Domain/bin/Debug/netcoreapp3.1/Domain.deps.json
 /Users/francisdecena/project/AssetManagement/Domain/bin/Debug/netcoreapp3.1/Domain.dll
 /Users/francisdecena/project/AssetManagement/Domain/bin/Debug/netcoreapp3.1/Domain.pdb

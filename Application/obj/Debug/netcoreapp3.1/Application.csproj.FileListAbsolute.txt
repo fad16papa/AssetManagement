@@ -12,6 +12,20 @@ D:/AssetManagement/Application/obj/Debug/netcoreapp3.1/Application.csproj.CoreCo
 D:/AssetManagement/Application/obj/Debug/netcoreapp3.1/Application.csproj.CopyComplete
 D:/AssetManagement/Application/obj/Debug/netcoreapp3.1/Application.dll
 D:/AssetManagement/Application/obj/Debug/netcoreapp3.1/Application.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/bin/Debug/netcoreapp3.1/Application.deps.json
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/bin/Debug/netcoreapp3.1/Application.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/bin/Debug/netcoreapp3.1/Application.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/bin/Debug/netcoreapp3.1/Domain.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/bin/Debug/netcoreapp3.1/Persistence.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/bin/Debug/netcoreapp3.1/Domain.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/bin/Debug/netcoreapp3.1/Persistence.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/obj/Debug/netcoreapp3.1/Application.csproj.AssemblyReference.cache
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/obj/Debug/netcoreapp3.1/Application.AssemblyInfoInputs.cache
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/obj/Debug/netcoreapp3.1/Application.AssemblyInfo.cs
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/obj/Debug/netcoreapp3.1/Application.csproj.CoreCompileInputs.cache
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/obj/Debug/netcoreapp3.1/Application.csproj.CopyComplete
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/obj/Debug/netcoreapp3.1/Application.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Application/obj/Debug/netcoreapp3.1/Application.pdb
 /Users/francisdecena/project/AssetManagement/Application/bin/Debug/netcoreapp3.1/Application.deps.json
 /Users/francisdecena/project/AssetManagement/Application/bin/Debug/netcoreapp3.1/Application.dll
 /Users/francisdecena/project/AssetManagement/Application/bin/Debug/netcoreapp3.1/Application.pdb

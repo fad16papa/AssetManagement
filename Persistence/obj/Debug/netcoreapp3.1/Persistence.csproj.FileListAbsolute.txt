@@ -10,6 +10,18 @@ D:/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.csproj.CoreCo
 D:/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.csproj.CopyComplete
 D:/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.dll
 D:/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Persistence/bin/Debug/netcoreapp3.1/Persistence.deps.json
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Persistence/bin/Debug/netcoreapp3.1/Persistence.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Persistence/bin/Debug/netcoreapp3.1/Persistence.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Persistence/bin/Debug/netcoreapp3.1/Domain.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Persistence/bin/Debug/netcoreapp3.1/Domain.pdb
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.csproj.AssemblyReference.cache
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.AssemblyInfoInputs.cache
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.AssemblyInfo.cs
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.csproj.CoreCompileInputs.cache
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.csproj.CopyComplete
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.dll
+C:/OurLinkLit Project/Source Code/SampleCode/AssetManagement/Persistence/obj/Debug/netcoreapp3.1/Persistence.pdb
 /Users/francisdecena/project/AssetManagement/Persistence/bin/Debug/netcoreapp3.1/Persistence.deps.json
 /Users/francisdecena/project/AssetManagement/Persistence/bin/Debug/netcoreapp3.1/Persistence.dll
 /Users/francisdecena/project/AssetManagement/Persistence/bin/Debug/netcoreapp3.1/Persistence.pdb
