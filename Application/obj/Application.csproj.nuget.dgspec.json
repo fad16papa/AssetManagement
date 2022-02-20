@@ -17,14 +17,14 @@
           "/Users/francisdecena/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "netcoreapp6.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net6.0": {
+            "targetAlias": "netcoreapp6.0",
             "projectReferences": {
               "/Users/francisdecena/project/AssetManagement/Domain/Domain.csproj": {
                 "projectPath": "/Users/francisdecena/project/AssetManagement/Domain/Domain.csproj"
@@ -42,8 +42,8 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net6.0": {
+          "targetAlias": "netcoreapp6.0",
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -90,14 +90,14 @@
           "/Users/francisdecena/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "netcoreapp6.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net6.0": {
+            "targetAlias": "netcoreapp6.0",
             "projectReferences": {}
           }
         },
@@ -108,8 +108,8 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net6.0": {
+          "targetAlias": "netcoreapp6.0",
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -148,14 +148,14 @@
           "/Users/francisdecena/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "netcoreapp6.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net6.0": {
+            "targetAlias": "netcoreapp6.0",
             "projectReferences": {
               "/Users/francisdecena/project/AssetManagement/Domain/Domain.csproj": {
                 "projectPath": "/Users/francisdecena/project/AssetManagement/Domain/Domain.csproj"
@@ -170,8 +170,8 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net6.0": {
+          "targetAlias": "netcoreapp6.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

@@ -15,6 +15,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
   </ItemGroup>
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp6.0</TargetFramework>
   </PropertyGroup>
 </Project>

@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {
+    "net6.0": {
       "Castle.Core/4.2.1": {
         "type": "package",
         "dependencies": {
@@ -2096,7 +2096,7 @@
       },
       "Domain/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
+        "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.0.0"
         },
@@ -7182,7 +7182,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": [
+    "net6.0": [
       "Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 3.0.0",
       "Microsoft.EntityFrameworkCore.Proxies >= 3.0.0",
@@ -7206,14 +7206,14 @@
         "/Users/francisdecena/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp3.1"
+        "netcoreapp6.0"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net6.0": {
+          "targetAlias": "netcoreapp6.0",
           "projectReferences": {
             "/Users/francisdecena/project/AssetManagement/Domain/Domain.csproj": {
               "projectPath": "/Users/francisdecena/project/AssetManagement/Domain/Domain.csproj"
@@ -7228,8 +7228,8 @@
       }
     },
     "frameworks": {
-      "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
+      "net6.0": {
+        "targetAlias": "netcoreapp6.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
@@ -7266,13 +7266,5 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /Users/francisdecena/project/AssetManagement/Persistence/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

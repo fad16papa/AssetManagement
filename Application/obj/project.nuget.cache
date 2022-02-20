@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "00O5zRGcVxxtKvQ8IS75x3IyWMfgS/7l0YVxvnmNVZJlpokFgvRJr30l2D9IVcK9WI5Fo9clqOyZokZRbCzrBQ==",
+  "dgSpecHash": "suLz6paohyPpfPU4Ft3x8igctZHSwhOCnXMXmfIUvP1RGPQR//VZtBujUvQE6JZNYlntY+JGrktkL1NzTVG/Cw==",
   "success": true,
   "projectFilePath": "/Users/francisdecena/project/AssetManagement/Application/Application.csproj",
   "expectedPackageFiles": [
@@ -145,12 +145,5 @@
     "/Users/francisdecena/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /Users/francisdecena/project/AssetManagement/Application/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

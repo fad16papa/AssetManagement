@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vCoylWTMPbc+A77a/bPXPi/e3gTmCyx0L6q2PEQD3U22sni+FPWM7qZz4qGW9UqkdoPCUV/HXUZmnahuVDfBbA==",
+  "dgSpecHash": "wIn6Jirz/d1n9lqIEp013T5yqH8zZoI27KTBNHgDLxG2vx6Xzf3SXjgb5Ftgs2ZGkHPiBagsNkBFAP+m/9lAWw==",
   "success": true,
   "projectFilePath": "/Users/francisdecena/project/AssetManagement/Persistence/Persistence.csproj",
   "expectedPackageFiles": [
@@ -138,12 +138,5 @@
     "/Users/francisdecena/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /Users/francisdecena/project/AssetManagement/Persistence/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9dntWsmV74ZOXoFtedMI9oAe3QsugeLLMTWR3DTnAFYr1XfzJsFLmXDKMFb5+1dZij94DAKuVN6hOPsdU9qteg==",
+  "dgSpecHash": "gNJOuAMsRq8+DB6M1uACKdXohFk5S9HpIwje3+MCyHpAu87JZPoe1mufTFK0yoxUGuusk3/jxK7GeeQNh85qUQ==",
   "success": true,
   "projectFilePath": "/Users/francisdecena/project/AssetManagement/AssetManagementWeb/AssetManagementWeb.csproj",
   "expectedPackageFiles": [
@@ -182,15 +182,7 @@
     "/Users/francisdecena/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "/Users/francisdecena/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "/Users/francisdecena/.nuget/packages/microsoft.netcore.app.host.osx-x64/3.1.22/microsoft.netcore.app.host.osx-x64.3.1.22.nupkg.sha512"
+    "/Users/francisdecena/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /Users/francisdecena/project/AssetManagement/AssetManagementWeb/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

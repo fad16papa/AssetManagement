@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {
+    "net6.0": {
       "AspNetCore.Http.Extensions/1.0.1": {
         "type": "package",
         "dependencies": {
@@ -2855,7 +2855,7 @@
       },
       "Application/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
+        "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "7.0.0",
           "Domain": "1.0.0",
@@ -2872,7 +2872,7 @@
       },
       "Domain/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
+        "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.0.0"
         },
@@ -2885,7 +2885,7 @@
       },
       "Persistence/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
+        "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "3.0.0",
@@ -9161,7 +9161,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": [
+    "net6.0": [
       "Application >= 1.0.0",
       "AspNetCore.Http.Extensions >= 1.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.0",
@@ -9188,14 +9188,14 @@
         "/Users/francisdecena/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp3.1"
+        "netcoreapp6.0"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net6.0": {
+          "targetAlias": "netcoreapp6.0",
           "projectReferences": {
             "/Users/francisdecena/project/AssetManagement/Application/Application.csproj": {
               "projectPath": "/Users/francisdecena/project/AssetManagement/Application/Application.csproj"
@@ -9213,8 +9213,8 @@
       }
     },
     "frameworks": {
-      "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
+      "net6.0": {
+        "targetAlias": "netcoreapp6.0",
         "dependencies": {
           "AspNetCore.Http.Extensions": {
             "target": "Package",
@@ -9253,12 +9253,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.osx-x64",
-            "version": "[3.1.22, 3.1.22]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -9270,13 +9264,5 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /Users/francisdecena/project/AssetManagement/AssetManagementWeb/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
