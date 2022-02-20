@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UIkLCTpC2jS9r6UnYvLpYHE5YnG33Tc1yPUN8VmRFGFRiOlcybCktt8Aky0J0P7AeXE6jontCiHNXklUQDsIJg==",
+  "dgSpecHash": "lh/3BlJ47afHc0BkKomJToojAda/lQ9nEuuV09XE+86tfjWqJ9CjGPxiqFJqQMf/IIndoMD1IdrWoqoNSJ0s1A==",
   "success": true,
   "projectFilePath": "/Users/francisdecena/project/AssetManagement/AssetAPI/AssetAPI.csproj",
   "expectedPackageFiles": [
@@ -28,6 +28,7 @@
     "/Users/francisdecena/.nuget/packages/microsoft.entityframeworkcore.proxies/3.0.0/microsoft.entityframeworkcore.proxies.3.0.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/microsoft.entityframeworkcore.relational/3.0.0/microsoft.entityframeworkcore.relational.3.0.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/microsoft.entityframeworkcore.sqlserver/3.0.0/microsoft.entityframeworkcore.sqlserver.3.0.0.nupkg.sha512",
+    "/Users/francisdecena/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/microsoft.extensions.caching.abstractions/3.0.0/microsoft.extensions.caching.abstractions.3.0.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/microsoft.extensions.caching.memory/3.0.0/microsoft.extensions.caching.memory.3.0.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/microsoft.extensions.configuration/3.0.0/microsoft.extensions.configuration.3.0.0.nupkg.sha512",
@@ -51,6 +52,7 @@
     "/Users/francisdecena/.nuget/packages/microsoft.identitymodel.tokens/5.5.0/microsoft.identitymodel.tokens.5.5.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/microsoft.netcore.platforms/2.0.0/microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "/Users/francisdecena/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/microsoft.win32.primitives/4.3.0/microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/microsoft.win32.registry/4.5.0/microsoft.win32.registry.4.5.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/mysqlconnector/0.61.0/mysqlconnector.0.61.0.nupkg.sha512",
@@ -79,6 +81,10 @@
     "/Users/francisdecena/.nuget/packages/runtime.win-arm64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/runtime.win-x64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "/Users/francisdecena/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/Users/francisdecena/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/Users/francisdecena/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/Users/francisdecena/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/system.appcontext/4.3.0/system.appcontext.4.3.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/system.buffers/4.3.0/system.buffers.4.3.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/system.collections/4.3.0/system.collections.4.3.0.nupkg.sha512",
@@ -157,15 +163,7 @@
     "/Users/francisdecena/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
     "/Users/francisdecena/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "/Users/francisdecena/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "/Users/francisdecena/.nuget/packages/microsoft.netcore.app.host.osx-x64/3.1.22/microsoft.netcore.app.host.osx-x64.3.1.22.nupkg.sha512"
+    "/Users/francisdecena/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /Users/francisdecena/project/AssetManagement/AssetAPI/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
